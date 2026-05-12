@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fideliza × Dr. Velasco Solórzano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0A1F3D;--navy-deep:#061530;--navy-soft:#1A3559;--navy-tint:#E8EEF7;
+  --gold:#FFD700;--gold-soft:#FFF4B8;--gold-deep:#B8960A;--gold-glow:#FFE55C;
+  --gray-1:#FAFAFC;--gray-2:#F0F2F7;--gray-3:#8A93A6;--gray-5:#5B6478;
+  --green:#25D366;--green-deep:#128C7E;
+  --red-soft:#FF6B6B;
+  --font:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+#loader{position:fixed;inset:0;background:var(--navy);z-index:1000;display:flex;align-items:center;justify-content:center;animation:lf .4s ease 1.6s forwards}
+#lt{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--gold)}
+@keyframes lf{to{opacity:0;visibility:hidden}}
+
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 60%,var(--navy-soft) 100%);color:#fff;padding:32px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,215,0,.25) 0%,transparent 65%);pointer-events:none;filter:blur(40px)}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-100px;width:450px;height:450px;background:radial-gradient(circle,rgba(255,215,0,.12) 0%,transparent 65%);pointer-events:none;filter:blur(40px)}
+.nav{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;position:relative;z-index:2}
+.nav-logo{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:#fff}
+.nav-right{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:.85}
+.hero-inner{max-width:920px;margin:0 auto;padding:0 24px;position:relative;z-index:2;text-align:center}
+.hero-eyebrow{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:28px}
+.hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:20px}
+.hero-title .grad{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 50%,var(--gold-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.1rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.75);max-width:620px;margin:0 auto 40px}
+.hero-sub strong{color:#fff;font-weight:600}
+
+/* STATS INLINE */
+.stats-bar{max-width:1080px;margin:-40px auto 0;padding:0 24px;position:relative;z-index:3}
+.stats-grid{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(10,31,61,.15);display:grid;grid-template-columns:repeat(4,1fr);padding:28px 20px}
+.stat-item{text-align:center;padding:0 16px;border-right:1px solid var(--gray-2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:5px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat-num.alert{background:linear-gradient(135deg,var(--red-soft) 0%,var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.7rem;color:var(--gray-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.section{max-width:1080px;margin:0 auto;padding:80px 24px}
+.section-tight{padding:60px 24px}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);text-align:center;margin-bottom:14px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;text-align:center;margin-bottom:18px;color:var(--navy)}
+.section-title .grad{background:linear-gradient(135deg,var(--gold-deep) 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section-sub{font-size:1rem;color:var(--gray-5);line-height:1.7;text-align:center;max-width:620px;margin:0 auto 50px}
+
+/* DIAGNÓSTICO HALLAZGO ESPECIAL */
+.diag-box{background:linear-gradient(135deg,#fff 0%,var(--navy-tint) 100%);border:1px solid var(--gray-2);border-radius:20px;padding:36px;max-width:820px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;box-shadow:0 10px 30px rgba(10,31,61,.06)}
+.diag-icon{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 20px rgba(10,31,61,.25)}
+.diag-icon svg{width:32px;height:32px;color:var(--gold)}
+.diag-content h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.02em}
+.diag-content p{font-size:.95rem;color:var(--gray-5);line-height:1.6}
+.diag-metric{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:var(--gold);padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:700;margin:0 3px}
+
+/* PROBLEMA VISUAL */
+.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:820px;margin:0 auto}
+.problem-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 26px;display:flex;align-items:flex-start;gap:16px;transition:all .25s}
+.problem-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 30px rgba(255,215,0,.12)}
+.problem-icon{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--navy-tint) 0%,#fff 100%);display:flex;align-items:center;justify-content:center;border:1px solid var(--gray-2)}
+.problem-icon svg{width:22px;height:22px;color:var(--navy)}
+.problem-text{font-size:.92rem;color:var(--navy);font-weight:500;line-height:1.5;padding-top:6px}
+
+/* PRODUCTO PRINCIPAL - HERO CARD */
+.product-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 60%,var(--navy-deep) 100%);border-radius:24px;padding:50px 48px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px;box-shadow:0 20px 50px rgba(10,31,61,.2)}
+.product-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,215,0,.2) 0%,transparent 65%);pointer-events:none}
+.product-hero-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;position:relative;z-index:1}
+.product-hero-tag{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);color:var(--navy);font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.product-hero-duration{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.product-hero-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;position:relative;z-index:1}
+.product-hero-title .grad{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.product-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:32px;max-width:580px;position:relative;z-index:1;font-weight:300}
+.product-hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;position:relative;z-index:1}
+.product-hero-feature{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.95)}
+.product-hero-feature::before{content:'✓';width:22px;height:22px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;flex-shrink:0}
+
+/* METODOLOGÍA */
+.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:50px}
+.method-step{background:linear-gradient(135deg,#fff 0%,var(--gray-1) 100%);border:1px solid var(--gray-2);border-radius:14px;padding:22px 18px;position:relative;transition:all .25s}
+.method-step:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 10px 24px rgba(10,31,61,.08)}
+.method-num{position:absolute;top:-12px;left:18px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);color:var(--navy);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;box-shadow:0 4px 10px rgba(255,215,0,.3)}
+.method-title{font-size:.92rem;font-weight:700;color:var(--navy);margin-top:6px;margin-bottom:6px;letter-spacing:-.01em}
+.method-desc{font-size:.78rem;color:var(--gray-5);line-height:1.45}
+
+/* CALCULADORA */
+.calc-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 50%,var(--navy-soft) 100%);padding:90px 0;position:relative;overflow:hidden;margin-top:60px}
+.calc-section::before{content:'';position:absolute;top:50%;left:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none;transform:translateY(-50%);filter:blur(40px)}
+.calc-section::after{content:'';position:absolute;top:50%;right:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.1) 0%,transparent 65%);pointer-events:none;transform:translateY(-50%);filter:blur(40px)}
+.calc-inner{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.calc-eyebrow{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:18px}
+.calc-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:#fff;margin-bottom:14px}
+.calc-title .grad{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.calc-sub{font-size:1.05rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:50px;max-width:600px;font-weight:300}
+.calc-header{text-align:center;margin-bottom:50px}
+
+.calc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:stretch}
+.calc-inputs{background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px 32px;backdrop-filter:blur(12px)}
+.calc-input-block{margin-bottom:28px}
+.calc-input-block:last-child{margin-bottom:0}
+.calc-input-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.85rem;color:rgba(255,255,255,.7);font-weight:500;gap:12px}
+.calc-input-label .lbl-name{flex:1}
+.calc-input-label .lbl-val{display:inline-flex;align-items:center;gap:2px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:10px;padding:8px 12px;transition:all .2s}
+.calc-input-label .lbl-val:focus-within{border-color:var(--gold);background:rgba(255,215,0,.18);box-shadow:0 0 0 3px rgba(255,215,0,.15)}
+.calc-currency,.calc-unit{font-size:1rem;font-weight:700;color:var(--gold)}
+.calc-number{background:transparent;border:none;outline:none;color:var(--gold);font-family:var(--font);font-size:1.05rem;font-weight:800;letter-spacing:-.02em;width:90px;text-align:right;padding:0;-moz-appearance:textfield}
+.calc-number::-webkit-outer-spin-button,.calc-number::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.calc-hint{font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.4;margin-top:6px;font-weight:400}
+
+.calc-result{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 50%,var(--gold-soft) 100%);border-radius:20px;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;color:var(--navy);box-shadow:0 20px 60px -10px rgba(255,215,0,.4)}
+.calc-result::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(10,31,61,.08) 0%,transparent 65%);pointer-events:none}
+.calc-result-eyebrow{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+.calc-result-benchmark{display:inline-block;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--gold);font-size:.95rem;font-weight:800;padding:8px 16px;border-radius:999px;margin-bottom:18px}
+.calc-result-question{font-size:.92rem;font-weight:500;line-height:1.5;margin-bottom:24px;color:var(--navy);opacity:.85}
+.calc-result-num{font-size:clamp(2.6rem,7vw,4.5rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--navy);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.calc-result-period{font-size:.95rem;color:var(--navy);opacity:.7;font-weight:500;margin-bottom:24px}
+.calc-result-annual{background:rgba(10,31,61,.08);border-radius:12px;padding:14px 18px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center}
+.calc-result-annual-label{font-size:.78rem;color:var(--navy);opacity:.75;font-weight:600}
+.calc-result-annual-num{font-size:1.3rem;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.calc-result-cta{display:flex;flex-direction:column;gap:10px}
+.calc-result-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:12px;text-decoration:none;font-size:.88rem;font-weight:700;transition:all .2s;border:none;cursor:pointer}
+.calc-result-btn-primary{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff}
+.calc-result-btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(10,31,61,.4)}
+.calc-result-btn-secondary{background:transparent;color:var(--navy);border:1.5px solid rgba(10,31,61,.25);font-weight:600}
+.calc-result-btn-secondary:hover{background:rgba(10,31,61,.05)}
+
+.calc-disclaimer{text-align:center;font-size:.75rem;color:rgba(255,255,255,.4);margin-top:30px;letter-spacing:.02em;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+/* METRICS */
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.metric-card{background:linear-gradient(135deg,#fff 0%,var(--gray-1) 100%);border:1px solid var(--gray-2);border-radius:14px;padding:26px 22px;text-align:center;transition:all .25s}
+.metric-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(255,215,0,.1)}
+.metric-num{font-size:2.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.metric-label{font-size:.82rem;color:var(--gray-5);font-weight:500;line-height:1.4}
+
+/* CLIENTES */
+.clients{background:linear-gradient(135deg,#fff 0%,var(--gray-1) 100%);border-radius:20px;padding:40px 32px;margin:60px 0;text-align:center;border:1px solid var(--gray-2)}
+.clients-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-3);margin-bottom:20px}
+.clients-list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px 28px}
+.client-name{font-size:1rem;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.client-sep{color:var(--gold);font-weight:800}
+
+/* CASO */
+.case-study{background:linear-gradient(135deg,var(--navy-tint) 0%,#fff 100%);border-radius:20px;padding:42px 44px;margin-bottom:40px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;border:1px solid var(--gray-2)}
+.case-quote-mark{font-size:4rem;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:.6;font-family:Georgia,serif;font-weight:800}
+.case-text{font-size:1.05rem;font-weight:500;color:var(--navy);line-height:1.6;margin-bottom:16px}
+.case-author{font-size:.85rem;color:var(--gray-5);font-weight:500}
+.case-author strong{color:var(--navy);font-weight:700}
+
+/* CTA FINAL */
+.cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 50%,var(--navy-soft) 100%);border-radius:24px;padding:70px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;margin-bottom:60px;box-shadow:0 20px 50px rgba(10,31,61,.2)}
+.cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.18) 0%,transparent 65%);pointer-events:none;filter:blur(40px)}
+.cta-final-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;position:relative;z-index:1}
+.cta-final-title .grad{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cta-final-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:38px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300;position:relative;z-index:1}
+.cta-final-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;text-decoration:none;font-family:var(--font);font-size:.92rem;font-weight:600;transition:all .25s;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;border:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-glow) 100%);color:var(--navy);box-shadow:0 8px 24px rgba(255,215,0,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,215,0,.45)}
+.btn-wa{background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.45)}
+.btn svg{width:16px;height:16px}
+.cta-note{font-size:.74rem;color:rgba(255,255,255,.5);margin-top:20px;letter-spacing:.04em;position:relative;z-index:1}
+
+/* FOOTER */
+.footer{background:#fff;padding:40px 24px;border-top:1px solid var(--gray-2)}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-logo{font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:-.03em}
+.footer-signer{font-size:.78rem;color:var(--gray-5);margin-top:4px}
+.footer-right{display:flex;flex-direction:column;gap:4px;text-align:right}
+.footer-item{font-size:.82rem;color:var(--gray-5)}
+.footer-item a{color:var(--navy);text-decoration:none;font-weight:500}
+.footer-item a:hover{color:var(--gold-deep)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:24px;right:24px;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--green) 0%,var(--green-deep) 100%);color:#fff;padding:13px 20px;border-radius:999px;text-decoration:none;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;z-index:100}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.wa-float svg{width:18px;height:18px;flex-shrink:0}
+
+@media(max-width:820px){
+  .calc-grid{grid-template-columns:1fr;gap:20px}
+  .method-grid{grid-template-columns:1fr 1fr}
+  .diag-box{grid-template-columns:1fr;text-align:center;padding:28px 22px}
+  .diag-icon{margin:0 auto}
+}
+@media(max-width:720px){
+  .stats-grid{grid-template-columns:1fr 1fr;padding:22px 14px}
+  .stat-item{padding:12px 8px;border-right:none;border-bottom:1px solid var(--gray-2)}
+  .stat-item:nth-last-child(-n+2){border-bottom:none}
+  .stat-num{font-size:1.6rem}
+  .problem-grid{grid-template-columns:1fr}
+  .product-hero{padding:36px 28px}
+  .product-hero-features{grid-template-columns:1fr}
+  .metric-row{grid-template-columns:1fr}
+  .method-grid{grid-template-columns:1fr}
+  .clients{padding:28px 20px}
+  .case-study{grid-template-columns:1fr;padding:30px 24px;gap:16px}
+  .case-quote-mark{font-size:3rem}
+  .cta-final{padding:50px 24px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-right{text-align:center}
+  .wa-float{bottom:16px;right:16px;padding:14px;border-radius:50%}
+  .wa-float .wa-text{display:none}
+  .calc-section{padding:60px 0}
+  .calc-inputs,.calc-result{padding:28px 22px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div id="lt">fideliza</div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="nav">
+    <div class="nav-logo">fideliza</div>
+    <div class="nav-right">Para Dr. Velasco Solórzano</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow r">Análisis preliminar · Google Ads</div>
+    <h1 class="hero-title r">23 años de experiencia.<br><span class="grad">Posición 10 en Google.</span></h1>
+    <p class="hero-sub r">Le hicimos una auditoría rápida a <strong>dralejandrovelascotyo.com</strong> y encontramos 3 cosas que están dejando pacientes en la mesa cada semana. Una de ellas, francamente, no la esperábamos.</p>
+  </div>
+</section>
+
+<!-- STATS FLOTANTES -->
+<div class="stats-bar">
+  <div class="stats-grid r">
+    <div class="stat-item"><div class="stat-num alert">#10</div><div class="stat-label">Posición actual en Google</div></div>
+    <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Visitas orgánicas / mes</div></div>
+    <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Keywords ranqueando</div></div>
+    <div class="stat-item"><div class="stat-num alert">DA 2</div><div class="stat-label">Autoridad del dominio</div></div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO ESPECIAL -->
+<section class="section">
+  <div class="section-label r">Lo que no esperábamos encontrar</div>
+  <h2 class="section-title r">El hallazgo que <span class="grad">cambia la conversación</span></h2>
+  <p class="section-sub r">Esto no es una sospecha — es lo que arroja el análisis técnico del dominio hoy.</p>
+
+  <div class="r">
+    <div class="diag-box">
+      <div class="diag-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="diag-content">
+        <h3>Su sitio ya está corriendo Google Ads</h3>
+        <p>El URL trae los parámetros de Google Ads <span class="diag-metric">gclid</span> <span class="diag-metric">gad_source</span> que confirman pauta activa. Pero las herramientas públicas de análisis no detectan keywords pagadas registradas. Eso solo pasa cuando la configuración deja escapar buena parte de la inversión. <strong>Lo cuantificamos en la llamada.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section section-tight">
+  <div class="section-label r">El día a día digital de su consultorio</div>
+  <h2 class="section-title r">El paciente lo busca, pero no lo encuentra</h2>
+  <p class="section-sub r">Estos son los puntos donde se pierde el tráfico que ya está pasando por Google buscando exactamente lo que usted ofrece.</p>
+  <div class="problem-grid r">
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="problem-text">Búsquedas como "ortopedista CDMX" o "artroscopia hombro" no posicionan su sitio en los primeros resultados</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="problem-text">Las campañas activas hoy no parecen tener tracking de conversión configurado para medir llamadas y citas reales</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div class="problem-text">Su prestigio (Hospital Español, Ángeles, 23 años) no está siendo capitalizado en mensajes ni extensiones de anuncio</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M21 9H3M21 15H3M12 3v18"/></svg></div>
+      <div class="problem-text">El presupuesto que invierte se va en clics mal segmentados que no llegan al perfil real de paciente</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTO HERO -->
+<section class="section section-tight">
+  <div class="section-label r">Nuestra propuesta</div>
+  <h2 class="section-title r">Google Ads gestionado por <span class="grad">Fideliza</span></h2>
+  <div class="r">
+    <div class="product-hero">
+      <div class="product-hero-top">
+        <div class="product-hero-tag">Google Ads</div>
+        <div class="product-hero-duration">Lanzamiento en 6-8 días hábiles</div>
+      </div>
+      <h3 class="product-hero-title">Más citas calificadas <span class="grad">con menos desperdicio</span></h3>
+      <p class="product-hero-sub">Gestión integral de su cuenta de Google Ads. Keywords de alta intención (paciente listo para agendar, no curioso), anuncios con su credencial real, tracking de llamadas y formularios para medir el retorno. La pauta se paga directo a Google con control total para usted.</p>
+      <div class="product-hero-features">
+        <div class="product-hero-feature">Keywords médicas de alta intención</div>
+        <div class="product-hero-feature">Anuncios con extensiones y credenciales</div>
+        <div class="product-hero-feature">Tracking de llamadas y citas</div>
+        <div class="product-hero-feature">Reportes mensuales con costo por cita</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metric-row r">
+    <div class="metric-card">
+      <div class="metric-num">3</div>
+      <div class="metric-label">Campañas: Búsqueda + Remarketing + Display</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">Semanal</div>
+      <div class="metric-label">Optimización de pujas y negativización</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">Mensual</div>
+      <div class="metric-label">Dashboard con CTR, CPC y conversiones</div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="section section-tight">
+  <div class="section-label r">Metodología</div>
+  <h2 class="section-title r">Cómo trabajamos contigo</h2>
+  <p class="section-sub r">Cinco pasos claros, sin letras chicas. El kick-off agenda la primera reunión, el lanzamiento ocurre entre 6 y 8 días hábiles después.</p>
+  <div class="method-grid r">
+    <div class="method-step">
+      <div class="method-num">1</div>
+      <div class="method-title">Diagnóstico</div>
+      <div class="method-desc">Análisis del mercado local, competencia en Google y audiencias objetivo.</div>
+    </div>
+    <div class="method-step">
+      <div class="method-num">2</div>
+      <div class="method-title">Estrategia</div>
+      <div class="method-desc">Estructura de campañas, keywords, presupuesto y segmentación.</div>
+    </div>
+    <div class="method-step">
+      <div class="method-num">3</div>
+      <div class="method-title">Implementación</div>
+      <div class="method-desc">Creación de campañas, grupos de anuncios y tracking de conversiones.</div>
+    </div>
+    <div class="method-step">
+      <div class="method-num">4</div>
+      <div class="method-title">Optimización</div>
+      <div class="method-desc">Monitoreo semanal, ajustes de pujas y negativización de búsquedas.</div>
+    </div>
+    <div class="method-step">
+      <div class="method-num">5</div>
+      <div class="method-title">Reporteo</div>
+      <div class="method-desc">Informes mensuales con KPIs claros e insights accionables.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-section">
+  <div class="calc-inner">
+    <div class="calc-header r">
+      <div class="calc-eyebrow">Proyección con tus números</div>
+      <h2 class="calc-title">Pon <span class="grad">tus cifras reales</span><br>y mira la proyección</h2>
+      <p class="calc-sub" style="margin-left:auto;margin-right:auto;text-align:center">Tú aportas los montos. Nosotros aplicamos los benchmarks <strong style="color:#fff">conservadores</strong> del sector salud en Google Ads. Es el piso, no el techo — la idea es no inflar expectativas.</p>
+    </div>
+
+    <div class="r">
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="calc-input-block">
+            <div class="calc-input-label">
+              <span class="lbl-name">Inversión mensual planeada en pauta</span>
+              <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="pauta" value="15000" min="0" step="1000" oninput="calc()" class="calc-number"/></span>
+            </div>
+            <div class="calc-hint">La pauta se paga directo a Google, no a Fideliza.</div>
+          </div>
+          <div class="calc-input-block">
+            <div class="calc-input-label">
+              <span class="lbl-name">Costo por clic estimado (CPC)</span>
+              <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="cpc" value="35" min="0" step="5" oninput="calc()" class="calc-number"/></span>
+            </div>
+            <div class="calc-hint">Benchmark sector salud México: $25–$60 MXN por clic según especialidad.</div>
+          </div>
+          <div class="calc-input-block">
+            <div class="calc-input-label">
+              <span class="lbl-name">Valor promedio por paciente nuevo</span>
+              <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="valor" value="2500" min="0" step="500" oninput="calc()" class="calc-number"/></span>
+            </div>
+            <div class="calc-hint">Consulta + estudios + procedimientos. Usted conoce este número.</div>
+          </div>
+        </div>
+
+        <div class="calc-result">
+          <div>
+            <div class="calc-result-eyebrow">Proyección conservadora</div>
+            <div class="calc-result-benchmark" id="result-benchmark">3.36% conversión (benchmark sector)</div>
+            <div class="calc-result-question" id="result-question">Con tu inversión generarías ~430 clics/mes. Aplicamos 3.36% de conversión — el promedio reportado del sector salud en Google Ads.</div>
+            <div class="calc-result-num" id="result-num">$0</div>
+            <div class="calc-result-period">de facturación potencial al mes</div>
+            <div class="calc-result-annual">
+              <span class="calc-result-annual-label">Anualizado (12 meses)</span>
+              <span class="calc-result-annual-num" id="result-annual">$0</span>
+            </div>
+          </div>
+          <div class="calc-result-cta">
+            <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="calc-result-btn calc-result-btn-primary">
+              Ver análisis completo en llamada →
+            </a>
+            <a href="https://wa.me/5215646921011?text=Hola%2C%20us%C3%A9%20la%20calculadora%20de%20Fideliza%20y%20me%20interesa%20entender%20m%C3%A1s" target="_blank" class="calc-result-btn calc-result-btn-secondary">
+              O por WhatsApp directo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-disclaimer r">
+      Usamos 3.36% como tasa de conversión — es el promedio reportado del sector salud en Google Ads a nivel global (fuente: benchmarks de la industria). Un consultorio bien posicionado puede llegar a 5–8%, pero preferimos mostrarte el piso para que no haya sorpresas. En la llamada vemos qué tan arriba podemos llevar tu caso específico.
+    </div>
+  </div>
+</section>
+
+<!-- CASO -->
+<section class="section section-tight">
+  <div class="section-label r">Caso real</div>
+  <h2 class="section-title r">Ya lo hicimos con perfiles como el tuyo</h2>
+  <div class="r">
+    <div class="case-study">
+      <div class="case-quote-mark">"</div>
+      <div class="case-content">
+        <div class="case-text">En menos de un año pasamos de pelearle clics a la competencia a tener flujo constante de pacientes. El equipo de Fideliza no solo gestiona las campañas, también ayudó a entender qué keywords sí cierran y cuáles solo gastan presupuesto.</div>
+        <div class="case-author"><strong>Cliente sector servicios</strong> · Google Ads gestionado (caso bajo NDA)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clients r">
+    <div class="clients-label">Clientes que confían en Fideliza</div>
+    <div class="clients-list">
+      <span class="client-name">Mobi Muebles</span><span class="client-sep">·</span>
+      <span class="client-name">Basa</span><span class="client-sep">·</span>
+      <span class="client-name">Hero Sport</span><span class="client-sep">·</span>
+      <span class="client-name">Wellthy</span><span class="client-sep">·</span>
+      <span class="client-name">Natuvit</span><span class="client-sep">·</span>
+      <span class="client-name">Toyota Mazatlán</span><span class="client-sep">·</span>
+      <span class="client-name">Maja</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section section-tight">
+  <div class="cta-final r">
+    <h2 class="cta-final-title">¿Listo para que su práctica<br><span class="grad">crezca como su trayectoria?</span></h2>
+    <p class="cta-final-sub">Platiquemos 20 minutos. Le mostramos las 3 cosas que encontramos, cómo se vería su cuenta correctamente configurada, y cuánto debería estar invirtiendo realmente para su perfil.</p>
+    <div class="cta-final-buttons">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">
+        Agendar llamada de 20 min
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20mi%20consultorio%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp directo
+      </a>
+    </div>
+    <div class="cta-note">Sin costo · Sin compromiso · Si no hay fit, se lo decimos</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">fideliza</div>
+      <div class="footer-signer">Sofía Sánchez · Consultora Digital</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-item"><a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a></div>
+      <div class="footer-item"><a href="https://wa.me/5215646921011" target="_blank">WhatsApp 56 4692 1011</a></div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20mi%20consultorio%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-text">WhatsApp</span>
+</a>
+
+<script>
+setTimeout(()=>{const l=document.getElementById('loader');if(l)l.remove();},1800);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:.12});
+document.querySelectorAll('.r').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.08+'s';io.observe(el);});
+
+// === CALCULADORA ===
+// Benchmark conservador del sector salud en Google Ads
+// Fuente: WordStream/LocaliQ healthcare benchmarks 2024-2025
+// Promedio del sector: 3.36% conversión clic→lead. Es el piso, no el techo.
+const CONV_RATE = 3.36;
+
+const fmt = n => '$' + Math.round(n).toLocaleString('es-MX');
+const fmtShort = n => {
+  if(n >= 1000000) return '$' + (n/1000000).toFixed(1).replace(/\.0$/,'') + 'M';
+  if(n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return fmt(n);
+};
+
+function calc(){
+  const pauta = +document.getElementById('pauta').value || 0;
+  const cpc = +document.getElementById('cpc').value || 1;
+  const valor = +document.getElementById('valor').value || 0;
+  
+  const clics = pauta / cpc;
+  const citasMes = clics * (CONV_RATE / 100);
+  const ingresoMes = citasMes * valor;
+  const ingresoAnio = ingresoMes * 12;
+  
+  document.getElementById('result-benchmark').textContent = `${CONV_RATE}% conversión (benchmark sector)`;
+  document.getElementById('result-question').textContent = `Con tu inversión generarías ~${Math.round(clics)} clics/mes. Aplicamos ${CONV_RATE}% de conversión — el promedio reportado del sector salud en Google Ads.`;
+  
+  document.getElementById('result-num').textContent = fmt(ingresoMes);
+  document.getElementById('result-annual').textContent = fmtShort(ingresoAnio);
+}
+
+calc();
+</script>
+</body>
+</html>
