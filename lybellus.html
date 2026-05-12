@@ -318,7 +318,7 @@ body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-
     <div class="calc-header r">
       <div class="calc-eyebrow">Calculadora de impacto</div>
       <h2 class="calc-title">Pon <span class="gold">tus números reales</span><br>y mira el impacto</h2>
-      <p class="calc-sub" style="margin-left:auto;margin-right:auto;text-align:center">Aplicamos los % de mejora que vemos con nuestros clientes sobre los montos que tú ingreses. Dos palancas para mover el resultado: organizar lo que ya tienes (Clientify) o traer más leads (Google Ads gestionado).</p>
+      <p class="calc-sub" style="margin-left:auto;margin-right:auto;text-align:center">Aplicamos los mínimos conservadores del sector hipotecario sobre los montos que tú ingreses. Dos palancas: organizar lo que ya tienes (Clientify) o traer más leads (Google Ads gestionado). Si vemos números optimistas, los corregimos en la llamada.</p>
     </div>
 
     <div class="r">
@@ -334,23 +334,23 @@ body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-
             <div class="calc-input-block">
               <div class="calc-input-label">
                 <span class="lbl-name">Leads que entran al mes</span>
-                <span class="lbl-val"><input type="number" id="leads" value="150" min="0" oninput="calcCRM()" class="calc-number"/></span>
+                <span class="lbl-val"><input type="number" id="leads" value="100" min="0" oninput="calcCRM()" class="calc-number"/></span>
               </div>
               <div class="calc-hint">Suma los que llegan por WhatsApp, redes, web y referidos</div>
             </div>
             <div class="calc-input-block">
               <div class="calc-input-label">
                 <span class="lbl-name">% de cierre actual</span>
-                <span class="lbl-val"><input type="number" id="cierreActual" value="5" min="0" max="100" step="0.5" oninput="calcCRM()" class="calc-number"/><span class="calc-unit">%</span></span>
+                <span class="lbl-val"><input type="number" id="cierreActual" value="4" min="0" max="100" step="0.5" oninput="calcCRM()" class="calc-number"/><span class="calc-unit">%</span></span>
               </div>
-              <div class="calc-hint">De cada 100 leads, cuántos terminan en operación cerrada</div>
+              <div class="calc-hint">Cierre típico de broker hipotecario: 3% a 6% lead → operación cerrada</div>
             </div>
             <div class="calc-input-block">
               <div class="calc-input-label">
-                <span class="lbl-name">Ingreso promedio por operación cerrada</span>
-                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="comision" value="35000" min="0" step="1000" oninput="calcCRM()" class="calc-number"/></span>
+                <span class="lbl-name">Comisión promedio por operación cerrada</span>
+                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="comision" value="25000" min="0" step="1000" oninput="calcCRM()" class="calc-number"/></span>
               </div>
-              <div class="calc-hint">Pon el monto en MXN que tú quieras estimar</div>
+              <div class="calc-hint">Referencia conservadora: 1% sobre crédito promedio bancario MX ($2.37M = ~$23K MXN)</div>
             </div>
           </div>
 
@@ -366,16 +366,16 @@ body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-
             <div class="calc-input-block">
               <div class="calc-input-label">
                 <span class="lbl-name">Costo por lead que estás dispuesto a pagar</span>
-                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="cpl" value="150" min="0" step="10" oninput="calcAds()" class="calc-number"/></span>
+                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="cpl" value="500" min="0" step="50" oninput="calcAds()" class="calc-number"/></span>
               </div>
-              <div class="calc-hint">Referencia: $150–$300 según industria y geografía</div>
+              <div class="calc-hint">CPL mínimo realista hipotecario MX: $400–$800 (sector financiero competido)</div>
             </div>
             <div class="calc-input-block">
               <div class="calc-input-label">
-                <span class="lbl-name">Ingreso promedio por operación cerrada</span>
-                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="comision2" value="35000" min="0" step="1000" oninput="calcAds()" class="calc-number"/></span>
+                <span class="lbl-name">Comisión promedio por operación cerrada</span>
+                <span class="lbl-val"><span class="calc-currency">$</span><input type="number" id="comision2" value="25000" min="0" step="1000" oninput="calcAds()" class="calc-number"/></span>
               </div>
-              <div class="calc-hint">Pon el monto en MXN que tú quieras estimar</div>
+              <div class="calc-hint">Referencia conservadora: 1% sobre crédito promedio bancario MX</div>
             </div>
           </div>
         </div>
@@ -383,10 +383,10 @@ body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-
         <div class="calc-result">
           <div class="calc-result-top">
             <div class="calc-result-eyebrow" id="result-eyebrow">Mejora estimada con Clientify</div>
-            <div class="calc-result-benchmark" id="result-benchmark">+140% en tasa de cierre</div>
-            <div class="calc-result-question" id="result-question">Brokers que pasan de 5% a 12% de cierre al ordenar seguimiento, comparativos y embudo por banco</div>
+            <div class="calc-result-benchmark" id="result-benchmark">+2 puntos de cierre (base)</div>
+            <div class="calc-result-question" id="result-question">Mejora mínima esperada al ordenar seguimiento, comparativos y embudo por banco en una sola plataforma. Es el piso, no el techo.</div>
             <div class="calc-result-num" id="result-num">$0</div>
-            <div class="calc-result-period" id="result-period">de ingreso adicional al mes</div>
+            <div class="calc-result-period" id="result-period">de ingreso adicional al mes (escenario base)</div>
             <div class="calc-result-annual">
               <span class="calc-result-annual-label">Anualizado</span>
               <span class="calc-result-annual-num" id="result-annual">$0</span>
@@ -405,7 +405,7 @@ body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-
     </div>
 
     <div class="calc-disclaimer r">
-      Los porcentajes son rangos típicos que vemos en clientes Fideliza activos en México. Los montos los defines tú según tu operación. Es una proyección orientativa; los números finales se trabajan caso por caso en la llamada.
+      Usamos los mínimos conservadores del sector financiero/hipotecario en México (CVR Finance & Insurance 2.5%, CPL hipotecario MX desde $400 MXN). Los montos los defines tú según tu operación. Es una proyección base orientativa; los números reales se trabajan caso por caso en la llamada.
     </div>
   </div>
 </section>
@@ -497,9 +497,10 @@ const fmtShort = n => {
   return fmt(n);
 };
 
-// RANGOS TÍPICOS FIDELIZA (conservadores, sustentables en llamada)
-const MEJORA_CIERRE_CRM = 3; // +3 puntos porcentuales de mejora típica al ordenar embudo y seguimiento
-const CIERRE_ADS = 4; // 4% cierre sobre lead calificado de Google Ads bien gestionado
+// RANGOS MÍNIMOS CONSERVADORES SECTOR HIPOTECARIO MX
+// Sustentados con benchmarks públicos para llamada con prospect
+const MEJORA_CIERRE_CRM = 2; // +2 puntos porcentuales (rango mínimo, conservador)
+const CIERRE_ADS = 2.5; // 2.5% cierre lead→operación sobre lead Google Ads en sector financiero (Finance/Real Estate CVR 2.47%-2.78%)
 
 let mode = 'crm';
 
@@ -510,11 +511,11 @@ function setMode(m){
   document.getElementById('inputs-ads').style.display = m === 'ads' ? 'block' : 'none';
   if(m === 'crm'){
     document.getElementById('result-eyebrow').textContent = 'Mejora estimada con Clientify';
-    document.getElementById('result-period').textContent = 'de ingreso adicional al mes';
+    document.getElementById('result-period').textContent = 'de ingreso adicional al mes (escenario base)';
     calcCRM();
   } else {
     document.getElementById('result-eyebrow').textContent = 'Proyección con Google Ads gestionado';
-    document.getElementById('result-period').textContent = 'de ingreso potencial al mes';
+    document.getElementById('result-period').textContent = 'de ingreso potencial al mes (escenario base)';
     calcAds();
   }
 }
@@ -524,14 +525,14 @@ function calcCRM(){
   const cierreActual = +document.getElementById('cierreActual').value || 0;
   const comision = +document.getElementById('comision').value || 0;
   
-  // Cliente pone su % real. Aplicamos +3 puntos porcentuales (conservador, sustentable)
+  // Cliente pone su % real. Aplicamos +2 puntos porcentuales (rango mínimo, sustentable)
   const cierreObjetivo = cierreActual + MEJORA_CIERRE_CRM;
   const operacionesExtra = leads * (MEJORA_CIERRE_CRM / 100);
   const dineroMes = operacionesExtra * comision;
   const dineroAnio = dineroMes * 12;
   
-  document.getElementById('result-benchmark').textContent = `+${MEJORA_CIERRE_CRM} puntos de cierre`;
-  document.getElementById('result-question').textContent = `Pasar de ${cierreActual}% a ${cierreObjetivo}% de cierre es la mejora típica que vemos al ordenar embudo, seguimiento y comparativos en una sola plataforma`;
+  document.getElementById('result-benchmark').textContent = `+${MEJORA_CIERRE_CRM} puntos de cierre (base)`;
+  document.getElementById('result-question').textContent = `Mejora mínima esperada: pasar de ${cierreActual}% a ${cierreObjetivo}% al ordenar embudo, seguimiento y comparativos en una sola plataforma. Es el piso, no el techo.`;
   
   document.getElementById('result-num').textContent = fmt(dineroMes);
   document.getElementById('result-annual').textContent = fmtShort(dineroAnio);
@@ -547,8 +548,8 @@ function calcAds(){
   const ingresoMes = ventasMes * comision2;
   const ingresoAnio = ingresoMes * 12;
   
-  document.getElementById('result-benchmark').textContent = `~${CIERRE_ADS}% cierre sobre lead calificado`;
-  document.getElementById('result-question').textContent = `Con tu inversión generarías alrededor de ${Math.round(leadsGenerados)} leads/mes. El cierre depende de tu fuerza comercial; usamos ${CIERRE_ADS}% como referencia conservadora.`;
+  document.getElementById('result-benchmark').textContent = `${CIERRE_ADS}% cierre lead→operación`;
+  document.getElementById('result-question').textContent = `Con tu inversión llegarían aprox. ${Math.round(leadsGenerados)} leads/mes. Usamos ${CIERRE_ADS}% de cierre como base mínima del sector financiero. El cierre real depende de tu fuerza comercial y velocidad de respuesta.`;
   
   document.getElementById('result-num').textContent = fmt(ingresoMes);
   document.getElementById('result-annual').textContent = fmtShort(ingresoAnio);
