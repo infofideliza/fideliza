@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fideliza × El Arca Mérida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0A1F3D;--navy-deep:#061530;--navy-soft:#1A3559;--navy-tint:#E8EEF7;
+  --gold:#FFD700;--gold-soft:#FFF4B8;--gold-deep:#B8960A;
+  --gray-1:#FAFAFC;--gray-2:#F0F2F7;--gray-3:#8A93A6;--gray-4:#D4D8E0;--gray-5:#5B6478;
+  --white:#fff;
+  --green:#25D366;--green-deep:#128C7E;
+  --red:#E74C3C;
+  --font:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+
+/* HERO */
+.hero{background:var(--navy);color:#fff;padding:32px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-100px;width:350px;height:350px;background:radial-gradient(circle,rgba(255,215,0,.08) 0%,transparent 65%);pointer-events:none}
+.nav{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;position:relative;z-index:2}
+.nav-logo{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:#fff}
+.nav-right{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.8)}
+.hero-inner{max-width:920px;margin:0 auto;padding:0 24px;position:relative;z-index:2;text-align:center}
+.hero-eyebrow{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:28px}
+.hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:20px}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{font-size:1.1rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.85);max-width:680px;margin:0 auto 40px}
+.hero-sub strong{color:#fff;font-weight:600}
+.hero-sub a{color:var(--gold);text-decoration:underline}
+
+/* STATS INLINE */
+.stats-bar{max-width:1080px;margin:-40px auto 0;padding:0 24px;position:relative;z-index:3}
+.stats-grid{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(10,31,61,.15);display:grid;grid-template-columns:repeat(4,1fr);padding:28px 20px}
+.stat-item{text-align:center;padding:0 16px;border-right:1px solid var(--gray-2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2rem;font-weight:800;color:var(--red);letter-spacing:-.03em;line-height:1;margin-bottom:5px}
+.stat-num.ok{color:var(--navy)}
+.stat-label{font-size:.7rem;color:var(--gray-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.section{max-width:1080px;margin:0 auto;padding:80px 24px}
+.section-tight{padding:60px 24px}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);text-align:center;margin-bottom:14px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;text-align:center;margin-bottom:18px;color:var(--navy)}
+.section-title .gold{color:var(--gold-deep)}
+.section-sub{font-size:1rem;color:var(--gray-5);line-height:1.7;text-align:center;max-width:680px;margin:0 auto 50px}
+
+/* HALLAZGO CARD */
+.hallazgo-card{max-width:780px;margin:0 auto;background:#fff;border-radius:20px;padding:36px 38px;border:1px solid var(--gray-2);box-shadow:0 10px 40px rgba(10,31,61,.06);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:flex-start}
+.hallazgo-icon{flex-shrink:0;width:64px;height:64px;border-radius:16px;background:var(--navy);display:flex;align-items:center;justify-content:center}
+.hallazgo-icon svg{width:32px;height:32px;color:var(--gold)}
+.hallazgo-title{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:10px;letter-spacing:-.01em}
+.hallazgo-text{font-size:.98rem;color:var(--gray-5);line-height:1.65}
+.hallazgo-text strong{color:var(--navy);font-weight:700}
+.hallazgo-tag{display:inline-block;background:var(--navy);color:var(--gold);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;margin:0 4px}
+
+/* PROBLEMA */
+.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:820px;margin:0 auto}
+.problem-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 26px;display:flex;align-items:flex-start;gap:16px;transition:transform .2s}
+.problem-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.problem-icon{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center}
+.problem-icon svg{width:22px;height:22px;color:var(--navy)}
+.problem-text{font-size:.92rem;color:var(--navy);font-weight:500;line-height:1.5;padding-top:6px}
+
+/* PRODUCTO HERO */
+.product-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);border-radius:24px;padding:50px 48px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px}
+.product-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.product-hero-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;position:relative;z-index:1}
+.product-hero-tag{background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.product-hero-duration{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.product-hero-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;position:relative;z-index:1}
+.product-hero-title .gold{color:var(--gold)}
+.product-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:32px;max-width:620px;position:relative;z-index:1;font-weight:300}
+.product-hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;position:relative;z-index:1}
+.product-hero-feature{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.95)}
+.product-hero-feature::before{content:'✓';width:22px;height:22px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;flex-shrink:0}
+
+/* METRICS */
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.metric-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:26px 22px;text-align:center}
+.metric-num{font-size:2.2rem;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.metric-num .gold{color:var(--gold-deep)}
+.metric-label{font-size:.82rem;color:var(--gray-5);font-weight:500;line-height:1.4}
+
+/* METODOLOGÍA */
+.steps-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1000px;margin:0 auto}
+.step-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 18px;text-align:center;position:relative}
+.step-num{width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;margin:0 auto 12px}
+.step-title{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.step-desc{font-size:.78rem;color:var(--gray-5);line-height:1.5}
+
+/* CALCULADORA */
+.calc-wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.calc-inputs{background:rgba(10,31,61,.92);border-radius:20px;padding:36px 32px;color:#fff}
+.calc-input-block{margin-bottom:26px}
+.calc-input-block:last-child{margin-bottom:0}
+.calc-label{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:8px}
+.calc-input-wrap{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 16px}
+.calc-input-wrap .peso{color:var(--gold);font-weight:700;font-size:1.1rem}
+.calc-input-wrap input{flex:1;background:transparent;border:none;color:#fff;font-size:1.4rem;font-weight:700;text-align:right;outline:none;font-family:var(--font);letter-spacing:-.02em}
+.calc-input-wrap input:focus{color:var(--gold)}
+.calc-note{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:8px;line-height:1.5}
+
+.calc-output{background:var(--gold);border-radius:20px;padding:36px 32px;color:var(--navy);display:flex;flex-direction:column}
+.calc-output-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(10,31,61,.7);margin-bottom:14px}
+.calc-output-tag{display:inline-block;background:var(--navy);color:var(--gold);font-size:.78rem;font-weight:700;padding:8px 18px;border-radius:999px;margin-bottom:18px;align-self:flex-start}
+.calc-output-desc{font-size:.95rem;color:var(--navy);line-height:1.6;margin-bottom:24px;font-weight:500}
+.calc-big-num{font-size:3.4rem;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1;margin-bottom:6px}
+.calc-big-label{font-size:.95rem;color:rgba(10,31,61,.8);font-weight:500;margin-bottom:24px}
+.calc-anual{background:rgba(10,31,61,.08);border-radius:12px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.calc-anual-label{font-size:.88rem;color:var(--navy);font-weight:500}
+.calc-anual-num{font-size:1.3rem;font-weight:800;color:var(--navy)}
+.calc-ctas{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:999px;text-decoration:none;font-family:var(--font);font-size:.92rem;font-weight:600;transition:all .25s;letter-spacing:-.01em}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-deep);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+.btn-wa{background:var(--green);color:#fff}
+.btn-wa:hover{background:var(--green-deep);transform:translateY(-2px)}
+.btn svg{width:16px;height:16px}
+
+.calc-disclaimer{max-width:920px;margin:30px auto 0;font-size:.82rem;color:var(--gray-5);text-align:center;line-height:1.6;padding:0 20px}
+.calc-disclaimer strong{color:var(--navy)}
+
+/* CASO */
+.case-study{background:var(--navy-tint);border-radius:20px;padding:42px 44px;margin-bottom:40px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;max-width:880px;margin-left:auto;margin-right:auto}
+.case-quote-mark{font-size:4rem;color:var(--gold);line-height:.6;font-family:Georgia,serif;font-weight:800}
+.case-text{font-size:1.05rem;font-weight:500;color:var(--navy);line-height:1.6;margin-bottom:16px}
+.case-author{font-size:.85rem;color:var(--gray-5);font-weight:500}
+.case-author strong{color:var(--navy);font-weight:700}
+
+/* CLIENTES */
+.clients{background:#fff;border-radius:20px;padding:32px 28px;margin:0 auto;max-width:880px;text-align:center;border:1px solid var(--gray-2)}
+.clients-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-3);margin-bottom:18px}
+.clients-list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px 22px}
+.client-name{font-size:.95rem;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.client-sep{color:var(--gold);font-weight:800}
+
+/* CTA FINAL */
+.cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);border-radius:24px;padding:70px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;max-width:1000px;margin:0 auto 60px}
+.cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.12) 0%,transparent 65%);pointer-events:none}
+.cta-final-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;position:relative;z-index:1}
+.cta-final-title .gold{color:var(--gold)}
+.cta-final-sub{font-size:1rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:38px;max-width:560px;margin-left:auto;margin-right:auto;font-weight:300;position:relative;z-index:1}
+.cta-final-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-note{font-size:.74rem;color:rgba(255,255,255,.5);margin-top:20px;letter-spacing:.04em;position:relative;z-index:1}
+
+/* FOOTER */
+.footer{background:#fff;padding:40px 24px;border-top:1px solid var(--gray-2)}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-logo{font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:-.03em}
+.footer-signer{font-size:.78rem;color:var(--gray-5);margin-top:4px}
+.footer-right{display:flex;flex-direction:column;gap:4px;text-align:right}
+.footer-item{font-size:.82rem;color:var(--gray-5)}
+.footer-item a{color:var(--navy);text-decoration:none;font-weight:500}
+.footer-item a:hover{color:var(--gold-deep)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:24px;right:24px;display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:13px 20px;border-radius:999px;text-decoration:none;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;z-index:100}
+.wa-float:hover{background:var(--green-deep);transform:translateY(-2px)}
+.wa-float svg{width:18px;height:18px;flex-shrink:0}
+
+@media(max-width:880px){
+  .stats-grid{grid-template-columns:1fr 1fr;padding:22px 14px}
+  .stat-item{padding:12px 8px;border-right:none;border-bottom:1px solid var(--gray-2)}
+  .stat-item:nth-last-child(-n+2){border-bottom:none}
+  .stat-num{font-size:1.6rem}
+  .problem-grid{grid-template-columns:1fr}
+  .product-hero{padding:36px 28px}
+  .product-hero-features{grid-template-columns:1fr}
+  .metric-row{grid-template-columns:1fr}
+  .steps-row{grid-template-columns:1fr 1fr}
+  .calc-wrap{grid-template-columns:1fr}
+  .hallazgo-card{grid-template-columns:1fr;padding:30px 24px;gap:20px}
+  .case-study{grid-template-columns:1fr;padding:30px 24px;gap:16px}
+  .cta-final{padding:50px 24px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-right{text-align:center}
+  .wa-float{bottom:16px;right:16px;padding:14px;border-radius:50%}
+  .wa-float .wa-text{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="nav">
+    <div class="nav-logo">fideliza</div>
+    <div class="nav-right">Para El Arca Mérida</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow r">Análisis preliminar · Google Ads</div>
+    <h1 class="hero-title r">120 lotes premium.<br><span class="gold">Tráfico al ras del piso.</span></h1>
+    <p class="hero-sub r">Le hicimos una auditoría rápida a <strong>elarcamerida.mx</strong> y encontramos 3 cosas que están dejando inversionistas en la mesa cada semana. Una de ellas, francamente, no la esperábamos.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid r">
+    <div class="stat-item"><div class="stat-num">138</div><div class="stat-label">Visitas orgánicas / mes</div></div>
+    <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Keywords ranqueando</div></div>
+    <div class="stat-item"><div class="stat-num">DA 8</div><div class="stat-label">Autoridad del dominio</div></div>
+    <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Keywords pagadas detectadas</div></div>
+  </div>
+</div>
+
+<!-- HALLAZGO -->
+<section class="section">
+  <div class="section-label r">Lo que no esperábamos encontrar</div>
+  <h2 class="section-title r">El hallazgo que <span class="gold">cambia la conversación</span></h2>
+  <p class="section-sub r">Esto no es una sospecha — es lo que arroja el análisis técnico del dominio hoy.</p>
+  <div class="r">
+    <div class="hallazgo-card">
+      <div class="hallazgo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div>
+        <h3 class="hallazgo-title">El sitio sí está corriendo Google Ads</h3>
+        <p class="hallazgo-text">El URL trae los parámetros <span class="hallazgo-tag">gclid</span> <span class="hallazgo-tag">gad_source</span> <span class="hallazgo-tag">gad_campaignid</span> que confirman pauta activa con ID de campaña visible. Pero las herramientas públicas de análisis <strong>no detectan ni una sola keyword pagada registrada</strong> para el dominio. En una vertical con ticket de $1.2M MXN por lote, eso significa que la inversión en Google está corriendo sin estructura medible. <strong>Lo cuantificamos en la llamada.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section section-tight">
+  <div class="section-label r">El día a día digital del proyecto</div>
+  <h2 class="section-title r">El inversionista lo busca,<br>pero no lo encuentra</h2>
+  <p class="section-sub r">Estos son los puntos donde se pierde el tráfico que ya está pasando por Google buscando exactamente lo que ustedes ofrecen.</p>
+  <div class="problem-grid r">
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="problem-text">Búsquedas como "terrenos zona norte Mérida" o "lotes residenciales Yucatán" no posicionan el sitio en los primeros lugares — solo 8 keywords ranquean en total.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div class="problem-text">La campaña activa hoy no muestra keywords registradas en herramientas públicas — sin tracking de formularios ni llamadas que medibles desde Google Ads.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="problem-text">DA 8 y 92 backlinks (13 nofollow) sobre dominio nuevo: el prestigio de FIBRE-CAPITAL no está siendo capitalizado en autoridad ni en extensiones de anuncio.</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="problem-text">El presupuesto activo se va en clics genéricos. La página de "Lote 11" (top SEO) atrae 6 visitas/mes — el ticket de $1.2M no soporta ese volumen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTO -->
+<section class="section section-tight">
+  <div class="section-label r">Nuestra propuesta</div>
+  <h2 class="section-title r">Google Ads gestionado por Fideliza</h2>
+  <div class="r">
+    <div class="product-hero">
+      <div class="product-hero-top">
+        <div class="product-hero-tag">Google Ads</div>
+        <div class="product-hero-duration">Lanzamiento en 6-8 días hábiles</div>
+      </div>
+      <h3 class="product-hero-title">Más leads calificados <span class="gold">con menos desperdicio</span></h3>
+      <p class="product-hero-sub">Gestión integral de la cuenta de Google Ads de El Arca. Keywords de alta intención inmobiliaria (inversionista listo para visitar, no curioso), anuncios con la credencial real de FIBRE-CAPITAL, tracking de llamadas y formularios para medir el retorno. La pauta se paga directo a Google con control total para ustedes.</p>
+      <div class="product-hero-features">
+        <div class="product-hero-feature">Keywords inmobiliarias de alta intención</div>
+        <div class="product-hero-feature">Anuncios con extensiones y plusvalía</div>
+        <div class="product-hero-feature">Tracking de formularios y llamadas</div>
+        <div class="product-hero-feature">Reportes mensuales con costo por lead</div>
+      </div>
+    </div>
+  </div>
+  <div class="metric-row r">
+    <div class="metric-card"><div class="metric-num">3</div><div class="metric-label">Campañas: Búsqueda + Remarketing + Display</div></div>
+    <div class="metric-card"><div class="metric-num">Semanal</div><div class="metric-label">Optimización de pujas y negativización</div></div>
+    <div class="metric-card"><div class="metric-num">Mensual</div><div class="metric-label">Dashboard con CTR, CPC y conversiones</div></div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="section section-tight">
+  <div class="section-label r">Metodología</div>
+  <h2 class="section-title r">Cómo trabajamos con ustedes</h2>
+  <p class="section-sub r">Cinco pasos claros, sin letras chicas. El kick-off agenda la primera reunión, el lanzamiento ocurre entre 6 y 8 días hábiles después.</p>
+  <div class="steps-row r">
+    <div class="step-card"><div class="step-num">1</div><div class="step-title">Diagnóstico</div><div class="step-desc">Análisis del mercado Yucatán, competencia inmobiliaria y audiencias objetivo.</div></div>
+    <div class="step-card"><div class="step-num">2</div><div class="step-title">Estrategia</div><div class="step-desc">Estructura de campañas, keywords, presupuesto y segmentación geográfica.</div></div>
+    <div class="step-card"><div class="step-num">3</div><div class="step-title">Implementación</div><div class="step-desc">Creación de campañas, grupos de anuncios y tracking de conversiones.</div></div>
+    <div class="step-card"><div class="step-num">4</div><div class="step-title">Optimización</div><div class="step-desc">Monitoreo semanal, ajustes de pujas y negativización de búsquedas.</div></div>
+    <div class="step-card"><div class="step-num">5</div><div class="step-title">Reporteo</div><div class="step-desc">Informes mensuales con KPIs claros e insights accionables.</div></div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="section section-tight">
+  <div class="section-label r">Proyección con sus números</div>
+  <h2 class="section-title r">Ponga las cifras reales<br>y mire la proyección</h2>
+  <p class="section-sub r">Ustedes aportan los montos. Nosotros aplicamos los benchmarks <strong>conservadores</strong> del sector inmobiliario en Google Ads. Es el piso, no el techo — la idea es no inflar expectativas.</p>
+  <div class="calc-wrap r">
+    <div class="calc-inputs">
+      <div class="calc-input-block">
+        <div class="calc-label">Inversión mensual planeada en pauta</div>
+        <div class="calc-input-wrap"><span class="peso">$</span><input id="inv" type="number" value="40000" /></div>
+        <div class="calc-note">La pauta se paga directo a Google, no a Fideliza.</div>
+      </div>
+      <div class="calc-input-block">
+        <div class="calc-label">Costo por clic estimado (CPC)</div>
+        <div class="calc-input-wrap"><span class="peso">$</span><input id="cpc" type="number" value="45" /></div>
+        <div class="calc-note">Benchmark sector inmobiliario MX: $30–$70 MXN por clic según ticket.</div>
+      </div>
+      <div class="calc-input-block">
+        <div class="calc-label">Valor promedio por lote vendido</div>
+        <div class="calc-input-wrap"><span class="peso">$</span><input id="valor" type="number" value="1200000" /></div>
+        <div class="calc-note">Ticket base El Arca desde $1.2 MDP. Ustedes conocen el promedio real.</div>
+      </div>
+    </div>
+    <div class="calc-output">
+      <div class="calc-output-eyebrow">Proyección conservadora</div>
+      <div class="calc-output-tag">2.1% conversión (benchmark inmobiliario)</div>
+      <div class="calc-output-desc">Con esta inversión generarían ~<span id="clicks">889</span> clics/mes. Aplicamos 2.1% de conversión a lead — el benchmark conservador del sector inmobiliario MX en Google Ads.</div>
+      <div class="calc-big-num" id="leads">19</div>
+      <div class="calc-big-label">leads calificados al mes</div>
+      <div class="calc-anual">
+        <span class="calc-anual-label">Anualizado (12 meses)</span>
+        <span class="calc-anual-num" id="anual">~224 leads</span>
+      </div>
+      <div class="calc-ctas">
+        <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-navy">Ver análisis completo en llamada →</a>
+        <a href="https://wa.me/5215646921011?text=Hola%2C%20us%C3%A9%20la%20calculadora%20de%20Fideliza%20para%20El%20Arca%20y%20me%20interesa%20entender%20m%C3%A1s" target="_blank" class="btn btn-outline">O por WhatsApp directo</a>
+      </div>
+    </div>
+  </div>
+  <p class="calc-disclaimer">Usamos <strong>2.1%</strong> como tasa de conversión a lead calificado — es el promedio reportado del sector inmobiliario MX en Google Ads para tickets premium (fuente: benchmarks Google + WordStream inmobiliario). Un desarrollo con escasez real (120 lotes) y buen tracking puede llegar a 3–4%. Preferimos mostrar el piso para que no haya sorpresas. En la llamada vemos qué tan arriba podemos llevar el caso específico de El Arca.</p>
+</section>
+
+<!-- CASO -->
+<section class="section section-tight">
+  <div class="section-label r">Caso real</div>
+  <h2 class="section-title r">Ya lo hicimos con perfiles<br>como el de ustedes</h2>
+  <div class="r">
+    <div class="case-study">
+      <div class="case-quote-mark">"</div>
+      <div>
+        <div class="case-text">En menos de un año pasamos de pelearle clics a la competencia a tener flujo constante de inversionistas calificados. El equipo de Fideliza no solo gestiona las campañas, también ayudó a entender qué keywords sí cierran y cuáles solo gastan presupuesto en curiosos.</div>
+        <div class="case-author"><strong>Cliente sector inmobiliario premium</strong> · Google Ads gestionado (caso bajo NDA)</div>
+      </div>
+    </div>
+  </div>
+  <div class="clients r">
+    <div class="clients-label">Clientes que confían en Fideliza</div>
+    <div class="clients-list">
+      <span class="client-name">Mobi Muebles</span><span class="client-sep">·</span>
+      <span class="client-name">Basa</span><span class="client-sep">·</span>
+      <span class="client-name">Hero Sport</span><span class="client-sep">·</span>
+      <span class="client-name">Wellthy</span><span class="client-sep">·</span>
+      <span class="client-name">Natuvit</span><span class="client-sep">·</span>
+      <span class="client-name">Toyota Mazatlán</span><span class="client-sep">·</span>
+      <span class="client-name">Maja</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section section-tight">
+  <div class="cta-final r">
+    <h2 class="cta-final-title">¿Listos para que El Arca<br><span class="gold">venda como el desarrollo que es?</span></h2>
+    <p class="cta-final-sub">Platiquemos 20 minutos. Les mostramos las 3 cosas que encontramos, cómo se vería su cuenta correctamente configurada, y cuánto debería estar invirtiendo realmente para un ticket de $1.2M.</p>
+    <div class="cta-final-buttons">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">Agendar llamada de 20 min</a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20El%20Arca%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp directo
+      </a>
+    </div>
+    <div class="cta-note">Sin costo · Sin compromiso · Si no hay fit, se los decimos</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">fideliza</div>
+      <div class="footer-signer">Sofía Sánchez · Consultora Digital</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-item"><a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a></div>
+      <div class="footer-item"><a href="https://wa.me/5215646921011" target="_blank">WhatsApp 56 4692 1011</a></div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20El%20Arca%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-text">WhatsApp</span>
+</a>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:.12});
+document.querySelectorAll('.r').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.08+'s';io.observe(el);});
+
+function calc(){
+  const inv=Math.max(0,parseFloat(document.getElementById('inv').value)||0);
+  const cpc=Math.max(1,parseFloat(document.getElementById('cpc').value)||1);
+  const valor=Math.max(0,parseFloat(document.getElementById('valor').value)||0);
+  const clics=Math.round(inv/cpc);
+  const leads=Math.round(clics*0.021);
+  document.getElementById('clicks').textContent=clics.toLocaleString('es-MX');
+  document.getElementById('leads').textContent=leads.toLocaleString('es-MX');
+  document.getElementById('anual').textContent='~'+(leads*12).toLocaleString('es-MX')+' leads';
+}
+['inv','cpc','valor'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
