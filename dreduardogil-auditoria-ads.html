@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Auditoría Google Ads · Dr. Eduardo Gil · Fideliza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0d1f2d; --ink-soft:#1a3a52; --paper:#f7f4ee; --cream:#efeae0;
+  --accent:#c9a961; --accent-deep:#9a7e3e; --rust:#b34a3a;
+  --green:#3d7c5e; --green-soft:#e8f0ec;
+  --gray:#6b7280; --gray-soft:#9aa2af; --line:#d8d1c2;
+  --display:'Fraunces', Georgia, serif;
+  --body:'DM Sans', system-ui, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-soft) 100%);color:var(--paper);padding:32px 0 110px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(201,169,97,.14),transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-200px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(179,74,58,.08),transparent 60%);pointer-events:none}
+.nav{max-width:1180px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;position:relative;z-index:2}
+.brand{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:-.025em;font-style:italic}
+.brand .dot{color:var(--accent)}
+.nav-tag{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.hero-inner{max-width:1180px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:42px;height:1px;background:var(--accent)}
+.hero-title{font-family:var(--display);font-size:clamp(2.6rem,5.6vw,4.6rem);font-weight:400;line-height:1.04;letter-spacing:-.035em;margin-bottom:28px;max-width:960px}
+.hero-title em{font-style:italic;color:var(--accent);font-weight:400}
+.hero-sub{font-size:1.12rem;color:rgba(247,244,238,.72);line-height:1.7;max-width:680px;font-weight:300;margin-bottom:44px}
+.hero-meta{display:flex;gap:48px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(201,169,97,.22)}
+.hero-meta-item{font-size:.74rem;color:rgba(247,244,238,.5);letter-spacing:.04em}
+.hero-meta-item strong{display:block;color:var(--paper);font-family:var(--display);font-size:1.2rem;font-weight:500;margin-top:6px;letter-spacing:-.015em}
+.hero-meta-item strong em{color:var(--accent);font-style:italic}
+
+/* DIAGNÓSTICO */
+.diagnostic{background:var(--cream);margin-top:-60px;position:relative;z-index:3;padding:0 32px}
+.diag-inner{max-width:1180px;margin:0 auto;background:var(--paper);border-radius:8px;box-shadow:0 40px 80px -30px rgba(13,31,45,.22);padding:54px 56px;position:relative}
+.diag-label{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.diag-label::before{content:'';width:28px;height:1px;background:var(--accent-deep)}
+.diag-headline{font-family:var(--display);font-size:1.85rem;font-weight:500;line-height:1.22;letter-spacing:-.018em;margin-bottom:6px;max-width:880px}
+.diag-headline em{font-style:italic;color:var(--rust)}
+.diag-sub{font-size:.98rem;color:var(--gray);max-width:760px;margin-bottom:40px;line-height:1.6}
+.diag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px}
+.diag-card{padding:24px 0 4px;border-top:2px solid var(--ink)}
+.diag-card-label{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:14px}
+.diag-card-num{font-family:var(--display);font-size:2.4rem;font-weight:500;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:12px}
+.diag-card-num em{font-style:italic;color:var(--rust);font-weight:500}
+.diag-card-num.good em{color:var(--green)}
+.diag-card-text{font-size:.88rem;color:var(--ink);line-height:1.55}
+
+/* SECTION BASE */
+section{padding:100px 32px;position:relative}
+.container{max-width:1180px;margin:0 auto}
+.sec-label{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--accent-deep)}
+.sec-title{font-family:var(--display);font-size:clamp(2rem,3.8vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-.028em;margin-bottom:24px;max-width:880px}
+.sec-title em{font-style:italic;color:var(--rust)}
+.sec-sub{font-size:1.05rem;color:var(--gray);line-height:1.65;max-width:700px;margin-bottom:54px;font-weight:300}
+
+/* PROBLEMA */
+.problem{background:var(--cream)}
+.prob-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:start}
+.prob-list{display:flex;flex-direction:column;gap:0}
+.prob-item{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line)}
+.prob-item:first-child{padding-top:0}
+.prob-item:last-child{border-bottom:none}
+.prob-num{font-family:var(--display);font-size:1.6rem;font-style:italic;color:var(--accent-deep);font-weight:500;line-height:1;min-width:36px}
+.prob-text{font-size:1.02rem;color:var(--ink);line-height:1.55}
+.prob-text strong{font-weight:600;color:var(--rust)}
+.prob-aside{background:var(--ink);color:var(--paper);padding:44px 36px;border-radius:6px;position:sticky;top:24px}
+.prob-aside-label{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:22px}
+.prob-aside-quote{font-family:var(--display);font-size:1.45rem;font-style:italic;font-weight:400;line-height:1.4;letter-spacing:-.012em;color:var(--paper);margin-bottom:26px}
+.prob-aside-meta{font-size:.78rem;color:rgba(247,244,238,.55);padding-top:20px;border-top:1px solid rgba(201,169,97,.22);letter-spacing:.04em}
+
+/* PRODUCTO / SOLUCIÓN */
+.solution{background:var(--paper)}
+.sol-wrap{background:linear-gradient(135deg,var(--ink) 0%,var(--ink-soft) 100%);color:var(--paper);border-radius:8px;padding:56px;position:relative;overflow:hidden}
+.sol-wrap::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,169,97,.15),transparent 60%);pointer-events:none}
+.sol-tag{display:inline-block;background:var(--accent);color:var(--ink);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px;position:relative;z-index:1}
+.sol-title{font-family:var(--display);font-size:clamp(2rem,4.2vw,2.8rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;margin-bottom:18px;position:relative;z-index:1;max-width:780px}
+.sol-title em{font-style:italic;color:var(--accent)}
+.sol-desc{font-size:1.05rem;color:rgba(247,244,238,.78);line-height:1.65;max-width:680px;margin-bottom:36px;position:relative;z-index:1;font-weight:300}
+.sol-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;position:relative;z-index:1}
+.sol-feat{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-top:1px solid rgba(201,169,97,.18);font-size:.96rem;color:rgba(247,244,238,.92)}
+.sol-feat::before{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;margin-top:9px;flex-shrink:0}
+
+/* METODOLOGÍA */
+.method{background:var(--cream)}
+.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:20px}
+.method-step{padding:30px 24px;border-right:1px solid var(--line);position:relative}
+.method-step:last-child{border-right:none}
+.method-step-num{font-family:var(--display);font-size:3rem;font-weight:500;font-style:italic;color:var(--accent);line-height:1;letter-spacing:-.03em;margin-bottom:18px;opacity:.6}
+.method-step-title{font-family:var(--display);font-size:1.15rem;font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.015em;margin-bottom:10px}
+.method-step-text{font-size:.88rem;color:var(--gray);line-height:1.55}
+
+/* CALCULADORA */
+.calc{background:var(--paper)}
+.calc-wrap{background:var(--cream);border-radius:8px;padding:54px;border:1px solid var(--line)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.calc-controls{display:flex;flex-direction:column;gap:30px}
+.calc-field{}
+.calc-field-label{display:flex;justify-content:space-between;align-items:baseline;font-size:.82rem;color:var(--ink);font-weight:600;margin-bottom:12px;letter-spacing:.01em}
+.calc-field-value{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--accent-deep);font-style:italic;letter-spacing:-.02em}
+.calc-input{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.calc-input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--accent);box-shadow:0 2px 8px rgba(13,31,45,.25)}
+.calc-input::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--accent);box-shadow:0 2px 8px rgba(13,31,45,.25)}
+.calc-field-hint{font-size:.74rem;color:var(--gray);margin-top:8px;font-style:italic}
+
+.calc-results{background:var(--ink);color:var(--paper);border-radius:6px;padding:36px;position:relative;overflow:hidden}
+.calc-results::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,169,97,.15),transparent 60%);pointer-events:none}
+.calc-res-label{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;position:relative;z-index:1}
+.calc-res-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(201,169,97,.18);position:relative;z-index:1}
+.calc-res-row:last-of-type{border-bottom:none}
+.calc-res-key{font-size:.92rem;color:rgba(247,244,238,.7);font-weight:400}
+.calc-res-val{font-family:var(--display);font-size:1.5rem;font-weight:600;color:var(--paper);letter-spacing:-.02em}
+.calc-res-val.big{font-size:2.2rem;color:var(--accent);font-style:italic;font-weight:500}
+.calc-res-foot{font-size:.74rem;color:rgba(247,244,238,.5);margin-top:20px;line-height:1.5;font-style:italic;position:relative;z-index:1}
+
+/* CASO */
+.case{background:var(--cream)}
+.case-wrap{background:var(--paper);border-radius:8px;padding:54px;border:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+.case-mark{font-family:var(--display);font-size:5rem;color:var(--accent);line-height:.6;font-weight:600;font-style:italic;letter-spacing:-.05em}
+.case-content{}
+.case-tag{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:14px}
+.case-quote{font-family:var(--display);font-size:1.45rem;font-style:italic;font-weight:400;line-height:1.45;letter-spacing:-.012em;color:var(--ink);margin-bottom:24px}
+.case-quote em{color:var(--rust);font-style:italic}
+.case-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding-top:24px;border-top:1px solid var(--line)}
+.case-num{}
+.case-num-val{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--accent-deep);font-style:italic;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.case-num-label{font-size:.74rem;color:var(--gray);letter-spacing:.06em}
+.case-source{font-size:.78rem;color:var(--gray);margin-top:22px;font-style:italic}
+
+/* CTA */
+.cta{background:var(--paper)}
+.cta-wrap{background:linear-gradient(135deg,var(--ink) 0%,#061321 100%);color:var(--paper);border-radius:8px;padding:80px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(201,169,97,.12),transparent 60%);pointer-events:none}
+.cta-eyebrow{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;position:relative;z-index:1}
+.cta-title{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-.028em;margin-bottom:22px;position:relative;z-index:1;max-width:760px;margin-left:auto;margin-right:auto}
+.cta-title em{font-style:italic;color:var(--accent)}
+.cta-sub{font-size:1.05rem;color:rgba(247,244,238,.7);line-height:1.65;max-width:580px;margin:0 auto 42px;font-weight:300;position:relative;z-index:1}
+.cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;text-decoration:none;font-family:var(--body);font-size:.92rem;font-weight:600;transition:all .25s;letter-spacing:.01em;border:2px solid transparent}
+.btn-primary{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.btn-primary:hover{background:transparent;color:var(--accent);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--paper);border-color:rgba(247,244,238,.3)}
+.btn-ghost:hover{background:rgba(247,244,238,.08);border-color:var(--paper);transform:translateY(-2px)}
+.cta-note{font-size:.74rem;color:rgba(247,244,238,.45);margin-top:24px;letter-spacing:.04em;position:relative;z-index:1;font-style:italic}
+
+/* FOOTER */
+.footer{background:var(--ink);color:rgba(247,244,238,.65);padding:48px 32px}
+.footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-brand{font-family:var(--display);font-size:1.4rem;font-weight:600;color:var(--paper);font-style:italic;letter-spacing:-.02em}
+.footer-brand .dot{color:var(--accent)}
+.footer-signer{font-size:.8rem;color:rgba(247,244,238,.55);margin-top:6px}
+.footer-right{display:flex;flex-direction:column;gap:4px;text-align:right;font-size:.85rem}
+.footer-right a{color:var(--paper);text-decoration:none;font-weight:500}
+.footer-right a:hover{color:var(--accent)}
+
+@media(max-width:900px){
+  .diag-grid{grid-template-columns:1fr 1fr}
+  .prob-grid{grid-template-columns:1fr;gap:40px}
+  .prob-aside{position:static}
+  .method-grid{grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  .method-step{background:var(--cream);border-right:none}
+  .calc-grid{grid-template-columns:1fr;gap:32px}
+  .case-wrap{grid-template-columns:1fr;gap:24px;padding:36px}
+  .case-numbers{grid-template-columns:1fr;gap:18px}
+  .sol-wrap{padding:36px 28px}
+  .sol-features{grid-template-columns:1fr}
+  .calc-wrap{padding:32px 24px}
+  .diag-inner{padding:36px 28px}
+  .cta-wrap{padding:54px 28px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-right{text-align:center}
+  section{padding:70px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" style="padding:32px 0 110px;">
+  <div class="nav">
+    <div class="brand">fideliza<span class="dot">.</span></div>
+    <div class="nav-tag">Auditoría preparada para Dr. Eduardo Gil</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Diagnóstico digital · Mayo 2026</div>
+    <h1 class="hero-title">Tu sitio existe.<br>Pero hoy <em>nadie te encuentra</em><br>cuando te buscan.</h1>
+    <p class="hero-sub">Revisamos dreduardogil.com con la mirada de quien lleva 16 años trayendo pacientes a especialistas médicos. La consulta privada de calidad ya está. Lo que falta es la maquinaria que conecta al paciente que busca cirujano de hernia hoy con tu agenda mañana.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Sitio analizado<strong>dreduardogil<em>.com</em></strong></div>
+      <div class="hero-meta-item">Especialidad<strong>Cirugía <em>laparoscópica</em></strong></div>
+      <div class="hero-meta-item">Zona<strong>CDMX · <em>Hospital Ángeles</em></strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section class="diagnostic" style="padding:0 32px 80px;">
+  <div class="diag-inner">
+    <div class="diag-label">Lo que vimos en 20 minutos</div>
+    <h2 class="diag-headline">Tu autoridad médica está construida. <em>Tu autoridad digital no.</em></h2>
+    <p class="diag-sub">Datos reales del análisis de dreduardogil.com. No son malos. Son los datos típicos de un sitio nuevo, bien hecho, pero que aún no genera demanda por sí solo.</p>
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-card-label">Domain Authority</div>
+        <div class="diag-card-num"><em>1</em><span style="font-size:1rem;color:var(--gray);font-style:normal;">/100</span></div>
+        <div class="diag-card-text">Sitio nuevo sin historial. Posicionar orgánicamente toma de 8 a 12 meses. Mientras tanto, Google Ads es el único canal que da pacientes hoy.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-label">Tráfico orgánico</div>
+        <div class="diag-card-num"><em>0</em></div>
+        <div class="diag-card-text">Visitas mensuales desde búsquedas en Google. Cero. Los pacientes que necesitan cirujano de hernia no llegan aquí — llegan a otros.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-label">Keywords ranking</div>
+        <div class="diag-card-num"><em>0</em></div>
+        <div class="diag-card-text">Términos por los que aparece tu sitio en Google. Ninguno en top 100. Ni siquiera para "cirujano de hernias CDMX".</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-label">Backlinks</div>
+        <div class="diag-card-num"><em>3</em></div>
+        <div class="diag-card-text">Enlaces externos que apuntan al sitio. Los 3 son nofollow. SEO te dará tracción a partir del mes 6. Hoy necesitas otra cosa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problem">
+  <div class="container">
+    <div class="sec-label">El problema real</div>
+    <h2 class="sec-title">El paciente que <em>te necesita</em> está buscando en Google ahora mismo.</h2>
+    <p class="sec-sub">Y está encontrando otros nombres. Estos son los cuellos de botella típicos en cirujanos con consultorio establecido pero sin sistema de captación digital.</p>
+    <div class="prob-grid">
+      <div class="prob-list">
+        <div class="prob-item">
+          <div class="prob-num">01</div>
+          <div class="prob-text">Dependes de <strong>referidos médicos y de pacientes anteriores.</strong> Es un canal valioso pero finito — no escala con el tiempo libre en agenda.</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-num">02</div>
+          <div class="prob-text">Tu sitio es <strong>una tarjeta de presentación pasiva.</strong> Funciona si alguien ya conoce tu nombre, pero no captura al paciente que apenas está buscando opciones.</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-num">03</div>
+          <div class="prob-text">La búsqueda "cirujano hernia CDMX" la ganan <strong>directorios, hospitales y colegas con campañas activas.</strong> No con mejor currículum — con mejor distribución.</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-num">04</div>
+          <div class="prob-text">El paciente que decide operarse <strong>compara 3 a 5 cirujanos en una semana.</strong> Si no estás en esa lista corta, no entras a la valoración.</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-num">05</div>
+          <div class="prob-text">SEO funciona pero <strong>tarda 8 a 12 meses</strong> en sitios nuevos. Mientras tanto, las semanas con agenda libre siguen pasando.</div>
+        </div>
+      </div>
+      <aside class="prob-aside">
+        <div class="prob-aside-label">Lo que vemos en cirujanos</div>
+        <div class="prob-aside-quote">"El paciente bueno ya no llega solo por recomendación de médico. Llega porque tecleó su síntoma en Google, vio 4 opciones, y eligió la que se vio más profesional y accesible."</div>
+        <div class="prob-aside-meta">Insight de 16 años trayendo pacientes a especialistas en CDMX, Guadalajara y Monterrey.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section class="solution">
+  <div class="container">
+    <div class="sec-label">La propuesta para ti</div>
+    <h2 class="sec-title">Google Ads gestionado <em>para cirujanos.</em></h2>
+    <p class="sec-sub">No es una agencia genérica que activa campañas y desaparece. Es un sistema permanente, operado semana a semana, pensado para capturar al paciente que ya está decidido y solo busca al cirujano correcto.</p>
+
+    <div class="sol-wrap">
+      <div class="sol-tag">Google Ads · Servicio permanente</div>
+      <h3 class="sol-title">Tu canal de pacientes <em>nuevos cada semana,</em> mientras tu SEO madura.</h3>
+      <p class="sol-desc">Investigación de keywords médico-quirúrgicas en CDMX, campañas de Search + Remarketing + Display, optimización semanal, llamadas y formularios trackeados, reporte mensual con costo por paciente real. Lanzamos en 6 a 8 días.</p>
+      <div class="sol-features">
+        <div class="sol-feat">Keywords médicas segmentadas por padecimiento y zona</div>
+        <div class="sol-feat">Campañas Search · Remarketing · Display · Shopping (si aplica)</div>
+        <div class="sol-feat">Tracking de llamadas y formularios en tiempo real</div>
+        <div class="sol-feat">Optimización semanal de pujas, anuncios y palabras negativas</div>
+        <div class="sol-feat">Reporte mensual con costo por lead y por paciente agendado</div>
+        <div class="sol-feat">Honorarios separados de la pauta — sin conflicto de interés</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="method">
+  <div class="container">
+    <div class="sec-label">Cómo trabajamos</div>
+    <h2 class="sec-title">5 pasos, <em>6 a 8 días</em> hasta tener pacientes entrando.</h2>
+    <p class="sec-sub">Metodología probada en clínicas, especialistas y servicios de salud. Sin meses de "estrategia" antes de lanzar — el cronómetro corre desde el día uno.</p>
+    <div class="method-grid">
+      <div class="method-step">
+        <div class="method-step-num">01</div>
+        <div class="method-step-title">Diagnóstico</div>
+        <div class="method-step-text">Análisis de búsquedas en tu zona, competencia activa en CDMX y términos de mayor intención de compra.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">02</div>
+        <div class="method-step-title">Estructura</div>
+        <div class="method-step-text">Armamos campañas separadas por padecimiento (hernia, vesícula, diástasis) con presupuesto independiente.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">03</div>
+        <div class="method-step-title">Lanzamiento</div>
+        <div class="method-step-text">Activación entre día 6 y 8. Tracking de llamadas, formularios y WhatsApp configurado desde el inicio.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">04</div>
+        <div class="method-step-title">Optimización</div>
+        <div class="method-step-text">Cada semana revisamos pujas, anuncios, palabras negativas y zonas de mejor conversión. Es operación viva.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-step-num">05</div>
+        <div class="method-step-title">Reporte</div>
+        <div class="method-step-text">Mensual: leads totales, costo por lead, costo por paciente agendado y recomendaciones para el siguiente mes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc">
+  <div class="container">
+    <div class="sec-label">Calculadora</div>
+    <h2 class="sec-title">¿Cuánto vale <em>un paciente nuevo</em> al mes para tu consultorio?</h2>
+    <p class="sec-sub">Ajusta los sliders con datos tuyos. Los benchmarks son del sector salud en CDMX: conversión promedio 3.36%, CPC entre $25 y $60 MXN para keywords médicas. Conservador a propósito.</p>
+
+    <div class="calc-wrap">
+      <div class="calc-grid">
+        <div class="calc-controls">
+          <div class="calc-field">
+            <div class="calc-field-label">
+              <span>Presupuesto mensual en pauta</span>
+              <span class="calc-field-value" id="vPauta">$15,000</span>
+            </div>
+            <input type="range" min="8000" max="60000" step="1000" value="15000" class="calc-input" id="iPauta">
+            <div class="calc-field-hint">No incluye honorarios de gestión</div>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field-label">
+              <span>Costo por clic estimado</span>
+              <span class="calc-field-value" id="vCPC">$40</span>
+            </div>
+            <input type="range" min="25" max="60" step="1" value="40" class="calc-input" id="iCPC">
+            <div class="calc-field-hint">Benchmark salud CDMX: $25 – $60 MXN</div>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field-label">
+              <span>Tasa de conversión a contacto</span>
+              <span class="calc-field-value" id="vCV">3.4%</span>
+            </div>
+            <input type="range" min="2" max="6" step="0.1" value="3.4" class="calc-input" id="iCV">
+            <div class="calc-field-hint">Benchmark sector salud: 3.36% promedio</div>
+          </div>
+
+          <div class="calc-field">
+            <div class="calc-field-label">
+              <span>Cierre de cita a procedimiento</span>
+              <span class="calc-field-value" id="vCierre">25%</span>
+            </div>
+            <input type="range" min="15" max="50" step="1" value="25" class="calc-input" id="iCierre">
+            <div class="calc-field-hint">Depende de valoración clínica y aseguradora</div>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-res-label">Proyección mensual estimada</div>
+          <div class="calc-res-row">
+            <div class="calc-res-key">Clics esperados</div>
+            <div class="calc-res-val" id="rClics">375</div>
+          </div>
+          <div class="calc-res-row">
+            <div class="calc-res-key">Contactos / leads</div>
+            <div class="calc-res-val" id="rLeads">13</div>
+          </div>
+          <div class="calc-res-row">
+            <div class="calc-res-key">Costo por lead</div>
+            <div class="calc-res-val" id="rCPL">$1,176</div>
+          </div>
+          <div class="calc-res-row">
+            <div class="calc-res-key">Pacientes / cirugías</div>
+            <div class="calc-res-val big" id="rPacientes">3</div>
+          </div>
+          <div class="calc-res-foot">Cifras conservadoras del sector salud CDMX. Resultados reales varían por padecimiento, zona, calidad del sitio y temporalidad. Honorarios de gestión se cotizan en la llamada.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASO -->
+<section class="case">
+  <div class="container">
+    <div class="sec-label">Caso anónimo · NDA</div>
+    <h2 class="sec-title">Especialista <em>en CDMX,</em> 4 meses con Google Ads gestionado.</h2>
+    <p class="sec-sub">Anonimizado por acuerdo de confidencialidad. Es un especialista médico con consulta privada en zona similar a Hospital Ángeles. Cifras directas de la cuenta.</p>
+
+    <div class="case-wrap">
+      <div class="case-mark">"</div>
+      <div class="case-content">
+        <div class="case-tag">Resultado a 4 meses</div>
+        <div class="case-quote">Pasó de <em>0 pacientes vía digital</em> a un promedio de 8 a 11 nuevos al mes. La agenda dejó de tener huecos de semanas y el equipo administrativo aprendió a manejar el flujo de WhatsApp y llamadas entrantes.</div>
+        <div class="case-numbers">
+          <div class="case-num">
+            <div class="case-num-val">8-11</div>
+            <div class="case-num-label">Pacientes nuevos / mes</div>
+          </div>
+          <div class="case-num">
+            <div class="case-num-val">~$1,800</div>
+            <div class="case-num-label">Costo por lead promedio</div>
+          </div>
+          <div class="case-num">
+            <div class="case-num-val">6 días</div>
+            <div class="case-num-label">Desde kickoff a lanzamiento</div>
+          </div>
+        </div>
+        <div class="case-source">Datos del cuarto mes operativo. Mes 1 fue de calibración con cifras menores.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-wrap">
+      <div class="cta-eyebrow">Siguiente paso</div>
+      <h2 class="cta-title">20 minutos. <em>Cero compromiso.</em><br>Si no hay fit, te lo decimos.</h2>
+      <p class="cta-sub">Te muestro las búsquedas reales de tu zona, qué cirujanos están pujando hoy y qué tendría que pasar para que tu nombre aparezca primero. Si vemos sentido, arrancamos. Si no, te ahorramos el tiempo.</p>
+      <div class="cta-buttons">
+        <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-primary">
+          Agendar 20 minutos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="https://wa.me/5215646921011?text=Hola%20Sof%C3%ADa%2C%20vi%20la%20auditor%C3%ADa%20de%20Google%20Ads%20de%20Fideliza%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-ghost">
+          WhatsApp directo
+        </a>
+      </div>
+      <div class="cta-note">Honorarios separados de la inversión publicitaria · Sin conflicto de interés</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">fideliza<span class="dot">.</span></div>
+      <div class="footer-signer">Sofía Sánchez · Consultora Digital · Fideliza</div>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a>
+      <a href="https://wa.me/5215646921011" target="_blank">WhatsApp · +52 1 56 4692 1011</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>'$'+Math.round(n).toLocaleString('es-MX');
+function calc(){
+  const pauta=+$('iPauta').value;
+  const cpc=+$('iCPC').value;
+  const cv=+$('iCV').value;
+  const cierre=+$('iCierre').value;
+  $('vPauta').textContent=fmt(pauta);
+  $('vCPC').textContent='$'+cpc;
+  $('vCV').textContent=cv.toFixed(1)+'%';
+  $('vCierre').textContent=cierre+'%';
+  const clics=Math.floor(pauta/cpc);
+  const leads=Math.floor(clics*cv/100);
+  const cpl=leads>0?pauta/leads:0;
+  const pacientes=Math.max(1,Math.round(leads*cierre/100));
+  $('rClics').textContent=clics.toLocaleString('es-MX');
+  $('rLeads').textContent=leads;
+  $('rCPL').textContent=fmt(cpl);
+  $('rPacientes').textContent=pacientes;
+}
+['iPauta','iCPC','iCV','iCierre'].forEach(id=>$(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
