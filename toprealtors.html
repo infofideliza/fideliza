@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fideliza × Top Realtors Mexico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0A1F3D;--navy-deep:#061530;--navy-soft:#1A3559;--navy-tint:#E8EEF7;
+  --gold:#FFD700;--gold-soft:#FFF4B8;--gold-deep:#B8960A;
+  --gray-1:#FAFAFC;--gray-2:#F0F2F7;--gray-3:#8A93A6;--gray-4:#D4D8E0;--gray-5:#5B6478;
+  --white:#fff;
+  --green:#25D366;--green-deep:#128C7E;
+  --red:#E74C3C;
+  --font:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+#loader{position:fixed;inset:0;background:var(--navy);z-index:1000;display:flex;align-items:center;justify-content:center;animation:lf .4s ease 1.6s forwards}
+#lt{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--gold)}
+@keyframes lf{to{opacity:0;visibility:hidden}}
+
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+
+.hero{background:var(--navy);color:#fff;padding:32px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-100px;width:350px;height:350px;background:radial-gradient(circle,rgba(255,215,0,.08) 0%,transparent 65%);pointer-events:none}
+.nav{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;position:relative;z-index:2}
+.nav-logo{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:#fff}
+.nav-right{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.8)}
+.hero-inner{max-width:920px;margin:0 auto;padding:0 24px;position:relative;z-index:2;text-align:center}
+.hero-eyebrow{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:28px}
+.hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:20px}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{font-size:1.1rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.75);max-width:620px;margin:0 auto 40px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:50px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;text-decoration:none;font-family:var(--font);font-size:.92rem;font-weight:600;transition:all .25s;letter-spacing:-.01em;white-space:nowrap;border:0;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,215,0,.3)}
+.btn-wa{background:var(--green);color:#fff;border:2px solid var(--green)}
+.btn-wa:hover{background:var(--green-deep);border-color:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.4)}
+.btn svg{width:16px;height:16px}
+.hero-trust{display:flex;justify-content:center;align-items:center;gap:32px;font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.05em;flex-wrap:wrap}
+.hero-trust-item{display:flex;align-items:center;gap:8px}
+.hero-trust-item::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+
+.stats-bar{max-width:1080px;margin:-40px auto 0;padding:0 24px;position:relative;z-index:3}
+.stats-grid{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(10,31,61,.15);display:grid;grid-template-columns:repeat(4,1fr);padding:28px 20px}
+.stat-item{text-align:center;padding:0 16px;border-right:1px solid var(--gray-2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2rem;font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1;margin-bottom:5px}
+.stat-num.red{color:var(--red)}
+.stat-num.gold{color:var(--gold-deep)}
+.stat-label{font-size:.7rem;color:var(--gray-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.section{max-width:1080px;margin:0 auto;padding:80px 24px}
+.section-tight{padding:60px 24px}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);text-align:center;margin-bottom:14px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;text-align:center;margin-bottom:18px;color:var(--navy)}
+.section-sub{font-size:1rem;color:var(--gray-5);line-height:1.7;text-align:center;max-width:620px;margin:0 auto 50px}
+
+.hallazgo{background:#fff;border:1px solid var(--gray-2);border-radius:20px;padding:36px 40px;max-width:820px;margin:0 auto;box-shadow:0 4px 20px rgba(10,31,61,.04)}
+.hallazgo-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.hallazgo-icon{width:48px;height:48px;border-radius:12px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hallazgo-icon svg{width:24px;height:24px;color:var(--navy)}
+.hallazgo-title{font-size:1.15rem;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+.hallazgo-text{font-size:.96rem;color:var(--gray-5);line-height:1.65}
+.hallazgo-tag{display:inline-block;background:var(--navy-tint);color:var(--navy);font-family:'Courier New',monospace;font-size:.82rem;font-weight:600;padding:2px 8px;border-radius:5px;margin:0 2px}
+
+.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:820px;margin:0 auto}
+.problem-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 26px;display:flex;align-items:flex-start;gap:16px;transition:transform .2s}
+.problem-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.problem-icon{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center}
+.problem-icon svg{width:22px;height:22px;color:var(--navy)}
+.problem-text{font-size:.92rem;color:var(--navy);font-weight:500;line-height:1.5;padding-top:6px}
+
+.product-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);border-radius:24px;padding:50px 48px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px}
+.product-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.product-hero-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;position:relative;z-index:1}
+.product-hero-tag{background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.product-hero-duration{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.product-hero-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;position:relative;z-index:1}
+.product-hero-title .gold{color:var(--gold)}
+.product-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:32px;max-width:580px;position:relative;z-index:1;font-weight:300}
+.product-hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;position:relative;z-index:1}
+.product-hero-feature{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.95)}
+.product-hero-feature::before{content:'✓';width:22px;height:22px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;flex-shrink:0}
+
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.metric-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:26px 22px;text-align:center}
+.metric-num{font-size:2.4rem;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.metric-num .gold{color:var(--gold-deep)}
+.metric-label{font-size:.82rem;color:var(--gray-5);font-weight:500;line-height:1.4}
+
+.metodo{max-width:920px;margin:0 auto}
+.metodo-row{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--gray-2)}
+.metodo-row:last-child{border-bottom:none}
+.metodo-num{width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.metodo-content h4{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:6px;letter-spacing:-.01em}
+.metodo-content p{font-size:.92rem;color:var(--gray-5);line-height:1.6}
+
+.calc{background:#fff;border:1px solid var(--gray-2);border-radius:20px;padding:40px;max-width:820px;margin:0 auto;box-shadow:0 4px 20px rgba(10,31,61,.04)}
+.calc-title{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.02em}
+.calc-sub{font-size:.88rem;color:var(--gray-5);margin-bottom:28px;line-height:1.5}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+.calc-field{}
+.calc-field label{display:block;font-size:.78rem;color:var(--gray-5);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.calc-field input{width:100%;padding:12px 14px;border:1.5px solid var(--gray-2);border-radius:10px;font-family:var(--font);font-size:.95rem;color:var(--navy);font-weight:600;background:var(--gray-1);transition:border .2s}
+.calc-field input:focus{outline:none;border-color:var(--gold)}
+.calc-output{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);border-radius:14px;padding:28px;color:#fff;text-align:center}
+.calc-output-label{font-size:.74rem;color:rgba(255,255,255,.65);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.calc-output-num{font-size:3rem;font-weight:800;color:var(--gold);letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.calc-output-note{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.5;margin-top:10px}
+.calc-disclaimer{font-size:.72rem;color:var(--gray-3);text-align:center;margin-top:18px;line-height:1.5;font-style:italic}
+
+.clients{background:#fff;border-radius:20px;padding:40px 32px;margin:60px 0;text-align:center;border:1px solid var(--gray-2)}
+.clients-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-3);margin-bottom:20px}
+.clients-list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px 28px}
+.client-name{font-size:1rem;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.client-sep{color:var(--gold);font-weight:800}
+
+.case-study{background:var(--navy-tint);border-radius:20px;padding:42px 44px;margin-bottom:40px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.case-quote-mark{font-size:4rem;color:var(--gold);line-height:.6;font-family:Georgia,serif;font-weight:800}
+.case-text{font-size:1.05rem;font-weight:500;color:var(--navy);line-height:1.6;margin-bottom:16px}
+.case-author{font-size:.85rem;color:var(--gray-5);font-weight:500}
+.case-author strong{color:var(--navy);font-weight:700}
+
+.cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);border-radius:24px;padding:70px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;margin-bottom:60px}
+.cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.12) 0%,transparent 65%);pointer-events:none}
+.cta-final-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;position:relative;z-index:1}
+.cta-final-title .gold{color:var(--gold)}
+.cta-final-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:38px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300;position:relative;z-index:1}
+.cta-final-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-note{font-size:.74rem;color:rgba(255,255,255,.5);margin-top:20px;letter-spacing:.04em;position:relative;z-index:1}
+
+.footer{background:#fff;padding:40px 24px;border-top:1px solid var(--gray-2)}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-logo{font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:-.03em}
+.footer-signer{font-size:.78rem;color:var(--gray-5);margin-top:4px}
+.footer-right{display:flex;flex-direction:column;gap:4px;text-align:right}
+.footer-item{font-size:.82rem;color:var(--gray-5)}
+.footer-item a{color:var(--navy);text-decoration:none;font-weight:500}
+.footer-item a:hover{color:var(--gold-deep)}
+
+.wa-float{position:fixed;bottom:24px;right:24px;display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:13px 20px;border-radius:999px;text-decoration:none;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;z-index:100}
+.wa-float:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.wa-float svg{width:18px;height:18px;flex-shrink:0}
+
+@media(max-width:880px){
+  .stats-grid{grid-template-columns:1fr 1fr;padding:22px 14px}
+  .stat-item{padding:12px 8px;border-right:none;border-bottom:1px solid var(--gray-2)}
+  .stat-item:nth-last-child(-n+2){border-bottom:none}
+  .stat-num{font-size:1.6rem}
+  .problem-grid{grid-template-columns:1fr}
+  .product-hero{padding:36px 28px}
+  .product-hero-features{grid-template-columns:1fr}
+  .metric-row{grid-template-columns:1fr}
+  .clients{padding:28px 20px}
+  .case-study{grid-template-columns:1fr;padding:30px 24px;gap:16px}
+  .case-quote-mark{font-size:3rem}
+  .cta-final{padding:50px 24px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-right{text-align:center}
+  .wa-float{bottom:16px;right:16px;padding:14px;border-radius:50%}
+  .wa-float .wa-text{display:none}
+  .hero-trust{gap:16px}
+  .hallazgo{padding:28px 22px}
+  .hallazgo-top{flex-direction:column;align-items:flex-start;gap:10px}
+  .calc{padding:28px 22px}
+  .calc-grid{grid-template-columns:1fr}
+  .metodo-row{grid-template-columns:48px 1fr;gap:16px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div id="lt">fideliza</div></div>
+
+<section class="hero">
+  <div class="nav">
+    <div class="nav-logo">fideliza</div>
+    <div class="nav-right">Para Top Realtors Mexico</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow r">Auditoría digital · Google Ads</div>
+    <h1 class="hero-title r">Tu tráfico está cualificado.<br><span class="gold">El volumen no.</span></h1>
+    <p class="hero-sub r">Revisamos toprealtors.com.mx: 42% bounce rate y casi 3 páginas por visita en un mercado de tickets de varios millones. Lo que falta no es interés, es presencia en las búsquedas que importan.</p>
+    <div class="hero-ctas r">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">
+        Agendar 20 min
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Top%20Realtors%20Mexico%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Hablemos por WhatsApp
+      </a>
+    </div>
+    <div class="hero-trust r">
+      <div class="hero-trust-item">16 años de experiencia</div>
+      <div class="hero-trust-item">+100 clientes</div>
+      <div class="hero-trust-item">Especialistas en captación digital</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-grid r">
+    <div class="stat-item"><div class="stat-num red">2,331</div><div class="stat-label">Visitas/mes (90 días)</div></div>
+    <div class="stat-item"><div class="stat-num red">354</div><div class="stat-label">Visitantes únicos</div></div>
+    <div class="stat-item"><div class="stat-num gold">2.87</div><div class="stat-label">Páginas por visita</div></div>
+    <div class="stat-item"><div class="stat-num gold">42.86%</div><div class="stat-label">Bounce rate</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-label r">Lo que vimos en el dominio</div>
+  <h2 class="section-title r">Tráfico engaged, presencia pequeña</h2>
+  <p class="section-sub r">Tres cosas saltan al revisar toprealtors.com.mx con datos públicos. Dos son obvias, la tercera es la que importa.</p>
+
+  <div class="r">
+  <div class="hallazgo">
+    <div class="hallazgo-top">
+      <div class="hallazgo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="hallazgo-title">Tu visitante promedio ve 3 propiedades antes de irse</div>
+    </div>
+    <div class="hallazgo-text">
+      Con 42.86% de rebote y 2.87 páginas por visita en preventa de Riviera Maya, el tráfico que llega ya está calificado: gente que busca <span class="hallazgo-tag">Tulum</span> <span class="hallazgo-tag">Playa del Carmen</span> <span class="hallazgo-tag">Cancún</span> con intención de compra. El problema no es la conversión del sitio. Es que con 354 visitantes únicos al mes y tickets desde $2M MXN, dependes de que ese tráfico orgánico pequeño te encuentre — sin que tú decidas cuándo, cuánto, ni a quién. Tres fugas concretas para Top Realtors:
+      <br><br>
+      <strong>1.</strong> Las búsquedas de "departamentos en Tulum", "Playa del Carmen inversión" y similares las capturan portales (Vivanuncios, Lamudi, Inmuebles24) y desarrolladoras directas. Tú apareces orgánico en posiciones medias o no apareces.<br>
+      <strong>2.</strong> El catálogo de desarrollos premium (Xacté, Náia Náay, IKUKU, Náutica) merece campañas dedicadas por proyecto y por intención de compra, no tráfico genérico al home.<br>
+      <strong>3.</strong> Sin Google Ads bien estructurado en este mercado, dejas que el algoritmo de SEO compita contra portales con DA 60+. La cancha está inclinada hasta que pones presupuesto donde el comprador busca.
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Si te suena familiar</div>
+  <h2 class="section-title r">El día a día de captación en preventa Riviera Maya</h2>
+  <p class="section-sub r">Los 4 dolores típicos en inmobiliarias que venden desarrollos premium y dependen de captación digital.</p>
+  <div class="problem-grid r">
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="problem-text">Los leads buenos llegan en oleadas impredecibles y el equipo no sabe qué fuente realmente convirtió</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div class="problem-text">Compites en portales con desarrolladoras directas que tienen presupuesto de marca</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="problem-text">El tráfico cae cuando bajas inversión y subir CPC genera leads no calificados</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="problem-text">No tienes claridad real del costo por lead ni del costo por cierre por canal</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Nuestra propuesta para Top Realtors</div>
+  <h2 class="section-title r">Google Ads gestionado para inmobiliaria</h2>
+  <div class="r">
+    <div class="product-hero">
+      <div class="product-hero-top">
+        <div class="product-hero-tag">Google Ads</div>
+        <div class="product-hero-duration">Lanzamiento 6 a 8 días</div>
+      </div>
+      <h3 class="product-hero-title">Captación digital <span class="gold">profesional</span></h3>
+      <p class="product-hero-sub">Estructura de campañas por desarrollo, por zona, por intención y por etapa del comprador. Búsqueda, remarketing y shopping cuando aplica. Tracking real de leads hasta el cierre. Honorarios separados de pauta, sin sorpresas.</p>
+      <div class="product-hero-features">
+        <div class="product-hero-feature">Campañas por proyecto (Xacté, Náia Náay, etc)</div>
+        <div class="product-hero-feature">Keywords por zona y por intención</div>
+        <div class="product-hero-feature">Remarketing a visitantes engaged</div>
+        <div class="product-hero-feature">Reporte semanal con CPL y origen</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metric-row r">
+    <div class="metric-card">
+      <div class="metric-num">6-8 d</div>
+      <div class="metric-label">Hasta primera campaña activa</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">4</div>
+      <div class="metric-label">Tipos de campaña por proyecto</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">1h</div>
+      <div class="metric-label">Sesión semanal con tu equipo</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Cómo trabajamos</div>
+  <h2 class="section-title r">Metodología en 5 pasos</h2>
+  <div class="metodo r">
+    <div class="metodo-row">
+      <div class="metodo-num">1</div>
+      <div class="metodo-content">
+        <h4>Diagnóstico del activo digital</h4>
+        <p>Auditamos sitio, tracking, conversiones y benchmarks de tu sector inmobiliario. Identificamos qué falta antes de prender la pauta.</p>
+      </div>
+    </div>
+    <div class="metodo-row">
+      <div class="metodo-num">2</div>
+      <div class="metodo-content">
+        <h4>Estructura de campañas por proyecto</h4>
+        <p>Una cuenta limpia con campañas por desarrollo, ad groups por intención (búsqueda de zona, búsqueda de proyecto, comparativos), copies específicos.</p>
+      </div>
+    </div>
+    <div class="metodo-row">
+      <div class="metodo-num">3</div>
+      <div class="metodo-content">
+        <h4>Tracking de leads end-to-end</h4>
+        <p>GA4, conversiones offline si hay CRM, fuentes de leads en formulario y WhatsApp. Cierras el círculo de qué keyword trajo el cierre.</p>
+      </div>
+    </div>
+    <div class="metodo-row">
+      <div class="metodo-num">4</div>
+      <div class="metodo-content">
+        <h4>Optimización semanal</h4>
+        <p>Pausamos lo que no convierte, escalamos lo que sí. Ajustes de puja, copies, audiencias y landings cada semana.</p>
+      </div>
+    </div>
+    <div class="metodo-row">
+      <div class="metodo-num">5</div>
+      <div class="metodo-content">
+        <h4>Reporte semanal accionable</h4>
+        <p>Costo por lead, costo por lead calificado y proyección por proyecto. Una hora con tu equipo cada semana para alinear prioridades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Estima tu inversión y resultados</div>
+  <h2 class="section-title r">Calculadora rápida</h2>
+  <p class="section-sub r">Ajusta los valores para ver cuántos leads calificados podrías generar al mes con Google Ads estructurado. Benchmarks conservadores del sector inmobiliario premium en México.</p>
+  <div class="r">
+    <div class="calc">
+      <div class="calc-title">Proyección mensual</div>
+      <div class="calc-sub">Asumiendo CTR promedio 3.5%, CPC $35 MXN, conversión a lead 2.1%, y filtro a lead calificado 30%.</div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label>Presupuesto mensual de pauta (MXN)</label>
+          <input type="number" id="presupuesto" value="40000" min="10000" step="5000"/>
+        </div>
+        <div class="calc-field">
+          <label>Ticket promedio de propiedad (MXN)</label>
+          <input type="number" id="ticket" value="2500000" min="500000" step="100000"/>
+        </div>
+      </div>
+      <div class="calc-output">
+        <div class="calc-output-label">Leads calificados estimados / mes</div>
+        <div class="calc-output-num" id="leads">—</div>
+        <div class="calc-output-note">Costo por lead calificado estimado: <strong id="cpl">—</strong> MXN · Con 1 cierre cada <strong id="cierres">—</strong> leads calificados, retorno potencial muy por encima de pauta.</div>
+      </div>
+      <div class="calc-disclaimer">Cifras estimadas con benchmarks conservadores del sector inmobiliario premium en México. Resultados reales dependen de zona, proyecto, estacionalidad y calidad del seguimiento comercial.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Caso real</div>
+  <h2 class="section-title r">Ya lo hicimos con empresas como la tuya</h2>
+  <div class="r">
+    <div class="case-study">
+      <div class="case-quote-mark">"</div>
+      <div>
+        <div class="case-text">Antes teníamos pauta sin estructura y leads sin saber de dónde venían. Fideliza nos armó campañas por desarrollo y por zona, y al tercer mes ya sabíamos qué keyword traía cierres reales, no solo clicks.</div>
+        <div class="case-author"><strong>Dirección Comercial</strong> · Inmobiliaria Premium (NDA)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clients r">
+    <div class="clients-label">Otros clientes que confían en Fideliza</div>
+    <div class="clients-list">
+      <span class="client-name">Mobi Muebles</span><span class="client-sep">·</span>
+      <span class="client-name">Basa</span><span class="client-sep">·</span>
+      <span class="client-name">Hero Sport</span><span class="client-sep">·</span>
+      <span class="client-name">Wellthy</span><span class="client-sep">·</span>
+      <span class="client-name">Natuvit</span><span class="client-sep">·</span>
+      <span class="client-name">Toyota Mazatlán</span><span class="client-sep">·</span>
+      <span class="client-name">Maja</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="cta-final r">
+    <h2 class="cta-final-title">¿Listos para tener captación<br><span class="gold">profesional desde Google?</span></h2>
+    <p class="cta-final-sub">Platiquemos 20 minutos. Te mostramos cómo se vería la estructura de campañas para Top Realtors, qué entregables incluye y cuándo podría estar la primera campaña activa.</p>
+    <div class="cta-final-buttons">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">
+        Agendar llamada de 20 min
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Top%20Realtors%20Mexico%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp directo
+      </a>
+    </div>
+    <div class="cta-note">Sin costo · Sin compromiso · Si no hay fit, te lo decimos</div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">fideliza</div>
+      <div class="footer-signer">Sofía Sánchez · Consultora Digital</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-item"><a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a></div>
+      <div class="footer-item"><a href="https://wa.me/5215646921011" target="_blank">WhatsApp +52 1 56 4692 1011</a></div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Top%20Realtors%20Mexico%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-text">WhatsApp</span>
+</a>
+
+<script>
+setTimeout(()=>{const l=document.getElementById('loader');if(l)l.remove();},1800);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:.12});
+document.querySelectorAll('.r').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.08+'s';io.observe(el);});
+
+function recalc(){
+  const p=parseFloat(document.getElementById('presupuesto').value)||0;
+  const cpc=35;
+  const convLead=0.021;
+  const filtroCal=0.30;
+  const clicks=p/cpc;
+  const leadsTotales=clicks*convLead;
+  const leadsCal=Math.round(leadsTotales*filtroCal);
+  const cpl=leadsCal>0?Math.round(p/leadsCal):0;
+  document.getElementById('leads').textContent=leadsCal;
+  document.getElementById('cpl').textContent='$'+cpl.toLocaleString('es-MX');
+  document.getElementById('cierres').textContent='15-25';
+}
+document.getElementById('presupuesto').addEventListener('input',recalc);
+document.getElementById('ticket').addEventListener('input',recalc);
+recalc();
+</script>
+</body>
+</html>
