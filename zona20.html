@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fideliza × Zona 20 Inmobiliaria · Taller IA para asesores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0A1F3D;--navy-deep:#061530;--navy-soft:#1A3559;--navy-tint:#E8EEF7;
+  --gold:#FFD700;--gold-soft:#FFF4B8;--gold-deep:#B8960A;
+  --gray-1:#FAFAFC;--gray-2:#F0F2F7;--gray-3:#8A93A6;--gray-4:#D4D8E0;--gray-5:#5B6478;
+  --white:#fff;--red:#E74C3C;
+  --green:#25D366;--green-deep:#128C7E;
+  --font:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--gray-1);color:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+#loader{position:fixed;inset:0;background:var(--navy);z-index:1000;display:flex;align-items:center;justify-content:center;animation:lf .4s ease 1.6s forwards}
+#lt{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:var(--gold)}
+@keyframes lf{to{opacity:0;visibility:hidden}}
+
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:translateY(0)}
+
+.hero{background:var(--navy);color:#fff;padding:32px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-150px;left:-100px;width:350px;height:350px;background:radial-gradient(circle,rgba(255,215,0,.08) 0%,transparent 65%);pointer-events:none}
+.nav{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;position:relative;z-index:2}
+.nav-logo{font-size:1.5rem;font-weight:800;letter-spacing:-.04em;color:#fff}
+.nav-right{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,215,0,.8)}
+.hero-inner{max-width:920px;margin:0 auto;padding:0 24px;position:relative;z-index:2;text-align:center}
+.hero-eyebrow{display:inline-block;background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.3);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:999px;margin-bottom:28px}
+.hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:20px}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{font-size:1.1rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.75);max-width:620px;margin:0 auto 40px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:50px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:999px;text-decoration:none;font-family:var(--font);font-size:.92rem;font-weight:600;transition:all .25s;letter-spacing:-.01em;white-space:nowrap;cursor:pointer;border:none}
+.btn-gold{background:var(--gold);color:var(--navy);border:2px solid var(--gold)}
+.btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,215,0,.3)}
+.btn-wa{background:var(--green);color:#fff;border:2px solid var(--green)}
+.btn-wa:hover{background:var(--green-deep);border-color:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,211,102,.4)}
+.btn svg{width:16px;height:16px}
+.hero-trust{display:flex;justify-content:center;align-items:center;gap:32px;font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.05em;flex-wrap:wrap}
+.hero-trust-item{display:flex;align-items:center;gap:8px}
+.hero-trust-item::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+
+.stats-bar{max-width:1080px;margin:-40px auto 0;padding:0 24px;position:relative;z-index:3}
+.stats-grid{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(10,31,61,.15);display:grid;grid-template-columns:repeat(4,1fr);padding:28px 20px}
+.stat-item{text-align:center;padding:0 16px;border-right:1px solid var(--gray-2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2rem;font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1;margin-bottom:5px}
+.stat-num .gold{color:var(--gold-deep)}
+.stat-num .red{color:var(--red)}
+.stat-label{font-size:.7rem;color:var(--gray-3);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+.section{max-width:1080px;margin:0 auto;padding:80px 24px}
+.section-tight{padding:60px 24px}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);text-align:center;margin-bottom:14px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;text-align:center;margin-bottom:18px;color:var(--navy)}
+.section-sub{font-size:1rem;color:var(--gray-5);line-height:1.7;text-align:center;max-width:620px;margin:0 auto 50px}
+
+.hallazgo{background:#fff;border:1px solid var(--gray-2);border-radius:18px;padding:32px 36px;max-width:820px;margin:0 auto;display:flex;gap:22px;align-items:flex-start}
+.hallazgo-icon{flex-shrink:0;width:54px;height:54px;border-radius:14px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center}
+.hallazgo-icon svg{width:28px;height:28px;color:var(--navy)}
+.hallazgo-content h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:10px;letter-spacing:-.02em}
+.hallazgo-content p{font-size:.95rem;color:var(--gray-5);line-height:1.65}
+.hallazgo-tag{display:inline-block;background:var(--navy-tint);color:var(--navy);padding:2px 8px;border-radius:6px;font-weight:600;font-size:.85em;font-family:monospace}
+
+.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:820px;margin:0 auto}
+.problem-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 26px;display:flex;align-items:flex-start;gap:16px;transition:transform .2s}
+.problem-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.problem-icon{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:var(--navy-tint);display:flex;align-items:center;justify-content:center}
+.problem-icon svg{width:22px;height:22px;color:var(--navy)}
+.problem-text{font-size:.92rem;color:var(--navy);font-weight:500;line-height:1.5;padding-top:6px}
+
+.product-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);border-radius:24px;padding:50px 48px;color:#fff;position:relative;overflow:hidden;margin-bottom:12px}
+.product-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 65%);pointer-events:none}
+.product-hero-top{display:flex;align-items:center;gap:12px;margin-bottom:22px;position:relative;z-index:1}
+.product-hero-tag{background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.product-hero-duration{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.product-hero-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;position:relative;z-index:1}
+.product-hero-title .gold{color:var(--gold)}
+.product-hero-sub{font-size:1.05rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:32px;max-width:580px;position:relative;z-index:1;font-weight:300}
+.product-hero-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;position:relative;z-index:1}
+.product-hero-feature{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.95)}
+.product-hero-feature::before{content:'✓';width:22px;height:22px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;flex-shrink:0}
+
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.metric-card{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:26px 22px;text-align:center}
+.metric-num{font-size:2.4rem;font-weight:800;color:var(--navy);letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.metric-num .gold{color:var(--gold-deep)}
+.metric-label{font-size:.82rem;color:var(--gray-5);font-weight:500;line-height:1.4}
+
+.metodologia{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1000px;margin:0 auto}
+.metodo-step{background:#fff;border:1px solid var(--gray-2);border-radius:14px;padding:24px 18px;text-align:center;position:relative}
+.metodo-num{width:38px;height:38px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;margin:0 auto 14px}
+.metodo-title{font-size:.92rem;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
+.metodo-desc{font-size:.78rem;color:var(--gray-5);line-height:1.5}
+
+.calc{background:#fff;border:1px solid var(--gray-2);border-radius:20px;padding:38px 42px;max-width:840px;margin:0 auto;box-shadow:0 12px 36px rgba(10,31,61,.06)}
+.calc-title{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.02em}
+.calc-sub{font-size:.88rem;color:var(--gray-5);margin-bottom:28px}
+.calc-inputs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:22px}
+.calc-input-group label{display:block;font-size:.78rem;color:var(--gray-5);font-weight:600;margin-bottom:8px;letter-spacing:.04em}
+.calc-input-group input{width:100%;padding:14px 16px;border:1.5px solid var(--gray-4);border-radius:10px;font-family:var(--font);font-size:1rem;font-weight:600;color:var(--navy);background:var(--gray-1);transition:border-color .2s}
+.calc-input-group input:focus{outline:none;border-color:var(--gold);background:#fff}
+.calc-output{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);border-radius:14px;padding:28px 26px;color:#fff;display:grid;grid-template-columns:1fr auto;align-items:center;gap:18px;margin-bottom:14px}
+.calc-output-label{font-size:.8rem;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.calc-output-num{font-size:2.2rem;font-weight:800;color:var(--gold);letter-spacing:-.03em;line-height:1}
+.calc-output-detail{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:6px}
+.calc-cta{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.calc-disclaimer{font-size:.72rem;color:var(--gray-3);text-align:center;margin-top:16px;font-style:italic}
+
+.clients{background:#fff;border-radius:20px;padding:40px 32px;margin:60px 0;text-align:center;border:1px solid var(--gray-2)}
+.clients-label{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-3);margin-bottom:20px}
+.clients-list{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px 28px}
+.client-name{font-size:1rem;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.client-sep{color:var(--gold);font-weight:800}
+
+.case-study{background:var(--navy-tint);border-radius:20px;padding:42px 44px;margin-bottom:40px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.case-quote-mark{font-size:4rem;color:var(--gold);line-height:.6;font-family:Georgia,serif;font-weight:800}
+.case-text{font-size:1.05rem;font-weight:500;color:var(--navy);line-height:1.6;margin-bottom:16px}
+.case-author{font-size:.85rem;color:var(--gray-5);font-weight:500}
+.case-author strong{color:var(--navy);font-weight:700}
+
+.cta-final{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);border-radius:24px;padding:70px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;margin-bottom:60px}
+.cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(255,215,0,.12) 0%,transparent 65%);pointer-events:none}
+.cta-final-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:18px;position:relative;z-index:1}
+.cta-final-title .gold{color:var(--gold)}
+.cta-final-sub{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:38px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300;position:relative;z-index:1}
+.cta-final-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-note{font-size:.74rem;color:rgba(255,255,255,.5);margin-top:20px;letter-spacing:.04em;position:relative;z-index:1}
+
+.footer{background:#fff;padding:40px 24px;border-top:1px solid var(--gray-2)}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-logo{font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:-.03em}
+.footer-signer{font-size:.78rem;color:var(--gray-5);margin-top:4px}
+.footer-right{display:flex;flex-direction:column;gap:4px;text-align:right}
+.footer-item{font-size:.82rem;color:var(--gray-5)}
+.footer-item a{color:var(--navy);text-decoration:none;font-weight:500}
+.footer-item a:hover{color:var(--gold-deep)}
+
+.wa-float{position:fixed;bottom:24px;right:24px;display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:13px 20px;border-radius:999px;text-decoration:none;font-size:.85rem;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:all .25s;z-index:100}
+.wa-float:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.wa-float svg{width:18px;height:18px;flex-shrink:0}
+
+@media(max-width:880px){
+  .stats-grid{grid-template-columns:1fr 1fr;padding:22px 14px}
+  .stat-item{padding:12px 8px;border-right:none;border-bottom:1px solid var(--gray-2)}
+  .stat-item:nth-last-child(-n+2){border-bottom:none}
+  .stat-num{font-size:1.6rem}
+  .problem-grid{grid-template-columns:1fr}
+  .product-hero{padding:36px 28px}
+  .product-hero-features{grid-template-columns:1fr}
+  .metric-row{grid-template-columns:1fr}
+  .metodologia{grid-template-columns:1fr 1fr}
+  .clients{padding:28px 20px}
+  .case-study{grid-template-columns:1fr;padding:30px 24px;gap:16px}
+  .case-quote-mark{font-size:3rem}
+  .cta-final{padding:50px 24px}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-right{text-align:center}
+  .wa-float{bottom:16px;right:16px;padding:14px;border-radius:50%}
+  .wa-float .wa-text{display:none}
+  .hero-trust{gap:16px}
+  .calc{padding:28px 22px}
+  .calc-inputs{grid-template-columns:1fr}
+  .calc-output{grid-template-columns:1fr}
+  .hallazgo{flex-direction:column;padding:26px 22px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div id="lt">fideliza</div></div>
+
+<section class="hero">
+  <div class="nav">
+    <div class="nav-logo">fideliza</div>
+    <div class="nav-right">Para Zona 20</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow r">Taller IA · 5 horas · Para Asesores Inmobiliarios</div>
+    <h1 class="hero-title r">Cierra más ventas<br><span class="gold">con IA de tu lado</span></h1>
+    <p class="hero-sub r">Taller práctico de 5 horas para asesores inmobiliarios. ChatGPT, Gemini y Claude aplicados a redacción de fichas de inmuebles, contratos, comunicación con inversionistas y seguimiento de leads. Con tu propia laptop, con tus propios casos.</p>
+    <div class="hero-ctas r">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">
+        Agendar 20 min
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Zona%2020%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Hablemos por WhatsApp
+      </a>
+    </div>
+    <div class="hero-trust r">
+      <div class="hero-trust-item">16 años de experiencia</div>
+      <div class="hero-trust-item">+100 clientes</div>
+      <div class="hero-trust-item">Inmobiliarias en cartera</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-grid r">
+    <div class="stat-item"><div class="stat-num">5<span class="gold">h</span></div><div class="stat-label">Una sola sesión</div></div>
+    <div class="stat-item"><div class="stat-num"><span class="red">10+</span></div><div class="stat-label">Horas/sem recuperables</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Herramientas dominadas</div></div>
+    <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Tareas automatizadas el mismo día</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-label r">¿Qué encontramos?</div>
+  <h2 class="section-title r">Revisamos el perfil de Zona 20</h2>
+  <div class="r">
+    <div class="hallazgo">
+      <div class="hallazgo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="hallazgo-content">
+        <h3>Boutique de inversión inmobiliaria con operación lean</h3>
+        <p>Vimos que <span class="hallazgo-tag">Zona 20</span> conecta a inversionistas con proyectos diferenciados en México desde Mérida, con un equipo chico y enfoque en relación humana. En ese modelo, el cuello de botella no es la estrategia — es <strong>el tiempo que se va en redactar fichas de proyecto, contratos y dar seguimiento a cada inversionista uno por uno</strong>. La IA bien aplicada le devuelve esas horas al CEO y al asesor, sin perder el toque consultivo que diferencia a la marca.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Si te pasa esto, sigue leyendo</div>
+  <h2 class="section-title r">Lo que frena al asesor inmobiliario cada semana</h2>
+  <p class="section-sub r">Los 4 dolores más comunes que escuchamos en asesores y CEOs de inmobiliarias boutique antes de entrar al taller.</p>
+  <div class="problem-grid r">
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="problem-text">Redactar la ficha perfecta de cada proyecto consume horas que deberían estar en venta</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+      <div class="problem-text">Contratos de promesa y arrendamiento se repiten pero se hacen manuales cada vez</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="problem-text">20-30 inversionistas activos en seguimiento y se te pierde el hilo de quién va por dónde</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+      <div class="problem-text">Contestar dudas sobre zona, créditos, plusvalía, papeleo — siempre las mismas preguntas</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Nuestra propuesta para Zona 20</div>
+  <h2 class="section-title r">Taller IA para Asesores Inmobiliarios</h2>
+  <div class="r">
+    <div class="product-hero">
+      <div class="product-hero-top">
+        <div class="product-hero-tag">Taller 5h</div>
+        <div class="product-hero-duration">Presencial o remoto · In-house</div>
+      </div>
+      <h3 class="product-hero-title">Estrategia comercial <span class="gold">y ventas con IA</span></h3>
+      <p class="product-hero-sub">Taller diseñado para asesores e inmobiliarias boutique que ya venden pero quieren producir más sin trabajar más horas. Ejercicios con tus propios proyectos e inversionistas. Sales con 2 tareas reales de tu trabajo ya sistematizadas con IA.</p>
+      <div class="product-hero-features">
+        <div class="product-hero-feature">Setup de ChatGPT, Gemini y Claude</div>
+        <div class="product-hero-feature">Fichas de proyectos que venden</div>
+        <div class="product-hero-feature">Contratos y comunicación con clientes</div>
+        <div class="product-hero-feature">Seguimiento de leads sin perder nada</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="metric-row r">
+    <div class="metric-card">
+      <div class="metric-num">5<span class="gold">h</span></div>
+      <div class="metric-label">1 sesión completa, 1 día</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">7</div>
+      <div class="metric-label">Módulos prácticos</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">2</div>
+      <div class="metric-label">Tareas reales automatizadas</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Metodología</div>
+  <h2 class="section-title r">Cómo se ve el día del taller</h2>
+  <p class="section-sub r">No teoría genérica. 5 pasos prácticos con tu laptop, tus inmuebles y tus inversionistas.</p>
+  <div class="metodologia r">
+    <div class="metodo-step">
+      <div class="metodo-num">1</div>
+      <div class="metodo-title">Setup</div>
+      <div class="metodo-desc">Activamos ChatGPT, Gemini y Claude en tu equipo. Listos para trabajar.</div>
+    </div>
+    <div class="metodo-step">
+      <div class="metodo-num">2</div>
+      <div class="metodo-title">Fichas</div>
+      <div class="metodo-desc">Redactamos descripciones de proyectos reales tuyos. De 30 min a 2 min por ficha.</div>
+    </div>
+    <div class="metodo-step">
+      <div class="metodo-num">3</div>
+      <div class="metodo-title">Contratos</div>
+      <div class="metodo-desc">Promesas, arrendamiento y comunicación legal en minutos, con criterio.</div>
+    </div>
+    <div class="metodo-step">
+      <div class="metodo-num">4</div>
+      <div class="metodo-title">Seguimiento</div>
+      <div class="metodo-desc">Sistemas para no perder un solo inversionista activo en tu pipeline.</div>
+    </div>
+    <div class="metodo-step">
+      <div class="metodo-num">5</div>
+      <div class="metodo-title">Plan 7 días</div>
+      <div class="metodo-desc">Sales con 2 tareas reales ya automatizadas para aplicar la siguiente semana.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Calcula tu tiempo recuperado</div>
+  <h2 class="section-title r">¿Cuántas horas regresan a tu semana?</h2>
+  <p class="section-sub r">Mete tus números reales. El cálculo asume reducción conservadora del 60% del tiempo en tareas documentales después del taller.</p>
+  <div class="calc r">
+    <div class="calc-title">Calculadora de horas recuperadas</div>
+    <div class="calc-sub">Para asesores y equipos pequeños de inmobiliarias boutique.</div>
+    <div class="calc-inputs">
+      <div class="calc-input-group">
+        <label>Asesores en tu equipo</label>
+        <input type="number" id="asesores" value="3" min="1" max="50"/>
+      </div>
+      <div class="calc-input-group">
+        <label>Horas/sem por asesor en tareas documentales</label>
+        <input type="number" id="horas" value="12" min="1" max="40"/>
+      </div>
+    </div>
+    <div class="calc-output">
+      <div>
+        <div class="calc-output-label">Horas recuperadas al mes</div>
+        <div class="calc-output-num" id="resultado">86</div>
+        <div class="calc-output-detail">A 60% de reducción · benchmark conservador del taller</div>
+      </div>
+      <div class="calc-cta">
+        <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">Agendar 20 min</a>
+      </div>
+    </div>
+    <div class="calc-disclaimer">Cálculos referenciales. Resultado real depende de adopción interna y tipo de tareas. Promedio observado post-taller: 50-70% de reducción en tareas repetitivas.</div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="section-label r">Caso real</div>
+  <h2 class="section-title r">Ya lo hicimos con perfiles como el tuyo</h2>
+  <div class="r">
+    <div class="case-study">
+      <div class="case-quote-mark">"</div>
+      <div>
+        <div class="case-text">El taller cambió la forma en que trabajo. Ahora redacto la descripción de un inmueble en 2 minutos en lugar de 30 y tengo más tiempo para lo que realmente importa: mostrar propiedades y cerrar.</div>
+        <div class="case-author"><strong>Asesor inmobiliario</strong> · Post-taller · 1 mes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clients r">
+    <div class="clients-label">Otros clientes que confían en Fideliza</div>
+    <div class="clients-list">
+      <span class="client-name">Mobi Muebles</span><span class="client-sep">·</span>
+      <span class="client-name">Basa</span><span class="client-sep">·</span>
+      <span class="client-name">Hero Sport</span><span class="client-sep">·</span>
+      <span class="client-name">Wellthy</span><span class="client-sep">·</span>
+      <span class="client-name">Natuvit</span><span class="client-sep">·</span>
+      <span class="client-name">Toyota Mazatlán</span><span class="client-sep">·</span>
+      <span class="client-name">Maja</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="cta-final r">
+    <h2 class="cta-final-title">¿Listos para vender más<br><span class="gold">con menos esfuerzo?</span></h2>
+    <p class="cta-final-sub">Platiquemos 20 minutos. Te explicamos cómo se adapta el taller a Zona 20, fechas disponibles y modalidad (presencial en Mérida o remoto).</p>
+    <div class="cta-final-buttons">
+      <a href="https://calendly.com/fideliza-info/30min" target="_blank" class="btn btn-gold">
+        Agendar llamada de 20 min
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Zona%2020%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="btn btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp directo
+      </a>
+    </div>
+    <div class="cta-note">Sin costo · Sin compromiso · Si no hay fit, te lo decimos</div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">fideliza</div>
+      <div class="footer-signer">Sofía Sánchez · Consultora Digital</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-item"><a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a></div>
+      <div class="footer-item"><a href="https://wa.me/5215646921011" target="_blank">WhatsApp +52 1 56 4692 1011</a></div>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20para%20Zona%2020%20y%20me%20interesa%20m%C3%A1s%20info" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.174-.005-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487 2.981 1.287 2.981.858 3.518.808.537-.05 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  <span class="wa-text">WhatsApp</span>
+</a>
+
+<script>
+setTimeout(()=>{const l=document.getElementById('loader');if(l)l.remove();},1800);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:.12});
+document.querySelectorAll('.r').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.08+'s';io.observe(el);});
+
+function calc(){
+  const a=parseFloat(document.getElementById('asesores').value)||0;
+  const h=parseFloat(document.getElementById('horas').value)||0;
+  const r=Math.round(a*h*4*0.6);
+  document.getElementById('resultado').textContent=r;
+}
+document.getElementById('asesores').addEventListener('input',calc);
+document.getElementById('horas').addEventListener('input',calc);
+calc();
+</script>
+</body>
+</html>
