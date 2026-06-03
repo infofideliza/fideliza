@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fideliza · Posicionamiento en Google para tu negocio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+  :root{
+    --azul:#173a6b; --azul-osc:#0b1c38; --azul-prof:#06122a;
+    --azul-claro:#3d7bd9; --azul-vivo:#4d8eff;
+    --oro:#f5d400; --oro-claro:#ffe54d;
+    --blanco:#fff; --gris:#9fb0c9; --gris-osc:#5d6e88;
+    --rojo:#e0556b; --verde:#25D366; --verde-soft:#34c98a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Poppins',sans-serif;color:var(--blanco);background:var(--azul-prof);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;}
+  .wrap{max-width:860px;margin:0 auto;overflow:hidden;}
+  .serif{font-family:'Playfair Display',serif;}
+
+  /* SCROLL REVEAL */
+  .r{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .r.on{opacity:1;transform:translateY(0);}
+  @media(prefers-reduced-motion:reduce){.r{opacity:1;transform:none;}}
+
+  /* HERO */
+  .hero{position:relative;padding:60px 48px 58px;background:radial-gradient(130% 110% at 85% -10%, #1d4480 0%, var(--azul-osc) 42%, var(--azul-prof) 100%);overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0);background-size:24px 24px;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
+  .brand{font-weight:700;font-size:24px;letter-spacing:.5px;}
+  .pill{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gris-osc);font-weight:600;}
+  .eyebrow{display:inline-block;position:relative;z-index:2;color:var(--oro);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-top:44px;border:1px solid rgba(245,212,0,.55);border-radius:30px;padding:9px 20px;}
+  .hero h1{position:relative;z-index:2;font-size:46px;line-height:1.1;font-weight:700;margin-top:16px;letter-spacing:-.5px;}
+  .hero h1 em{font-style:italic;font-weight:700;color:var(--oro);}
+  .hero .sub{position:relative;z-index:2;font-size:16px;color:var(--gris);margin-top:18px;max-width:90%;font-weight:300;}
+  .hero-cta{position:relative;z-index:2;display:flex;gap:13px;flex-wrap:wrap;margin-top:30px;}
+
+  .section{padding:54px 48px;border-top:1px solid rgba(255,255,255,.06);}
+  .sec-label{color:var(--oro);font-size:12.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+  .section h2{font-family:'Playfair Display',serif;font-size:29px;font-weight:700;line-height:1.22;margin-bottom:6px;}
+  .section .desc{color:var(--gris);font-size:14.5px;font-weight:300;max-width:92%;margin-bottom:30px;}
+
+  /* QUÉ ES SEO */
+  .seo-lead{font-size:18px;font-weight:300;color:#e7edf7;line-height:1.6;margin-bottom:28px;max-width:94%;}
+  .seo-lead b{color:var(--oro-claro);font-weight:600;}
+  .rentavs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+  .rv{border-radius:16px;padding:24px 26px;border:1px solid rgba(255,255,255,.08);}
+  .rv.ad{background:rgba(255,255,255,.03);}
+  .rv.seo{background:linear-gradient(160deg,#15355f,#0c2348);border-color:rgba(245,212,0,.4);}
+  .rv .rvtag{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .rv.ad .rvtag{color:var(--gris-osc);}
+  .rv.seo .rvtag{color:var(--oro);}
+  .rv .rvtitle{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .rv p{font-size:13.5px;color:var(--gris);font-weight:300;}
+  .steps{display:flex;flex-direction:column;gap:16px;}
+  .step{display:flex;gap:18px;align-items:flex-start;}
+  .step .n{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid rgba(245,212,0,.45);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;color:var(--oro-claro);}
+  .step .stx b{display:block;font-size:15px;font-weight:600;margin-bottom:3px;}
+  .step .stx p{font-size:13.5px;color:var(--gris);font-weight:300;}
+
+  /* FUNNEL */
+  .funnel{display:flex;flex-direction:column;gap:10px;}
+  .fstep{display:flex;align-items:center;gap:18px;}
+  .fbar{height:54px;border-radius:10px;display:flex;align-items:center;padding:0 20px;font-weight:600;font-size:14px;color:#fff;position:relative;transition:.3s;}
+  .fbar .pct{position:absolute;right:18px;font-family:'Playfair Display',serif;font-size:20px;}
+  .fmeta{font-size:13px;color:var(--gris);font-weight:300;flex:1;min-width:130px;}
+  .fmeta b{color:#fff;font-weight:500;display:block;font-size:14px;}
+  .b1{width:100%;background:linear-gradient(90deg,#3d7bd9,#4d8eff);}
+  .b2{width:71%;background:linear-gradient(90deg,#3469b8,#3d7bd9);}
+  .b3{width:43%;background:linear-gradient(90deg,#c9a800,#f5d400);}
+  .b4{width:19%;background:linear-gradient(90deg,#a8455a,#e0556b);}
+  .funnel-note{margin-top:24px;background:rgba(224,85,107,.08);border:1px solid rgba(224,85,107,.25);border-radius:12px;padding:18px 22px;font-size:14px;color:#f3c4cc;font-weight:300;}
+  .funnel-note b{color:#fff;font-weight:600;}
+  .mini-note{font-size:11.5px;color:var(--gris-osc);margin-top:14px;font-weight:300;font-style:italic;}
+
+  /* COMPARATIVO */
+  .compare{background:linear-gradient(160deg,#0e2747,var(--azul-prof));}
+  .vsgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .vscard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px;}
+  .vscard.win{border-color:rgba(245,212,0,.45);background:linear-gradient(160deg,#15355f,#0c2348);}
+  .vscard .vh{font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-bottom:22px;}
+  .vscard.lose .vh{color:var(--gris-osc);}
+  .vscard.win .vh{color:var(--oro);}
+  .metric-row{margin-bottom:20px;}
+  .metric-row .mlabel{font-size:12.5px;color:var(--gris);margin-bottom:7px;font-weight:300;}
+  .track{height:9px;background:rgba(255,255,255,.07);border-radius:10px;overflow:hidden;}
+  .fill{height:100%;border-radius:10px;}
+  .lose .fill{background:var(--gris-osc);}
+  .win .fill{background:linear-gradient(90deg,#e6c700,var(--oro));}
+  .mval{font-size:12px;margin-top:5px;font-weight:500;}
+  .lose .mval{color:var(--gris-osc);}
+  .win .mval{color:var(--oro-claro);}
+
+  /* CASO */
+  .case{background:linear-gradient(135deg,#15355f 0%,#0a1d3a 100%);border-top:1px solid rgba(245,212,0,.2);}
+  .case-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:30px;}
+  .case-head .tag{color:var(--oro);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+  .case-head h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;margin-top:8px;}
+  .case-head .sub{color:var(--gris);font-size:13.5px;font-weight:300;margin-top:2px;}
+  .stars{color:var(--oro-claro);font-size:15px;letter-spacing:2px;}
+  .chartbox{background:rgba(0,0,0,.18);border-radius:16px;padding:28px 24px 18px;border:1px solid rgba(255,255,255,.06);}
+  .chart{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;height:180px;}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .bar{width:100%;max-width:60px;border-radius:8px 8px 0 0;position:relative;transition:height 1s ease;}
+  .bar .v{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:17px;color:#fff;white-space:nowrap;}
+  .bar.before{background:linear-gradient(180deg,#3a567f,#2b4060);height:34%;}
+  .bar.mid{background:linear-gradient(180deg,#4d8eff,#3469b8);height:62%;}
+  .bar.after{background:linear-gradient(180deg,var(--oro),#e6c700);height:100%;}
+  .bar.after .v{color:var(--oro-claro);}
+  .xlabel{font-size:11.5px;color:var(--gris);margin-top:12px;text-align:center;font-weight:300;line-height:1.3;}
+  .metrics3{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap;}
+  .m3 .num{font-family:'Playfair Display',serif;font-size:38px;font-weight:500;color:var(--oro-claro);line-height:1;}
+  .m3 .lbl{font-size:12.5px;color:var(--gris);margin-top:7px;max-width:150px;font-weight:300;}
+
+  /* SERVICIOS */
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .scard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;transition:.25s;}
+  .scard:hover{border-color:rgba(245,212,0,.4);transform:translateY(-3px);}
+  .scard .ico{width:42px;height:42px;border-radius:10px;background:rgba(245,212,0,.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .scard .ico svg{width:21px;height:21px;stroke:var(--oro-claro);}
+  .scard h3{font-size:15.5px;font-weight:600;margin-bottom:5px;}
+  .scard p{font-size:13px;color:var(--gris);font-weight:300;}
+
+  /* CTA */
+  .cta{text-align:center;background:radial-gradient(120% 120% at 50% 0%, #15355f, var(--azul-prof));}
+  .cta h2{font-family:'Playfair Display',serif;font-size:31px;font-weight:500;line-height:1.25;margin-bottom:12px;}
+  .cta h2 em{color:var(--oro-claro);font-style:italic;}
+  .cta p{color:var(--gris);font-size:14.5px;margin-bottom:12px;font-weight:300;}
+  .scarce{display:inline-block;color:var(--oro);font-size:13px;border:1px solid rgba(245,212,0,.35);border-radius:30px;padding:7px 18px;margin-bottom:28px;}
+  .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:16px 30px;border-radius:50px;text-decoration:none;transition:.25s;}
+  .btn-wa{background:var(--verde);color:#fff;}
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(37,211,102,.3);}
+  .btn-meet{background:var(--oro);color:var(--azul-prof);font-weight:700;}
+  .btn-meet:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(245,212,0,.35);}
+  .btn-ghost{background:transparent;border:1px solid rgba(245,212,0,.5);color:var(--oro-claro);}
+  .btn-ghost:hover{background:rgba(245,212,0,.08);}
+  .btn svg{width:19px;height:19px;}
+  .foot{text-align:center;padding:28px;font-size:13px;color:var(--gris-osc);border-top:1px solid rgba(255,255,255,.06);font-weight:300;line-height:1.9;}
+  .foot b{color:var(--gris);font-weight:600;}
+  .foot a{color:var(--gris);text-decoration:none;}
+  .foot a:hover{color:var(--oro-claro);}
+
+  /* WA FLOAT */
+  .wa-float{position:fixed;bottom:22px;right:22px;display:inline-flex;align-items:center;gap:9px;background:var(--verde);color:#fff;padding:13px 19px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);z-index:100;transition:.25s;}
+  .wa-float:hover{transform:translateY(-2px);}
+  .wa-float svg{width:18px;height:18px;}
+
+  @media(max-width:880px){
+    .hero,.section{padding-left:34px;padding-right:34px;}
+  }
+  @media(max-width:640px){
+    .hero{padding:42px 22px 46px;}
+    .section{padding:42px 22px;}
+    .topbar{align-items:flex-start;}
+    .pill{font-size:10px;letter-spacing:1.5px;text-align:right;max-width:150px;line-height:1.4;}
+    .brand{font-size:21px;}
+    .hero h1{font-size:30px;}
+    .hero .sub{font-size:15px;max-width:100%;}
+    .section h2{font-size:24px;}
+    .seo-lead{font-size:16px;}
+    .vsgrid,.grid4,.rentavs{grid-template-columns:1fr;}
+    .fstep{flex-direction:column;align-items:stretch;gap:6px;}
+    .fbar{width:100%!important;}
+    .metrics3{gap:24px;}
+    .m3 .num{font-size:34px;}
+    .chart{gap:8px;}
+    .case-head{flex-direction:column;}
+    .case-head>div:last-child{text-align:left!important;}
+    .btns,.hero-cta{width:100%;flex-direction:column;}
+    .btn{width:100%;justify-content:center;}
+    .wa-float span{display:none;}
+    .wa-float{padding:14px;border-radius:50%;bottom:18px;right:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="topbar">
+      <div class="brand">fideliza</div>
+      <div class="pill">Posicionamiento en Google · SEO</div>
+    </div>
+    <div class="eyebrow r">Que te encuentren primero</div>
+    <h1 class="serif r">Cuando alguien busca lo que vendes,<br><em>o apareces tú o aparece tu competencia.</em></h1>
+    <p class="sub r">No hay tercera opción. Hacemos que tu negocio sea el que sale arriba en Google cuando un cliente está listo para comprar — y que esa visita se convierta en una venta, no en un clic perdido.</p>
+    <div class="hero-cta r">
+      <a class="btn btn-meet" href="https://calendly.com/fideliza-info/30min" target="_blank">Ver mi diagnóstico en 20 min</a>
+      <a class="btn btn-ghost" href="#como">Cómo funciona</a>
+    </div>
+  </div>
+
+  <!-- QUÉ ES SEO -->
+  <div class="section">
+    <div class="sec-label r">Antes de cualquier propuesta</div>
+    <h2 class="serif r">Entonces, ¿qué es el SEO y por qué te conviene?</h2>
+    <p class="seo-lead r">9 de cada 10 personas que buscan en Google <b>no pasan de la primera página.</b> Si tu negocio está en la segunda, para ese cliente simplemente no existes. El SEO es el trabajo de subirte a esa primera página y mantenerte ahí.</p>
+
+    <div class="rentavs r">
+      <div class="rv ad">
+        <div class="rvtag">Anuncios pagados</div>
+        <div class="rvtitle">Rentas tu lugar</div>
+        <p>Pagas por cada clic. El día que dejas de pagar, desapareces de Google. Útil para arrancar rápido, pero nunca dejas de pagar la renta.</p>
+      </div>
+      <div class="rv seo">
+        <div class="rvtag">SEO con Fideliza</div>
+        <div class="rvtitle">Construyes tu lugar</div>
+        <p>Una vez que estás arriba, sigues apareciendo aunque no pagues cada clic. Es un activo que crece con el tiempo, no un gasto que se reinicia cada mes.</p>
+      </div>
+    </div>
+
+    <div class="steps r">
+      <div class="step">
+        <div class="n">1</div>
+        <div class="stx"><b>Te pone enfrente de quien ya te está buscando</b><p>No interrumpes a nadie con un anuncio. Llegas justo cuando la persona levanta la mano y escribe lo que tú vendes.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <div class="stx"><b>Haces que Google confíe en tu negocio</b><p>Sitio rápido, ficha de Google completa, reseñas y contenido que responde lo que la gente pregunta. Eso te sube de posición frente a tu competencia.</p></div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <div class="stx"><b>Conviertes ese tráfico en clientes</b><p>De nada sirve aparecer si tu sitio o tu ficha no cierran. Los volvemos máquinas de agendar y vender, no folletos digitales.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNNEL -->
+  <div class="section">
+    <div class="sec-label r">El problema que no se ve</div>
+    <h2 class="serif r">Por cada 100 personas que buscan lo que ofreces, ¿cuántas llegan a ti?</h2>
+    <p class="desc r">Así se fuga la demanda de un negocio sin posicionamiento. La pérdida no está en tu producto ni en tu precio: está antes, en que ni siquiera te ven.</p>
+    <div class="funnel r">
+      <div class="fstep"><div class="fbar b1"><span>Buscan lo que vendes en tu zona</span><span class="pct">100</span></div><div class="fmeta"><b>Demanda real</b>existe y crece cada mes</div></div>
+      <div class="fstep"><div class="fbar b2"><span>Te ven en los resultados</span><span class="pct">71</span></div><div class="fmeta"><b>Visibilidad</b>compites con 3-4 negocios</div></div>
+      <div class="fstep"><div class="fbar b3"><span>Entran a tu sitio o ficha</span><span class="pct">43</span></div><div class="fmeta"><b>Interés</b>tu presencia decide</div></div>
+      <div class="fstep"><div class="fbar b4"><span>Te contactan o compran</span><span class="pct">19</span></div><div class="fmeta"><b>Conversión</b>el resto se va con otro</div></div>
+    </div>
+    <div class="funnel-note r">De cada 100 clientes potenciales, <b>81 terminan eligiendo a alguien más</b> — no por tu trabajo, sino por tu presencia digital. Ahí es exactamente donde entramos.</div>
+    <p class="mini-note r">Ejemplo ilustrativo de cómo se pierde la demanda. Los números reales de tu negocio los vemos juntos en el diagnóstico.</p>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="section compare">
+    <div class="sec-label r">El comparativo que importa</div>
+    <h2 class="serif r">Mismo producto. Resultados opuestos.</h2>
+    <p class="desc r">Dos negocios igual de buenos en lo suyo. La diferencia en sus ventas la marca quién trabaja su presencia en Google y quién la deja al azar.</p>
+    <div class="vsgrid">
+      <div class="vscard lose r">
+        <div class="vh">Sin posicionamiento</div>
+        <div class="metric-row"><div class="mlabel">Posición promedio en Google</div><div class="track"><div class="fill" style="width:28%"></div></div><div class="mval">Página 2-3 · casi invisible</div></div>
+        <div class="metric-row"><div class="mlabel">Tráfico orgánico (sin pagar clics)</div><div class="track"><div class="fill" style="width:22%"></div></div><div class="mval">Mínimo</div></div>
+        <div class="metric-row"><div class="mlabel">Reseñas y autoridad</div><div class="track"><div class="fill" style="width:30%"></div></div><div class="mval">Pocas, sin gestión</div></div>
+        <div class="metric-row"><div class="mlabel">Flujo de clientes</div><div class="track"><div class="fill" style="width:25%"></div></div><div class="mval">Impredecible</div></div>
+      </div>
+      <div class="vscard win r">
+        <div class="vh">★ Con Fideliza</div>
+        <div class="metric-row"><div class="mlabel">Posición promedio en Google</div><div class="track"><div class="fill" style="width:95%"></div></div><div class="mval">Top 3 · primeras posiciones</div></div>
+        <div class="metric-row"><div class="mlabel">Tráfico orgánico (sin pagar clics)</div><div class="track"><div class="fill" style="width:85%"></div></div><div class="mval">Constante y creciente</div></div>
+        <div class="metric-row"><div class="mlabel">Reseñas y autoridad</div><div class="track"><div class="fill" style="width:92%"></div></div><div class="mval">Sólida y gestionada</div></div>
+        <div class="metric-row"><div class="mlabel">Flujo de clientes</div><div class="track"><div class="fill" style="width:88%"></div></div><div class="mval">Medible mes a mes</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASO -->
+  <div class="section case">
+    <div class="case-head r">
+      <div>
+        <div class="tag">Caso real · resultados medibles</div>
+        <h3 class="serif">Negocio de servicios · noroeste de México</h3>
+        <div class="sub">Sector con alta competencia local</div>
+      </div>
+      <div style="text-align:right">
+        <div class="stars">★★★★★</div>
+        <div class="sub">5.0 · +90 reseñas verificadas</div>
+      </div>
+    </div>
+    <div class="chartbox r">
+      <div class="chart">
+        <div class="bar-col"><div class="bar before"><span class="v">Base</span></div><div class="xlabel">Antes<br>línea base</div></div>
+        <div class="bar-col"><div class="bar mid"><span class="v">+85%</span></div><div class="xlabel">En proceso<br>optimización</div></div>
+        <div class="bar-col"><div class="bar after"><span class="v">2×</span></div><div class="xlabel">Hoy<br>clientes nuevos</div></div>
+      </div>
+    </div>
+    <div class="metrics3 r">
+      <div class="m3"><div class="num">2×</div><div class="lbl">más clientes que llegan por Google</div></div>
+      <div class="m3"><div class="num">Top 3</div><div class="lbl">en las búsquedas de su giro y zona</div></div>
+      <div class="m3"><div class="num">5.0★</div><div class="lbl">reputación que convierte sola</div></div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="section" id="como">
+    <div class="sec-label r">Cómo lo hacemos</div>
+    <h2 class="serif r">Un sistema, no piezas sueltas</h2>
+    <p class="desc r">Cuatro frentes que trabajan conectados para que aparecer en Google se traduzca en ventas reales.</p>
+    <div class="grid4">
+      <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></div><h3>Las palabras que ya te buscan</h3><p>Encontramos exactamente qué escribe tu cliente en Google y nos posicionamos en esas búsquedas.</p></div>
+      <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Ficha de Google que impone</h3><p>Dominar el mapa local: reseñas, fotos, datos y autoridad para que salgas primero en tu zona.</p></div>
+      <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div><h3>Sitio que sí convierte</h3><p>Rápido y diseñado para cerrar. Cada visita debe terminar en contacto, no en un cierre de pestaña.</p></div>
+      <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><h3>Números claros, sin humo</h3><p>Reportes de cuántos clientes te trajo Google cada mes. Sabes a dónde va tu inversión.</p></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section cta">
+    <h2 class="serif r">Te mostramos tu embudo real<br><em>en una sesión de 20 minutos.</em></h2>
+    <p class="r">Sin compromiso. Verás exactamente en qué punto estás perdiendo clientes hoy y qué tan arriba puedes llegar.</p>
+    <div class="scarce r">Trabajamos con un solo negocio por giro y zona</div>
+    <div class="btns r">
+      <a class="btn btn-meet" href="https://calendly.com/fideliza-info/30min" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agendar mi diagnóstico
+      </a>
+      <a class="btn btn-wa" href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20sobre%20posicionamiento%20en%20Google%20y%20quiero%20m%C3%A1s%20info" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.3 8.3 0 1 1 7 3.6z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>fideliza</b> · Sofía Sánchez · Consultora Digital<br>
+    <a href="mailto:sofia@fideliza.com.mx">sofia@fideliza.com.mx</a> &nbsp;|&nbsp;
+    <a href="https://wa.me/5215646921011" target="_blank">WhatsApp 56 4692 1011</a> &nbsp;|&nbsp;
+    16 años · +100 clientes
+  </div>
+
+</div>
+
+<a class="wa-float" href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20propuesta%20de%20Fideliza%20sobre%20posicionamiento%20en%20Google%20y%20quiero%20m%C3%A1s%20info" target="_blank">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.3 8.3 0 1 1 7 3.6z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.r').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.07+'s';io.observe(el);});
+</script>
+</body>
+</html>
