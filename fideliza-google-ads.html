@@ -5,121 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fideliza · A dónde se van tus clientes en Google</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
   :root{
-    --azul:#173a6b; --azul-osc:#0b1c38; --azul-prof:#06122a;
-    --azul-claro:#3d7bd9; --azul-vivo:#4d8eff;
-    --oro:#f5d400; --oro-claro:#ffe54d;
-    --blanco:#fff; --gris:#9fb0c9; --gris-osc:#5d6e88;
-    --rojo:#e0556b; --verde:#25D366; --verde-soft:#34c98a;
+    --bg:#0a1628; --bg2:#0d1c33; --bg3:#06101f;
+    --gold:#ffd400; --gold2:#ffe24d;
+    --white:#fff; --gray:#9fb0c9; --gray-d:#5c6e8a;
+    --green:#25D366; --red:#e0556b;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{font-family:'Poppins',sans-serif;color:var(--blanco);background:var(--azul-prof);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;}
-  .wrap{max-width:860px;margin:0 auto;overflow:hidden;}
-  .serif{font-family:'Playfair Display',serif;}
+  body{font-family:'Space Grotesk',sans-serif;color:var(--white);background:var(--bg3);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;}
+  .wrap{max-width:880px;margin:0 auto;overflow:hidden;}
+  .serif{font-family:'Fraunces',serif;}
   .r{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
   .r.on{opacity:1;transform:translateY(0);}
   @media(prefers-reduced-motion:reduce){.r{opacity:1;transform:none;}}
+  b{font-weight:600;}
 
-  .hero{position:relative;padding:60px 48px 58px;background:radial-gradient(130% 110% at 85% -10%, #1d4480 0%, var(--azul-osc) 42%, var(--azul-prof) 100%);overflow:hidden;}
-  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0);background-size:24px 24px;}
+  .hero{position:relative;padding:62px 50px 58px;overflow:hidden;
+    background:radial-gradient(58% 40% at 90% 2%, rgba(255,212,0,.14) 0%, rgba(255,212,0,0) 60%),
+               radial-gradient(125% 100% at 86% -10%, #14294a 0%, var(--bg2) 44%, var(--bg) 100%);}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.045) 1px, transparent 0);background-size:26px 26px;}
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
-  .brand{font-weight:700;font-size:24px;letter-spacing:.5px;}
-  .pill{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gris-osc);font-weight:600;}
-  .eyebrow{display:inline-block;position:relative;z-index:2;color:var(--oro);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-top:44px;border:1px solid rgba(245,212,0,.55);border-radius:30px;padding:9px 20px;}
-  .hero h1{position:relative;z-index:2;font-size:46px;line-height:1.1;font-weight:700;margin-top:16px;letter-spacing:-.5px;}
-  .hero h1 em{font-style:italic;font-weight:700;color:var(--oro);}
-  .hero .sub{position:relative;z-index:2;font-size:16px;color:var(--gris);margin-top:18px;max-width:90%;font-weight:300;}
+  .brand{font-weight:700;font-size:25px;letter-spacing:-.5px;}
+  .pill{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-d);font-weight:600;text-align:right;}
+  .eyebrow{display:inline-block;position:relative;z-index:2;color:var(--gold);font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;margin-top:46px;border:1px solid rgba(255,212,0,.5);border-radius:30px;padding:9px 20px;}
+  .hero h1{position:relative;z-index:2;font-size:50px;line-height:1.06;font-weight:700;margin-top:20px;letter-spacing:-1px;}
+  .hero h1 em{font-style:italic;font-weight:700;color:var(--gold);}
+  .hero .sub{position:relative;z-index:2;font-size:17px;color:var(--gray);margin-top:22px;max-width:92%;font-weight:400;}
   .hero-cta{position:relative;z-index:2;display:flex;gap:13px;flex-wrap:wrap;margin-top:30px;}
-  .reassure{position:relative;z-index:2;margin-top:16px;font-size:12.5px;color:var(--gris-osc);font-weight:300;}
+  .reassure{position:relative;z-index:2;margin-top:16px;font-size:13px;color:var(--gray-d);font-weight:400;}
 
-  .section{padding:54px 48px;border-top:1px solid rgba(255,255,255,.06);}
-  .sec-label{color:var(--oro);font-size:12.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:10px;}
-  .section h2{font-family:'Playfair Display',serif;font-size:29px;font-weight:700;line-height:1.22;margin-bottom:6px;}
-  .section .desc{color:var(--gris);font-size:14.5px;font-weight:300;max-width:92%;margin-bottom:30px;}
+  .section{padding:56px 50px;border-top:1px solid rgba(255,255,255,.06);}
+  .sec-label{color:var(--gold);font-size:12.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .section h2{font-family:'Fraunces',serif;font-size:33px;font-weight:700;line-height:1.18;letter-spacing:-.5px;margin-bottom:8px;}
+  .section .desc{color:var(--gray);font-size:15px;font-weight:400;max-width:94%;margin-bottom:30px;}
 
-  .rentavs{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .rv{border-radius:16px;padding:26px 26px;border:1px solid rgba(255,255,255,.08);}
-  .rv.ad{background:rgba(255,255,255,.03);}
-  .rv.seo{background:linear-gradient(160deg,#15355f,#0c2348);border-color:rgba(245,212,0,.4);}
-  .rv .rvtag{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
-  .rv.ad .rvtag{color:var(--gris-osc);}
-  .rv.seo .rvtag{color:var(--oro);}
-  .rv .rvtitle{font-size:18px;font-weight:700;margin-bottom:8px;line-height:1.25;}
-  .rv p{font-size:13.5px;color:var(--gris);font-weight:300;}
-  .rvfix{font-size:13.5px;color:var(--oro-claro);font-weight:600;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);}
+  .rentavs{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .rv{border-radius:18px;padding:28px;border:1px solid rgba(255,255,255,.09);}
+  .rv.ad{background:rgba(255,255,255,.025);}
+  .rv.seo{background:linear-gradient(165deg,#173255,#0c1f3b);border-color:rgba(255,212,0,.4);}
+  .rv .rvtag{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:600;margin-bottom:13px;}
+  .rv.ad .rvtag{color:var(--gray-d);}
+  .rv.seo .rvtag{color:var(--gold);}
+  .rv .rvtitle{font-size:21px;font-weight:700;margin-bottom:10px;line-height:1.2;letter-spacing:-.3px;}
+  .rv p{font-size:14.5px;color:var(--gray);font-weight:400;}
+  .rv p .loop{color:var(--gold2);font-weight:600;}
+  .rvfix{font-size:14px;color:var(--gold2);font-weight:600;margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08);}
 
-  .funnel{display:flex;flex-direction:column;gap:10px;}
+  .funnel{display:flex;flex-direction:column;gap:11px;}
   .fstep{display:flex;align-items:center;gap:18px;}
-  .fbar{height:54px;border-radius:10px;display:flex;align-items:center;padding:0 20px;font-weight:600;font-size:14px;color:#fff;position:relative;transition:.3s;}
-  .fbar .pct{position:absolute;right:18px;font-family:'Playfair Display',serif;font-size:20px;}
-  .fmeta{font-size:13px;color:var(--gris);font-weight:300;flex:1;min-width:130px;}
-  .fmeta b{color:#fff;font-weight:500;display:block;font-size:14px;}
+  .fbar{height:56px;border-radius:11px;display:flex;align-items:center;padding:0 20px;font-weight:500;font-size:14.5px;color:#fff;position:relative;}
+  .fbar span:first-child{max-width:78%;}
+  .fbar .pct{position:absolute;right:18px;font-family:'Fraunces',serif;font-size:22px;font-weight:600;}
+  .fmeta{font-size:13px;color:var(--gray);font-weight:400;flex:1;min-width:140px;}
+  .fmeta b{color:#fff;font-weight:600;display:block;font-size:14px;}
   .b1{width:100%;background:linear-gradient(90deg,#3d7bd9,#4d8eff);}
   .b2{width:71%;background:linear-gradient(90deg,#3469b8,#3d7bd9);}
-  .b3{width:43%;background:linear-gradient(90deg,#c9a800,#f5d400);}
-  .b4{width:19%;background:linear-gradient(90deg,#a8455a,#e0556b);}
-  .funnel-note{margin-top:24px;background:rgba(224,85,107,.08);border:1px solid rgba(224,85,107,.25);border-radius:12px;padding:18px 22px;font-size:14px;color:#f3c4cc;font-weight:300;}
+  .b3{width:43%;background:linear-gradient(90deg,#caa600,#ffd400);color:#0a1628;}
+  .b3 .pct{color:#0a1628;}
+  .b4{width:21%;background:linear-gradient(90deg,#a8455a,#e0556b);}
+  .funnel-note{margin-top:26px;background:rgba(224,85,107,.08);border:1px solid rgba(224,85,107,.25);border-radius:13px;padding:20px 22px;font-size:14.5px;color:#f3c4cc;font-weight:400;}
   .funnel-note b{color:#fff;font-weight:600;}
-  .mini-note{font-size:11.5px;color:var(--gris-osc);margin-top:14px;font-weight:300;font-style:italic;}
+  .mini-note{font-size:12px;color:var(--gray-d);margin-top:14px;font-weight:400;font-style:italic;}
 
   .midcta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
 
-  .case{background:linear-gradient(135deg,#15355f 0%,#0a1d3a 100%);border-top:1px solid rgba(245,212,0,.2);}
-  .case-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:24px;}
-  .case-head .tag{color:var(--oro);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
-  .case-head h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;margin-top:8px;}
-  .case-head .sub{color:var(--gris);font-size:13.5px;font-weight:300;margin-top:2px;}
-  .stars{color:var(--oro-claro);font-size:15px;letter-spacing:2px;}
-  .metrics3{display:flex;gap:36px;flex-wrap:wrap;}
-  .m3 .num{font-family:'Playfair Display',serif;font-size:42px;font-weight:500;color:var(--oro-claro);line-height:1;}
-  .m3 .lbl{font-size:12.5px;color:var(--gris);margin-top:7px;max-width:160px;font-weight:300;}
-
   .grid4{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  .scard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px;transition:.25s;}
-  .scard:hover{border-color:rgba(245,212,0,.4);transform:translateY(-3px);}
-  .scard .ico{width:40px;height:40px;border-radius:10px;background:rgba(245,212,0,.12);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-  .scard .ico svg{width:20px;height:20px;stroke:var(--oro-claro);}
-  .scard h3{font-size:15px;font-weight:600;margin-bottom:5px;}
-  .scard p{font-size:12.5px;color:var(--gris);font-weight:300;}
+  .scard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:24px;transition:.25s;}
+  .scard:hover{border-color:rgba(255,212,0,.4);transform:translateY(-3px);}
+  .scard .ico{width:42px;height:42px;border-radius:11px;background:rgba(255,212,0,.12);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .scard .ico svg{width:21px;height:21px;stroke:var(--gold2);}
+  .scard h3{font-size:15.5px;font-weight:600;margin-bottom:6px;}
+  .scard p{font-size:13px;color:var(--gray);font-weight:400;}
 
-  .cta{text-align:center;background:radial-gradient(120% 120% at 50% 0%, #15355f, var(--azul-prof));}
-  .cta h2{font-family:'Playfair Display',serif;font-size:31px;font-weight:500;line-height:1.25;margin-bottom:12px;}
-  .cta h2 em{color:var(--oro-claro);font-style:italic;}
-  .cta p{color:var(--gris);font-size:14.5px;margin-bottom:12px;font-weight:300;}
-  .scarce{display:inline-block;color:var(--oro);font-size:13px;border:1px solid rgba(245,212,0,.35);border-radius:30px;padding:7px 18px;margin-bottom:28px;}
+  /* pasos: claridad de qué sigue */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
+  .step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:24px;}
+  .step .n{font-family:'Fraunces',serif;font-size:30px;font-weight:700;color:var(--gold);line-height:1;}
+  .step h4{font-size:15px;font-weight:600;margin:12px 0 5px;}
+  .step p{font-size:13px;color:var(--gray);font-weight:400;}
+
+  .case{background:linear-gradient(135deg,#15355f 0%,#0a1d3a 100%);border-top:1px solid rgba(255,212,0,.2);}
+  .case-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:26px;}
+  .case-head .tag{color:var(--gold);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+  .case-head h3{font-family:'Fraunces',serif;font-size:24px;font-weight:600;margin-top:8px;}
+  .case-head .sub{color:var(--gray);font-size:13.5px;font-weight:400;margin-top:2px;}
+  .stars{color:var(--gold2);font-size:16px;letter-spacing:2px;}
+  .metrics3{display:flex;gap:40px;flex-wrap:wrap;}
+  .m3 .num{font-family:'Fraunces',serif;font-size:46px;font-weight:600;color:var(--gold2);line-height:1;}
+  .m3 .lbl{font-size:12.5px;color:var(--gray);margin-top:8px;max-width:170px;font-weight:400;}
+
+  .cta{text-align:center;background:radial-gradient(120% 120% at 50% 0%, #15355f, var(--bg3));}
+  .cta h2{font-family:'Fraunces',serif;font-size:35px;font-weight:600;line-height:1.2;margin-bottom:14px;letter-spacing:-.5px;}
+  .cta h2 em{color:var(--gold2);font-style:italic;}
+  .cta p{color:var(--gray);font-size:15px;margin-bottom:14px;font-weight:400;max-width:620px;margin-left:auto;margin-right:auto;}
+  .scarce{display:inline-block;color:var(--gold);font-size:13px;border:1px solid rgba(255,212,0,.35);border-radius:30px;padding:7px 18px;margin-bottom:28px;}
   .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
   .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:16px 30px;border-radius:50px;text-decoration:none;transition:.25s;}
-  .btn-wa{background:var(--verde);color:#fff;}
+  .btn-wa{background:var(--green);color:#fff;}
   .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(37,211,102,.3);}
-  .btn-meet{background:var(--oro);color:var(--azul-prof);font-weight:700;}
-  .btn-meet:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(245,212,0,.35);}
+  .btn-meet{background:var(--gold);color:var(--bg);font-weight:700;}
+  .btn-meet:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,212,0,.35);}
   .btn svg{width:19px;height:19px;}
-  .foot{text-align:center;padding:28px;font-size:13px;color:var(--gris-osc);border-top:1px solid rgba(255,255,255,.06);font-weight:300;line-height:1.9;}
-  .foot b{color:var(--gris);font-weight:600;}
-  .foot a{color:var(--gris);text-decoration:none;}
-  .foot a:hover{color:var(--oro-claro);}
 
-  .wa-float{position:fixed;bottom:22px;right:22px;display:inline-flex;align-items:center;gap:9px;background:var(--verde);color:#fff;padding:13px 19px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);z-index:100;transition:.25s;}
+  .foot{text-align:center;padding:30px;font-size:13px;color:var(--gray-d);border-top:1px solid rgba(255,255,255,.06);font-weight:400;line-height:1.9;}
+  .foot b{color:var(--gray);font-weight:600;}
+  .foot a{color:var(--gray);text-decoration:none;}
+  .foot a:hover{color:var(--gold2);}
+
+  .wa-float{position:fixed;bottom:22px;right:22px;display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:13px 19px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(37,211,102,.4);z-index:100;transition:.25s;}
   .wa-float:hover{transform:translateY(-2px);}
   .wa-float svg{width:18px;height:18px;}
 
   @media(max-width:880px){ .hero,.section{padding-left:34px;padding-right:34px;} }
   @media(max-width:640px){
-    .hero{padding:42px 22px 46px;}
-    .section{padding:42px 22px;}
+    .hero{padding:44px 22px 46px;}
+    .section{padding:44px 22px;}
     .topbar{align-items:flex-start;}
-    .pill{font-size:10px;letter-spacing:1.5px;text-align:right;max-width:150px;line-height:1.4;}
-    .brand{font-size:21px;}
-    .hero h1{font-size:30px;}
+    .pill{font-size:10px;letter-spacing:1.2px;max-width:150px;line-height:1.4;}
+    .brand{font-size:22px;}
+    .hero h1{font-size:32px;}
     .hero .sub{font-size:15px;max-width:100%;}
-    .section h2{font-size:24px;}
-    .vsgrid,.grid4,.rentavs{grid-template-columns:1fr;}
+    .section h2{font-size:26px;}
+    .grid4,.rentavs,.steps{grid-template-columns:1fr;}
     .fstep{flex-direction:column;align-items:stretch;gap:6px;}
     .fbar{width:100%!important;}
-    .metrics3{gap:24px;}
-    .m3 .num{font-size:36px;}
+    .metrics3{gap:26px;}
+    .m3 .num{font-size:38px;}
     .case-head{flex-direction:column;}
     .case-head>div:last-child{text-align:left!important;}
     .btns,.hero-cta,.midcta{width:100%;flex-direction:column;}
@@ -138,9 +151,9 @@
       <div class="brand">fideliza</div>
       <div class="pill">Google Ads · Campañas gestionadas</div>
     </div>
-    <div class="eyebrow r">Lo que te dije en el mensaje, aquí</div>
-    <h1 class="serif r">Estés o no en Google, hay un punto exacto donde <em>se te van los clientes.</em></h1>
-    <p class="sub r">Aquí está cuál es, en 2 minutos. Y si quieres, lo revisamos juntos con los números de tu negocio: por WhatsApp ahora mismo, o en una llamada de 20 minutos.</p>
+    <div class="eyebrow r">Lo que viste en el mensaje, aquí</div>
+    <h1 class="serif r">Alguien busca lo que ofreces en Google ahora mismo. <em>La pregunta es a quién encuentra.</em></h1>
+    <p class="sub r">Si no te encuentra a ti, encuentra a tu competencia. Aquí te muestro el punto exacto donde se te van los clientes — y cómo se tapa. Te toma 2 minutos.</p>
     <div class="hero-cta r">
       <a class="btn btn-wa" href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Fideliza%20y%20quiero%20saber%20a%20d%C3%B3nde%20se%20van%20mis%20clientes" target="_blank">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18.3c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.3 8.3 0 1 1 7 3.6z"/></svg>
@@ -148,33 +161,33 @@
       </a>
       <a class="btn btn-meet" href="https://calendly.com/fideliza-info/30min" target="_blank">Agendar 20 min</a>
     </div>
-    <div class="reassure r">Sin formularios. Sin pagos. Si no hay fit, te lo decimos de frente.</div>
+    <div class="reassure r">Sin formularios. Sin pagos. Si no hay fit, te lo digo de frente.</div>
   </div>
 
-  <!-- DOS CASOS (entrega la promesa) -->
+  <!-- DOS CASOS -->
   <div class="section">
     <div class="sec-label r">Solo hay dos casos. Mira el tuyo.</div>
     <h2 class="serif r">¿A dónde se van tus clientes?</h2>
-    <p class="desc r">Cuando alguien busca en Google lo que ofreces, tu negocio cae en uno de estos dos. Los dos cuestan clientes — y los dos se arreglan.</p>
+    <p class="desc r">Cuando alguien busca en Google lo que ofreces, tu negocio cae en uno de estos dos. Los dos cuestan clientes. Los dos se arreglan.</p>
     <div class="rentavs r">
       <div class="rv ad">
         <div class="rvtag">Aún no inviertes</div>
         <div class="rvtitle">No apareces. Tu competencia sí.</div>
-        <p>El cliente, listo para comprar, se va con el primero que ve. Y el primero casi siempre es un anuncio, no el negocio con más años en el mercado.</p>
+        <p>El cliente, listo para comprar, hace clic en el primero que ve. Casi siempre es un anuncio — no el negocio con más años en el mercado. <span class="loop">Los que te buscaban se van con otro, y ni te enteras.</span></p>
         <div class="rvfix">La salida: aparecer arriba, solo ante quien busca lo que vendes. En 6 a 8 días.</div>
       </div>
       <div class="rv seo">
         <div class="rvtag">Ya inviertes</div>
-        <div class="rvtitle">Pagas, pero ~81 de cada 100 clics se van sin comprar.</div>
-        <p>No por tu producto: por palabras demasiado amplias, anuncios que atraen curiosos y una página que no cierra. El presupuesto se fuga antes de la venta.</p>
+        <div class="rvtitle">Pagas, pero el presupuesto se fuga.</div>
+        <p>Tres fugas típicas: palabras demasiado amplias, anuncios que atraen curiosos y una página que no cierra. <span class="loop">Dos saltan a la vista. La tercera casi nadie la revisa — y es la cara.</span></p>
         <div class="rvfix">La salida: cada peso al clic que sí compra, y medir qué campaña te trae clientes.</div>
       </div>
     </div>
   </div>
 
-  <!-- FUNNEL (la prueba del cuánto) -->
+  <!-- FUNNEL -->
   <div class="section">
-    <div class="sec-label r">Y esto es lo que casi nadie se atreve a decirte</div>
+    <div class="sec-label r">Y esto es lo que casi nadie te dice</div>
     <h2 class="serif r">De cada 100 clics que pagas, ¿cuántos se vuelven cliente?</h2>
     <p class="desc r">La respuesta incomoda, y casi nunca es la que el dueño espera. El presupuesto no se va por mal producto: se va antes, en clics que nunca tuvieron intención de comprarte.</p>
     <div class="funnel r">
@@ -195,8 +208,8 @@
   </div>
 
   <!-- CÓMO LO HACEMOS -->
-  <div class="section">
-    <div class="sec-label r">Aquí es donde se gana o se pierde cada clic</div>
+  <div class="section" id="como">
+    <div class="sec-label r">Aquí se gana o se pierde cada clic</div>
     <h2 class="serif r">Cómo hacemos que rinda</h2>
     <p class="desc r">Cuatro frentes conectados para que cada peso que pones tenga la mejor oportunidad de volverse cliente.</p>
     <div class="grid4">
@@ -204,6 +217,18 @@
       <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div><h3>Anuncios que ganan el clic correcto</h3><p>Atraen a quien va a comprar y filtran a quien no. Más calidad, menos gasto.</p></div>
       <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div><h3>Página que cierra</h3><p>El clic que pagaste no debe terminar en una pestaña cerrada, sino en un contacto.</p></div>
       <div class="scard r"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><h3>Números claros, sin humo</h3><p>Cuántos clientes te trajo Google Ads cada mes y cuánto te costó cada uno.</p></div>
+    </div>
+  </div>
+
+  <!-- QUÉ SIGUE (claridad) -->
+  <div class="section">
+    <div class="sec-label r">Qué pasa si me escribes</div>
+    <h2 class="serif r">Empezar es simple</h2>
+    <p class="desc r">Nada de procesos largos. Tres pasos y sabes exactamente a dónde se van tus clientes.</p>
+    <div class="steps r">
+      <div class="step"><div class="n">1</div><h4>Me escribes o agendas</h4><p>Por WhatsApp ahora mismo, o en una llamada de 20 minutos. Tú eliges.</p></div>
+      <div class="step"><div class="n">2</div><h4>Revisamos tu caso</h4><p>Con los números de tu negocio te muestro a dónde se van tus clientes hoy.</p></div>
+      <div class="step"><div class="n">3</div><h4>Lanzamos en 6 a 8 días</h4><p>Si hay fit, arrancamos. Si no, te lo digo de frente y sin compromiso.</p></div>
     </div>
   </div>
 
@@ -230,7 +255,7 @@
   <!-- CTA FINAL -->
   <div class="section cta">
     <h2 class="serif r">¿Cuál es tu caso?<br><em>Te lo resolvemos en 20 minutos.</em></h2>
-    <p class="r">Te decimos exactamente a dónde se van tus clientes hoy y cuántos más podrías cerrar con lo mismo que ya inviertes (o sin invertir aún).</p>
+    <p class="r">Te digo exactamente a dónde se van tus clientes hoy y cuántos más podrías cerrar con lo mismo que ya inviertes — o sin invertir aún.</p>
     <div class="scarce r">Sin formularios · sin pagos · lanzamos en 6 a 8 días</div>
     <div class="btns r">
       <a class="btn btn-wa" href="https://wa.me/5215646921011?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Fideliza%20y%20quiero%20saber%20a%20d%C3%B3nde%20se%20van%20mis%20clientes" target="_blank">
