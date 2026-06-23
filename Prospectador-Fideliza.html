@@ -96,6 +96,11 @@ function pn(n){return (n||'').replace('PRÁCTICA · ','').split(' ')[0];}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function dd(x){return x?x:'—';}
 function J(o){window.__t=window.__t||{};var id='o'+(Math.random().toString(36).slice(2));window.__t[id]=o;return '__t["'+id+'"]';}
+function liUrl(l){if(l.url && /linkedin\.com/.test(l.url) && l.url.indexOf('PENDIENTE')<0) return l.url;
+  var q=encodeURIComponent((l.nombre||'').replace('PRÁCTICA · ','')+' '+(l.empresa||''));
+  return 'https://www.linkedin.com/search/results/people/?keywords='+q;}
+function btnLi(l){return '<button class="btn navy sm" onclick="window.open(\''+liUrl(l)+'\',\'_blank\')">Abrir LinkedIn ↗</button>';}
+function armarComentario(){var l=S.nuevos[S.idx];var s=(document.getElementById('postTxt')||{}).value||'';document.getElementById('promptOut').value=promptComentario(l,s.trim());}
 function kpi(l,v){return '<div class="kpi">'+l+'<b>'+v+'</b></div>';}
 function err(e){set('<div class="card"><h2>Algo falló</h2><p class="muted">'+esc(e&&e.message||e)+'</p><button class="btn navy" onclick="screenModo()">Volver al inicio</button></div>');}
 function banner(){document.getElementById('topsub').innerHTML='Hola '+S.sdr+' · '+S.fecha+' <span class="banner '+(S.beta?'beta':'live')+'">'+(S.beta?'🧪 PRÁCTICA (no se guarda)':'● EN VIVO')+'</span>';}
@@ -225,8 +230,9 @@ function blk(t,badge,desc,onclick,active){return '<div class="card '+(active?'':
 /* 3 · ACEPTACIONES */
 function scAceptar(){run('listaAceptar').then(function(list){if(!list.length)return screenResumen();
   var h='<div class="card"><h2>¿Quiénes te aceptaron?</h2><p class="muted">Toca a los que SÍ aceptaron. Los demás siguen esperando.</p></div>';
-  list.forEach(function(l){h+='<label class="check"><input type="checkbox" value="'+l.fila+'" class="acc"><div><b>'+esc(l.nombre)+'</b><br>'+
-    '<span class="muted">'+esc(l.cargo)+(l.empresa?' · '+esc(l.empresa):'')+' · invitado '+dd(l.finv)+'</span></div></label>';});
+  list.forEach(function(l){h+='<div class="card" style="margin:10px 0;padding:13px">'+
+    '<label class="check" style="margin:0;border:none;background:transparent;padding:0"><input type="checkbox" value="'+l.fila+'" class="acc"><div><b>'+esc(l.nombre)+'</b><br>'+
+    '<span class="muted">'+esc(l.cargo)+(l.empresa?' · '+esc(l.empresa):'')+' · invitado '+dd(l.finv)+'</span></div></label>'+btnLi(l)+'</div>';});
   h+='<button class="btn ok" onclick="saveAcc()">Guardar aceptaciones</button><button class="btn ghost sm" onclick="screenResumen()">Volver</button>';set(h);});}
 function saveAcc(){var acc=[].slice.call(document.querySelectorAll('.acc:checked')).map(function(c){return parseInt(c.value);});
   run('guardarAceptaciones',[acc]).then(function(){toast('Guardado ✓');refreshThen(screenResumen);});}
@@ -236,7 +242,7 @@ function scGanchos(){run('listaGanchos').then(function(list){if(!list.length)ret
 function renderGancho(){var l=S.ganchos[S.gi];if(!l){toast('Ganchos listos ✓');return refreshThen(screenResumen);}
   set('<div class="prog">Gancho '+(S.gi+1)+' de '+S.ganchos.length+'</div>'+
   '<div class="card"><h2>'+esc(l.nombre)+'</h2><p class="muted">'+esc(l.cargo)+' · '+esc(l.empresa)+' · aceptó '+dd(l.face)+'</p>'+
-  (l.url&&l.url.indexOf('PENDIENTE')<0?'<p><a class="link" href="'+esc(l.url)+'" target="_blank">Abrir perfil ↗</a></p>':'')+
+  btnLi(l)+
   '<div class="info">Pide el mensaje a Liza, <b>mándalo por LinkedIn</b> y luego pégalo aquí para guardarlo.</div>'+
   '<div class="warn">⚠️ Cuida el copy: JAMÁS se debe ver hecho con IA. Revísalo antes de mandar.</div>'+
   '<button class="btn gold" onclick="copy(promptGancho('+J(l)+'),this)">📋 Copiar prompt para Liza</button>'+
@@ -254,6 +260,7 @@ function renderSeg(){var l=S.seg[S.si];if(!l){toast('Seguimientos al día ✓');
   '<div class="info">Ya te conectó y ya le escribiste. No ha contestado. Decide el siguiente paso.</div>'+
   '<div class="dates"><b>Invitado:</b> '+dd(l.finv)+'<br><b>Aceptó:</b> '+dd(l.face)+'<br><b>Le escribiste:</b> '+dd(l.fgan)+' ('+l.dias+' días)<br><b>Toca seguimiento:</b> '+dd(l.prox)+(l.vence?' &nbsp;<span class="tag due">Toca hoy</span>':'')+'</div>'+
   (l.bit?'<div class="bitlog">'+esc(l.bit)+'</div>':'')+
+  btnLi(l)+
   '<h2 style="margin-top:14px;font-size:17px">¿Qué pasó con '+pn(l.nombre)+'?</h2>'+
   '<button class="btn ok" onclick="renderResponder('+J(l)+')">💬 Me contestó</button>'+
   '<button class="btn navy" onclick="segAct('+l.fila+',\'reunion\')">🎯 Quiere reunión</button>'+
@@ -331,10 +338,12 @@ function postSi(si){
   document.getElementById('bp_no').style.background=!si?'#0a1628':'#fff';document.getElementById('bp_no').style.color=!si?'#fff':'#0a1628';
   var l=S.nuevos[S.idx];
   if(si){document.getElementById('postzone').innerHTML=
-    '<div class="warn">⚠️ Si comentas, que aporte VALOR real y JAMÁS se vea hecho con IA.</div>'+
-    '<p class="muted" style="margin-top:8px">Pega aquí de qué trata su publicación (o copia un pedazo). Liza te regresa el comentario:</p>'+
-    '<textarea id="postTxt" placeholder="Ej: publicó que abrieron nueva sucursal en Monterrey…"></textarea>'+
-    '<button class="btn gold sm" onclick="copyComentario('+J(l)+')">📋 Copiar prompt para Liza</button>'+
+    '<div class="warn">⚠️ El comentario es SOLO para abrir conversación: una pregunta o algo que invite a responder. Nada de vender ni mencionar Fideliza. JAMÁS se vea IA.</div>'+
+    '<p class="muted" style="margin-top:8px"><b>1)</b> Pega aquí lo que dice su publicación:</p>'+
+    '<textarea id="postTxt" placeholder="Pega aquí el texto de la publicación…" oninput="armarComentario()"></textarea>'+
+    '<p class="muted"><b>2)</b> Copia este prompt completo y pégaselo a Liza (también puedes seleccionarlo a mano):</p>'+
+    '<textarea id="promptOut" style="min-height:170px;background:#0a1628;color:#cfe">'+esc(promptComentario(l,''))+'</textarea>'+
+    '<button class="btn gold sm" onclick="copy(document.getElementById(\'promptOut\').value,this)">📋 Copiar prompt para Liza</button>'+
     '<input type="text" id="comTxt" placeholder="(Opcional) pega aquí el comentario que dejaste">'+
     '<label class="check"><input type="checkbox" id="ck_com"> Dejé un comentario con valor</label>';
   } else {document.getElementById('postzone').innerHTML='<p class="muted">Listo. Con tu like ya diste intención. Manda la invitación.</p>';}
