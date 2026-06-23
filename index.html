@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fideliza · Prospección</title>
+<style>
+:root{--navy:#0a1628;--gold:#ffd400;--ink:#0a1628;--soft:#f4f6fa;--line:#e3e8f0;--ok:#16a34a;--warn:#b91c1c;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--soft);color:var(--ink)}
+.wrap{max-width:560px;margin:0 auto;padding:16px 14px 120px}
+.top{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;margin:-16px -14px 14px;padding:14px;border-radius:0 0 16px 16px}
+.top h1{font-size:16px;margin:0;font-weight:800}
+.top small{color:#aebbd0}
+.banner{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;padding:3px 9px;border-radius:999px}
+.banner.beta{background:#fde68a;color:#7c2d12}.banner.live{background:#16361f;color:#86efac;border:1px solid #1f7a3f}
+.kpis{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.kpi{background:#13233b;border:1px solid #1d3252;border-radius:10px;padding:6px 9px;font-size:11px;color:#cfe}
+.kpi b{display:block;font-size:16px;color:var(--gold)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(10,22,40,.04)}
+.card h2{margin:0 0 6px;font-size:18px}
+.card p{margin:6px 0;line-height:1.45;font-size:15px}
+.muted{color:#647189;font-size:13px}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.btn.ok{background:var(--ok);color:#fff}
+.btn.big{padding:22px;font-size:19px}
+.btn.sm{padding:11px;font-size:14px}
+.row{display:flex;gap:8px}.row .btn{margin-top:0}
+.pill{display:inline-block;background:#eef2f8;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;color:#33475e;margin:2px 4px 2px 0}
+.copybox{background:var(--navy);color:#fff;border-radius:12px;padding:13px;font-size:15px;word-break:break-word;line-height:1.4}
+.copybox .lbl{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+input[type=text],input[type=date],textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px;font-size:15px;font-family:inherit;margin-top:8px}
+textarea{min-height:90px;resize:vertical}
+.warn{background:#fff4f4;border:1.5px solid #f3c0c0;color:#9b1c1c;border-radius:12px;padding:11px 12px;font-size:13px;font-weight:700;margin-top:10px}
+.check{display:flex;align-items:center;gap:10px;background:#f7f9fc;border:1.5px solid var(--line);border-radius:12px;padding:13px;margin-top:8px;font-size:15px;cursor:pointer}
+.check input{width:22px;height:22px;accent-color:var(--ok)}
+.prog{font-size:13px;color:#647189;font-weight:700}
+.bar{height:8px;background:#e7ecf3;border-radius:999px;overflow:hidden;margin:8px 0 2px}
+.bar>i{display:block;height:100%;background:var(--gold)}
+.fab{position:fixed;right:14px;bottom:16px;z-index:9;background:#25D366;color:#fff;border:0;border-radius:999px;padding:13px 16px;font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer}
+.center{text-align:center}
+.big{font-size:26px;font-weight:900;line-height:1.15;margin:6px 0}
+.frase{font-size:18px;font-style:italic;color:var(--navy);margin:14px 0;line-height:1.4}
+.dim{opacity:.55;pointer-events:none}
+.tag{font-size:12px;font-weight:800;padding:3px 8px;border-radius:8px}
+.tag.s{background:#e6f4ea;color:#15803d}.tag.m{background:#fef3c7;color:#92400e}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:11px 16px;border-radius:12px;font-size:14px;z-index:30;opacity:0;transition:.25s}
+.toast.show{opacity:1}
+a.link{color:#2563eb;font-weight:700;text-decoration:none}
+.logo{font-size:34px}
+</style></head>
+<body>
+
+<!-- ============================================================= -->
+<!--  👉👉👉  PEGA AQUÍ TU LINK QUE TERMINA EN /exec  👈👈👈        -->
+<!--  (lo obtienes al publicar el script. Mientras, deja BETA)     -->
+<script>
+  const API = "PEGA_AQUI_TU_LINK_EXEC";
+</script>
+<!-- ============================================================= -->
+
+<div class="wrap">
+  <div class="top">
+    <h1>⚡ Fideliza · Prospección</h1>
+    <small id="topsub">Bienvenido</small>
+    <div id="kpis" class="kpis"></div>
+  </div>
+  <div id="app"></div>
+</div>
+<button class="fab" onclick="alan()">💬 Dudas → Alan</button>
+<div class="toast" id="toast"></div>
+
+<script>
+var S={sdr:'Jovanny',fecha:'',meta:20,estado:null,hechos:[],nuevos:[],idx:0,beta:false};
+
+/* ====== CONEXIÓN (real = fetch a tu hoja · beta = simulado) ====== */
+function run(fn,args){
+  if(S.beta) return new Promise(function(res){setTimeout(function(){res(BETA(fn,args));},150);});
+  if(!API||API.indexOf('PEGA_AQUI')>=0) return Promise.reject(new Error('Falta pegar tu link /exec en el HTML (variable API).'));
+  return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:fn,args:args||[]})})
+    .then(function(r){return r.json();})
+    .then(function(j){if(!j.ok)throw new Error(j.error||'error');return j.data;});
+}
+/* datos de práctica (no tocan tu hoja) */
+function BETA(fn,args){
+  var t=new Date().toISOString().slice(0,10);
+  if(fn=='estadoInicial')return {sdr:S.sdr,fecha:t,kpi:{total:4,leads:4,invitados:2,conectados:1,mensajes:1,conversaciones:0,reuniones:0,invitesHoy:0},pend:{aceptar:2,ganchos:1,seguimientos:1,nuevos:4}};
+  if(fn=='listaAceptar')return [{fila:1001,nombre:'PRÁCTICA · Juan Pérez',empresa:'Empresa Demo',cargo:'Director de Marketing',fecha:t,url:''},{fila:1002,nombre:'PRÁCTICA · Ana López',empresa:'Tienda Ejemplo',cargo:'Gerente Comercial',fecha:t,url:''}];
+  if(fn=='listaGanchos')return [{fila:1003,nombre:'PRÁCTICA · Carlos Ruiz',cargo:'CEO',empresa:'Negocio Test',url:''}];
+  if(fn=='listaSeguimientos')return [{fila:1004,nombre:'PRÁCTICA · María Gómez',cargo:'Head of Growth',empresa:'Marca Demo',status:'Mensaje enviado',dias:3,notas:'',url:''}];
+  if(fn=='siguientesNuevos'){var n=args[0]||4;return betaLeads().slice(0,Math.min(n,4));}
+  if(fn=='fraseDelDia'){var f=['El que practica gana. Hoy practicaste.','Modo práctica dominado. Ahora a facturar de verdad.','Cada repeticion te acerca a la reunion. Y a la comision.'];return f[Math.floor(Math.random()*f.length)];}
+  return true;
+}
+function betaLeads(){return [
+  {fila:2001,nombre:'PRÁCTICA · Roberto Díaz',cargo:'Director Comercial',empresa:'Autos del Valle',pos:'Director Comercial en Autos del Valle',buscar:'Roberto Díaz Autos del Valle'},
+  {fila:2002,nombre:'PRÁCTICA · Laura Méndez',cargo:'Gerente de Marketing',empresa:'Clínica Sonrisa',pos:'Gerente de Marketing en Clínica Sonrisa',buscar:'Laura Méndez Clínica Sonrisa'},
+  {fila:2003,nombre:'PRÁCTICA · Diego Torres',cargo:'Dueño',empresa:'Muebles Torres',pos:'Dueño en Muebles Torres',buscar:'Diego Torres Muebles Torres'},
+  {fila:2004,nombre:'PRÁCTICA · Sofía Ramos',cargo:'Head of Growth',empresa:'Inmobiliaria Norte',pos:'Head of Growth en Inmobiliaria Norte',buscar:'Sofía Ramos Inmobiliaria Norte'}];}
+
+/* ====== utilidades ====== */
+function set(h){document.getElementById('app').innerHTML=h;window.scrollTo(0,0);}
+function toast(t){var x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(function(){x.classList.remove('show');},1800);}
+function copy(txt,btn){navigator.clipboard.writeText(txt).then(function(){toast('Copiado ✓');if(btn){var o=btn.textContent;btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent=o;},1400);}});}
+function alan(){var m=encodeURIComponent('Hola Alan, soy '+S.sdr+'. Tengo una duda en la prospección:');window.open('https://wa.me/5215627045594?text='+m,'_blank');}
+function pn(n){return (n||'').replace('PRÁCTICA · ','').split(' ')[0];}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function J(o){window.__t=window.__t||{};var id='o'+(Math.random().toString(36).slice(2));window.__t[id]=o;return '__t["'+id+'"]';}
+function kpi(l,v){return '<div class="kpi">'+l+'<b>'+v+'</b></div>';}
+function err(e){set('<div class="card"><h2>Algo falló</h2><p class="muted">'+esc(e&&e.message||e)+'</p><button class="btn navy" onclick="screenModo()">Volver al inicio</button></div>');}
+function banner(){document.getElementById('topsub').innerHTML='Hola '+S.sdr+' · '+S.fecha+' <span class="banner '+(S.beta?'beta':'live')+'">'+(S.beta?'🧪 PRÁCTICA (no se guarda)':'● EN VIVO')+'</span>';}
+
+/* INVITACIONES (rotan, humanas, sin vender) */
+function invites(nom,emp){var p=pn(nom);
+  if(!emp||emp=='no aplica')return [
+    'Hola '+p+', me topé con tu perfil y me llamó tu trayectoria. Me gustaría sumarte a mi red y estar en contacto. Un saludo.',
+    'Qué tal '+p+', ando conectando con gente del medio y tu perfil me pareció interesante. ¿Te late si nos conectamos por acá?',
+    'Hola '+p+', me dio gusto encontrar tu perfil. Me gustaría tenerte en mi red para seguir lo que compartes. Saludos.'];
+  return [
+    'Hola '+p+', me topé con tu perfil y me llamó lo que hacen en '+emp+'. Me gustaría sumarte a mi red para seguir lo que compartes. Un saludo.',
+    'Qué tal '+p+', ando conectando con gente del medio y tu trayectoria en '+emp+' me pareció interesante. ¿Te late si nos conectamos por acá?',
+    'Hola '+p+', vengo viendo temas de '+emp+' y me gustaría tenerte en mi red. Me dio gusto encontrar tu perfil. Saludos.',
+    'Hola '+p+', trabajo cerca del mundo digital y tu rol en '+emp+' me llamó la atención. Me encantaría conectar y estar en contacto. Saludos.'];
+}
+/* PROMPTS PARA LIZA */
+function promptComentario(l){return [
+'Liza, ayúdame con un comentario para LinkedIn.',
+'Perfil: '+l.nombre+' — '+l.cargo+(l.empresa&&l.empresa!='no aplica'?' en '+l.empresa:'')+'.',
+'La publicación trata de: [ESCRIBE AQUÍ DE QUÉ TRATA EL POST].',
+'Quiero un comentario corto (máx 20 palabras), natural, español de México, que aporte una idea real o una pregunta con sentido.',
+'Cuida mucho el copy: NO se tiene que ver IA. Nada de "gran punto", "totalmente de acuerdo" ni halagos vacíos.'].join('\n');}
+function promptGancho(l){return [
+'Liza, necesito un mensaje de LinkedIn para un prospecto que YA me aceptó. Yo soy de Fideliza: gestionamos Google Ads (16 años en México).',
+'','Sigue EXACTAMENTE esta estructura (este ejemplo es de otra empresa, es solo MOLDE, adáptalo a Google Ads, no lo copies):','---',
+'Hola Arturo, te escribo desde Codefy, hacemos CRO y SEO para ecommerce (trabajamos con B Life, Birdman y Hang Ten). Entré a La Carnicería Virtual y noté un par de cosas que quizá valga la pena revisar: 1) se está filtrando un mensaje de configuración de la app EasyLockdown que mete fricción antes de comprar. 2) tus paquetes de parrillada quedan escondidos en móvil y subirlos podría levantar el ticket promedio. Lo que más nos interesa es tu feedback. Si te interesa, agendamos una consultoría rápida y te pasamos el reporte completo, sin costo este mes. ¿Te hace sentido conocernos en un meet?','---',
+'Prospecto:','- Nombre: '+l.nombre,'- Cargo: '+l.cargo,'- Empresa: '+l.empresa,
+'- Sitio web: [PEGA LA WEB SI LA TIENES]','- Industria: [PEGA INDUSTRIA]','- Qué venden: [PEGA QUÉ VENDEN]','',
+'Reglas:',
+'- Saludo por nombre + "te escribo desde Fideliza, gestionamos Google Ads (16 años en México)".',
+'- 1 o 2 observaciones REALES de dónde se le fuga demanda de búsqueda / presupuesto en Google (no genéricas, no inventes métricas).',
+'- Enmarca el valor como feedback + este mes damos una asesoría gratuita y nos interesa compartirle un reporte de mejoras de su Google Ads.',
+'- Cierra con pregunta abierta para un meet.',
+'- Español de México, frases cortas e irregulares, máx ~120 palabras. Prohibido: increíble, potente, estimado/a, "espero que te encuentres bien", emojis.',
+'- Cuida mucho el copy: NO se tiene que ver IA.'].join('\n');}
+function promptSeg(l,dias){return [
+'Liza, dame un mensaje de seguimiento de LinkedIn (día '+(dias>=7?'7':'3')+') para '+l.nombre+', '+l.cargo+' en '+l.empresa+'.',
+'Ya le mandé el primer gancho de Fideliza (Google Ads) y no responde.',
+'Que sea breve, sin presionar, que aporte UN dato o ángulo nuevo sobre dónde se les va la búsqueda en Google, y recuerde la asesoría gratuita de este mes.',
+'Español de México, máx 45 palabras, frases cortas. NO se tiene que ver IA.'].join('\n');}
+
+/* ================= PANTALLA 0 · ELEGIR MODO ================= */
+function screenModo(){
+  document.getElementById('topsub').textContent='Elige cómo entrar';
+  document.getElementById('kpis').innerHTML='';
+  var apiOk = API && API.indexOf('PEGA_AQUI')<0;
+  set('<div class="card center"><div class="logo">⚡</div><h2>Hola Jovanny</h2>'+
+  '<p class="muted">¿Cómo quieres entrar hoy?</p>'+
+  '<button class="btn navy big" onclick="encender()">🚀 ENCENDER SISTEMA<br><span style="font-weight:500;font-size:13px">trabajo real · se guarda en la hoja</span></button>'+
+  '<button class="btn gold big" onclick="practica()">🧪 MODO PRÁCTICA (BETA)<br><span style="font-weight:500;font-size:13px">para entrenar · NO se guarda nada</span></button>'+
+  (apiOk?'<p class="muted" style="margin-top:14px">✅ Conectado a tu hoja.</p>':'<p class="warn" style="margin-top:14px">El sistema real aún no tiene el link /exec pegado. Puedes usar PRÁCTICA mientras tanto.</p>')+
+  '</div>');
+}
+function practica(){S.beta=true;S.hechos=[];goWelcome();}
+function encender(){
+  if(!API||API.indexOf('PEGA_AQUI')>=0){
+    set('<div class="card"><h2>Falta un paso</h2><p>Para encender el sistema real, primero hay que pegar el link <b>/exec</b> en el HTML. Avísale a Sofía o a Alan.</p>'+
+    '<button class="btn gold" onclick="practica()">Mientras tanto, entrar a PRÁCTICA</button>'+
+    '<button class="btn ghost sm" onclick="screenModo()">Volver</button></div>');return;
+  }
+  S.beta=false;S.hechos=[];goWelcome();
+}
+function goWelcome(){
+  run('estadoInicial',[S.sdr]).then(function(e){
+    S.estado=e;S.fecha=e.fecha;banner();paintKpis(e.kpi);screenBienvenida();
+  }).catch(err);
+}
+function paintKpis(k){document.getElementById('kpis').innerHTML=
+  kpi('Total',k.total)+kpi('Invites hoy',k.invitesHoy)+kpi('Conectados',k.conectados)+kpi('Conversaciones',k.conversaciones)+kpi('Reuniones',k.reuniones);}
+
+/* 1. FECHA */
+function screenBienvenida(){
+  set('<div class="card"><h2>¿Qué fecha trabajamos hoy?</h2>'+
+  '<p class="muted">Ya viene la de hoy. Cámbiala solo si te pones al corriente de otro día.</p>'+
+  '<input type="date" id="fch" value="'+S.fecha+'">'+
+  '<button class="btn navy" onclick="setFecha()">Continuar</button></div>');
+}
+function setFecha(){S.fecha=document.getElementById('fch').value||S.fecha;banner();screenAnimo();}
+function screenAnimo(){
+  set('<div class="card"><h2>¿Cómo vienes hoy?</h2>'+
+  '<p class="muted">Para ajustar la carga sin que te satures.</p>'+
+  '<button class="btn ok" onclick="animo(\'Voy bien\',20)">💪 Voy bien — 20 nuevos</button>'+
+  '<button class="btn gold" onclick="animo(\'Algo saturado\',13)">😅 Algo saturado — 13 + seguimiento</button>'+
+  '<button class="btn ghost" onclick="animoAlan()">😵 Saturado — necesito apoyo</button></div>');
+}
+function animo(txt,meta){S.meta=meta;run('registrarSaturacion',[S.sdr,txt]);screenResumen();}
+function animoAlan(){run('registrarSaturacion',[S.sdr,'Saturado - pide apoyo']);
+  set('<div class="card center"><h2>Tranquilo, se vale 🙌</h2>'+
+  '<p>Antes de seguir, toca base con Alan. Te ayuda a destrabar lo que necesites.</p>'+
+  '<button class="btn ok" onclick="alan()">💬 Escribir a Alan</button>'+
+  '<button class="btn ghost" onclick="animo(\'Continuó ligero\',13)">Sigo, pero ligero (13)</button></div>');}
+
+/* 2. RESUMEN */
+function screenResumen(){
+  var p=S.estado.pend;
+  set('<div class="card"><h2>Plan de hoy</h2><p class="muted">Orden recomendado: primero seguimiento, luego nuevos.</p></div>'+
+  blk('1 · Revisar aceptaciones',p.aceptar+' por revisar','Marca quién te aceptó.', 'scAceptar()',p.aceptar>0)+
+  blk('2 · Mandar gancho',p.ganchos+' conectados','Pídele el mensaje a Liza y envíalo.', 'scGanchos()',p.ganchos>0)+
+  blk('3 · Seguimientos',p.seguimientos+' en proceso','Día 3 / día 7 y respuestas.', 'scSeguir()',p.seguimientos>0)+
+  blk('4 · Prospectos nuevos','Meta: '+S.meta,'Investigar, interactuar e invitar.', 'scNuevosInit()',true));
+}
+function blk(t,badge,desc,onclick,active){
+  return '<div class="card '+(active?'':'dim')+'"><div style="display:flex;justify-content:space-between;align-items:center">'+
+  '<h2 style="font-size:16px">'+t+'</h2><span class="pill">'+badge+'</span></div><p class="muted">'+desc+'</p>'+
+  (active?'<button class="btn navy sm" onclick="'+onclick+'">Entrar</button>':'<p class="muted">— nada pendiente —</p>')+'</div>';
+}
+
+/* 3. ACEPTACIONES */
+function scAceptar(){run('listaAceptar').then(function(list){
+  if(!list.length)return screenResumen();
+  var h='<div class="card"><h2>¿Quiénes te aceptaron?</h2><p class="muted">Toca a los que SÍ aceptaron. Los demás siguen esperando.</p></div>';
+  list.forEach(function(l){h+='<label class="check"><input type="checkbox" value="'+l.fila+'" class="acc">'+
+    '<div><b>'+esc(l.nombre)+'</b><br><span class="muted">'+esc(l.cargo)+(l.empresa?' · '+esc(l.empresa):'')+(l.fecha?' · '+l.fecha:'')+'</span></div></label>';});
+  h+='<button class="btn ok" onclick="saveAcc()">Guardar aceptaciones</button><button class="btn ghost sm" onclick="screenResumen()">Volver</button>';
+  set(h);});}
+function saveAcc(){var acc=[].slice.call(document.querySelectorAll('.acc:checked')).map(function(c){return parseInt(c.value);});
+  run('guardarAceptaciones',[acc,[]]).then(function(){toast('Guardado ✓');refreshThen(screenResumen);});}
+
+/* 4. GANCHOS */
+function scGanchos(){run('listaGanchos').then(function(list){if(!list.length)return screenResumen();S.ganchos=list;S.gi=0;renderGancho();});}
+function renderGancho(){var l=S.ganchos[S.gi];
+  if(!l){toast('Ganchos listos ✓');return refreshThen(screenResumen);}
+  set('<div class="prog">Gancho '+(S.gi+1)+' de '+S.ganchos.length+'</div>'+
+  '<div class="card"><h2>'+esc(l.nombre)+'</h2><p class="muted">'+esc(l.cargo)+' · '+esc(l.empresa)+'</p>'+
+  (l.url&&l.url.indexOf('PENDIENTE')<0?'<p><a class="link" href="'+esc(l.url)+'" target="_blank">Abrir perfil ↗</a></p>':'')+
+  '<div class="warn">⚠️ Cuida mucho el copy: NO se tiene que ver IA. Revísalo antes de enviar.</div>'+
+  '<button class="btn gold" onclick="copy(promptGancho('+J(l)+'),this)">📋 Copiar prompt para Liza</button>'+
+  '<p class="muted">Pégalo en Liza, copia el mensaje que te dé y pégalo aquí abajo.</p>'+
+  '<textarea id="gtx" placeholder="Pega aquí el mensaje que te dio Liza…"></textarea>'+
+  '<button class="btn ok" onclick="saveGancho('+l.fila+')">Guardar y marcar enviado</button>'+
+  '<button class="btn ghost sm" onclick="S.gi++;renderGancho()">Saltar por ahora</button></div>');}
+function saveGancho(fila){var t=document.getElementById('gtx').value.trim();if(!t){toast('Pega el mensaje primero');return;}
+  run('guardarGancho',[fila,t]).then(function(){toast('Enviado ✓');S.gi++;renderGancho();});}
+
+/* 5. SEGUIMIENTOS */
+function scSeguir(){run('listaSeguimientos').then(function(list){if(!list.length)return screenResumen();
+  var h='<div class="card"><h2>Seguimientos</h2><p class="muted">Por días sin respuesta. Día 3 y día 7 son clave.</p></div>';
+  list.forEach(function(l){var dia=l.dias>=7?'día 7+':(l.dias>=3?'día 3':'reciente');
+    h+='<div class="card"><div style="display:flex;justify-content:space-between"><b>'+esc(l.nombre)+'</b>'+
+    '<span class="tag '+(l.status=='En conversación'?'s':'m')+'">'+esc(l.status)+'</span></div>'+
+    '<p class="muted">'+esc(l.empresa)+' · '+(l.dias!==''?l.dias+' días ('+dia+')':'')+'</p>'+
+    '<button class="btn gold sm" onclick="copy(promptSeg('+J(l)+','+l.dias+'),this)">📋 Prompt de seguimiento para Liza</button>'+
+    '<div class="row" style="margin-top:8px"><button class="btn ok sm" onclick="seg('+l.fila+',\'respondio\')">Respondió</button>'+
+    '<button class="btn navy sm" onclick="seg('+l.fila+',\'reunion\')">Reunión 🎯</button></div>'+
+    '<div class="row" style="margin-top:8px"><button class="btn ghost sm" onclick="seg('+l.fila+',\'seguimiento\')">Marqué seguimiento</button>'+
+    '<button class="btn ghost sm" onclick="seg('+l.fila+',\'descartar\')">Descartar</button></div></div>';});
+  h+='<button class="btn ghost sm" onclick="screenResumen()">Volver</button>';set(h);});}
+function seg(fila,accion){run('accionSeguimiento',[fila,accion,'']).then(function(){toast('Hecho ✓');scSeguir();});}
+
+/* 6. NUEVOS */
+function scNuevosInit(){var faltan=S.meta-(S.estado.kpi.invitesHoy||0);if(faltan<0)faltan=0;
+  run('siguientesNuevos',[faltan,S.hechos]).then(function(list){S.nuevos=list;S.idx=0;if(!list.length)return screenFin();renderNuevo();});}
+function renderNuevo(){var l=S.nuevos[S.idx];if(!l)return screenFin();
+  var tot=S.nuevos.length;var inv=invites(l.nombre,l.empresa);var ivar=inv[S.idx%inv.length];
+  set('<div class="prog">Prospecto '+(S.idx+1)+' de '+tot+' · '+S.sdr+'</div>'+
+  '<div class="bar"><i style="width:'+Math.round(S.idx/tot*100)+'%"></i></div>'+
+  '<div class="card"><h2>'+esc(l.nombre)+'</h2><p class="muted">'+esc(l.pos)+'</p>'+
+  '<div class="copybox"><div class="lbl">Paso 1 · Pon esto en el buscador de LinkedIn</div>'+esc(l.buscar)+'</div>'+
+  '<div class="row" style="margin-top:8px"><button class="btn gold sm" onclick="copy('+J(l.buscar)+',this)">📋 Copiar</button>'+
+  '<button class="btn navy sm" onclick="window.open(\'https://www.linkedin.com/search/results/people/?keywords='+encodeURIComponent(l.buscar)+'\',\'_blank\')">Abrir LinkedIn ↗</button></div>'+
+  '<h2 style="margin-top:18px;font-size:16px">Paso 2 · Deja intención (no llegues en frío)</h2>'+
+  '<label class="check"><input type="checkbox" id="ck_like"> Le di like a sus últimas 2 publicaciones</label>'+
+  '<label class="check"><input type="checkbox" id="ck_rev"> Revisé su perfil y lo que publica</label>'+
+  '<p class="muted" style="margin-top:10px"><b>¿Publica ideas u opiniones propias?</b></p>'+
+  '<div class="row"><button class="btn ghost sm" id="bp_si" onclick="postSi(true)">Sí, publica</button>'+
+  '<button class="btn ghost sm" id="bp_no" onclick="postSi(false)">No / solo comparte</button></div>'+
+  '<div id="postzone"></div>'+
+  '<h2 style="margin-top:18px;font-size:16px">Paso 3 · Pega su LinkedIn URL</h2>'+
+  '<input type="text" id="url" placeholder="https://www.linkedin.com/in/…">'+
+  '<h2 style="margin-top:18px;font-size:16px">Paso 4 · Manda la invitación</h2>'+
+  '<textarea id="inv">'+esc(ivar)+'</textarea>'+
+  '<button class="btn gold sm" onclick="copy(document.getElementById(\'inv\').value,this)">📋 Copiar invitación</button>'+
+  '<button class="btn ok" style="margin-top:16px" onclick="saveNuevo('+l.fila+')">✅ Ya mandé el invite → siguiente</button>'+
+  '<button class="btn ghost sm" onclick="screenResumen()">Pausar y volver al menú</button></div>');}
+function postSi(si){
+  document.getElementById('bp_si').style.background=si?'#0a1628':'#fff';document.getElementById('bp_si').style.color=si?'#fff':'#0a1628';
+  document.getElementById('bp_no').style.background=!si?'#0a1628':'#fff';document.getElementById('bp_no').style.color=!si?'#fff':'#0a1628';
+  var l=S.nuevos[S.idx];
+  if(si){document.getElementById('postzone').innerHTML=
+    '<div class="warn">⚠️ Si comentas, que aporte VALOR real y NO se vea IA. Si dudas, pídeselo a Liza.</div>'+
+    '<button class="btn gold sm" onclick="copy(promptComentario('+J(l)+'),this)">📋 Copiar prompt de comentario para Liza</button>'+
+    '<input type="text" id="comTxt" placeholder="(Opcional) pega aquí el comentario que dejaste">'+
+    '<label class="check"><input type="checkbox" id="ck_com"> Dejé un comentario con valor</label>';
+  } else {document.getElementById('postzone').innerHTML='<p class="muted">Perfecto. Con tu like ya diste intención. Manda el invite directo.</p>';}
+}
+function saveNuevo(fila){var url=document.getElementById('url').value.trim();
+  if(!url||url.indexOf('linkedin.com')<0){toast('Pega la URL de LinkedIn');return;}
+  var like=document.getElementById('ck_like').checked;
+  var comChk=document.getElementById('ck_com');var comento=comChk?comChk.checked:false;
+  var comTxt=document.getElementById('comTxt')?document.getElementById('comTxt').value.trim():'';
+  var inv=document.getElementById('inv').value.trim();
+  run('registrarNuevo',[fila,{url:url,like:like,comento:comento,comentario:comTxt,invite:inv,fecha:S.fecha,sdr:S.sdr}])
+    .then(function(){S.hechos.push(fila);S.estado.kpi.invitesHoy++;toast('Invite registrado ✓');S.idx++;renderNuevo();});}
+
+/* FIN */
+function screenFin(){run('fraseDelDia').then(function(f){
+  set('<div class="card center"><div class="big">TERMINASTE POR HOY</div><div style="font-size:40px">🏆</div>'+
+  '<h2>EXCELENTE TRABAJO, '+S.sdr+'</h2>'+
+  '<p class="muted">Hiciste '+(S.estado.kpi.invitesHoy)+' invites hoy. Eso es pipeline real — y pipeline es dinero en camino. 💸</p>'+
+  '<div class="frase">"'+esc(f)+'"</div>'+
+  '<button class="btn navy" onclick="screenModo()">Volver al inicio</button></div>');});}
+function refreshThen(cb){run('estadoInicial',[S.sdr]).then(function(e){S.estado=e;paintKpis(e.kpi);cb();});}
+
+screenModo();
+</script>
+</body></html>
