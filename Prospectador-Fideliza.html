@@ -123,8 +123,7 @@ function promptGancho(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 '"Hola Arturo, te escribo desde Codefy... entré a su tienda y noté 1)... 2)... Lo que más nos interesa es tu feedback. Si te interesa, agendamos una consultoría rápida y te pasamos el reporte completo, sin costo este mes. ¿Te hace sentido un meet?"',
 '',
 'Prospecto: '+nom+' · '+l.cargo+' · '+l.empresa,
-'- Sitio web: [PÉGALO SI LO TIENES]',
-'- Qué venden: [PÉGALO]',
+'Su sitio web / qué venden: [COMPLETA SI LO SABES, O ESCRIBE "no sé"]',
 '',
 'Estructura (corto, 70-90 palabras):',
 '1) "Hola '+pn(nom)+', te escribo desde Fideliza, gestionamos Google Ads (16 años en México)."',
@@ -154,10 +153,15 @@ function promptAgenda(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 'Liza, '+nom+' quiere agendar. Dame un mensaje corto y cálido para cerrar el meet e incluye este link: '+CAL,
 'Español de México, máx 35 palabras. JAMÁS se debe ver hecho con IA.'].join('\n');}
 function promptObjecion(l,obj){var nom=l.nombre.replace('PRÁCTICA · ','');return [
-'Liza, '+nom+' me puso esta objeción:',
-'"'+(obj||'[PEGA AQUÍ LO QUE TE DIJO]')+'"',
-'Dame una respuesta con enfoque sentir–sintió–descubrió (feel-felt-found), español de México, breve, sin presionar, que reabra el meet.',
-'JAMÁS se debe ver hecho con IA.'].join('\n');}
+'Liza, '+nom+' me puso una objeción.',
+'OBJECIÓN:',
+'[PEGA AQUÍ LO QUE TE DIJO]',
+'',
+'Dame una respuesta con enfoque sentir–sintió–descubrió (feel-felt-found), español de México, breve, sin presionar, que reabra el meet. JAMÁS se debe ver hecho con IA.'].join('\n');}
+
+/* Caja de prompt VISIBLE para copiar a mano (sin depender de botones) */
+function promptBox(texto){return '<p class="muted">👇 Copia este texto (tócalo y "Seleccionar todo") y pégaselo a Liza. Completa lo que está entre [corchetes].</p>'+
+  '<textarea class="pbox" onclick="this.focus();this.select();" style="min-height:180px;background:#0a1628;color:#cfe;font-size:13px;line-height:1.5">'+esc(texto)+'</textarea>';}
 
 /* ====== GUÍA ====== */
 function screenGuia(){set('<div class="card"><h2>📖 Guía rápida</h2>'+
@@ -245,7 +249,7 @@ function renderGancho(){var l=S.ganchos[S.gi];if(!l){toast('Ganchos listos ✓')
   btnLi(l)+
   '<div class="info">Pide el mensaje a Liza, <b>mándalo por LinkedIn</b> y luego pégalo aquí para guardarlo.</div>'+
   '<div class="warn">⚠️ Cuida el copy: JAMÁS se debe ver hecho con IA. Revísalo antes de mandar.</div>'+
-  '<button class="btn gold" onclick="copy(promptGancho('+J(l)+'),this)">📋 Copiar prompt para Liza</button>'+
+  promptBox(promptGancho(l))+
   '<textarea id="gtx" placeholder="Pega aquí el mensaje que te dio Liza (el que ya mandaste)…"></textarea>'+
   '<button class="btn ok" onclick="saveGancho('+l.fila+')">Guardar y marcar enviado</button>'+
   '<button class="btn ghost sm" onclick="S.gi++;renderGancho()">Saltar por ahora</button></div>');}
@@ -270,8 +274,7 @@ function renderSeg(){var l=S.seg[S.si];if(!l){toast('Seguimientos al día ✓');
   '<button class="btn ghost sm" onclick="screenResumen()">Pausar y volver al menú</button></div>');}
 function segRecord(){var l=S.seg[S.si];
   document.getElementById('recz').innerHTML='<div class="warn" style="margin-top:14px">⚠️ El recordatorio JAMÁS debe verse hecho con IA. Revísalo.</div>'+
-  '<button class="btn gold sm" onclick="copy(promptSeg('+J(l)+'),this)">📋 Copiar prompt de recordatorio para Liza</button>'+
-  '<p class="muted">Pídelo a Liza, mándalo por LinkedIn y luego marca abajo.</p>'+
+  promptBox(promptSeg(l))+
   '<button class="btn ok sm" onclick="segAct('+l.fila+',\'seguimiento\')">✅ Listo, mandé el recordatorio</button>';}
 function segAct(fila,accion){run('accionSeguimiento',[fila,accion,'']).then(function(){
   toast(accion=='reunion'?'🎯 Reunión registrada':'Hecho ✓');S.si++;renderSeg();});}
@@ -287,23 +290,20 @@ function renderResponder(l){set('<div class="prog">Respuesta de '+pn(l.nombre)+'
   '<button class="btn ghost sm" onclick="renderSeg()">Volver</button></div>');}
 function resp(l,tipo){var h='';
   if(tipo=='masinfo')h='<div class="warn">⚠️ JAMÁS se debe ver hecho con IA.</div>'+
-    '<button class="btn gold sm" onclick="copy(promptMasInfo('+J(l)+'),this)">📋 Copiar prompt para Liza</button>'+
+    promptBox(promptMasInfo(l))+
     '<button class="btn ok" onclick="respDone('+J(l)+',\'respondio\')">✅ Listo, lo mandé → siguiente</button>';
   if(tipo=='reporte')h='<div class="info">🔥 Pedir el reporte es <b>alta intención</b>. El reporte se lo presentas en el meet — agéndalo ahí.</div>'+
     '<div class="warn">⚠️ JAMÁS se debe ver hecho con IA.</div>'+
-    '<button class="btn gold sm" onclick="copy(promptReporte('+J(l)+'),this)">📋 Copiar prompt para Liza</button>'+
+    promptBox(promptReporte(l))+
     '<button class="btn navy" onclick="respDone('+J(l)+',\'reunion\')">🎯 Ya quiere meet → marcar reunión</button>'+
     '<button class="btn ok sm" onclick="respDone('+J(l)+',\'respondio\')">Sigo en conversación</button>'+
     '<p class="muted">Si insiste en recibir el reporte ANTES del meet, eso lo ves con Alan.</p>'+
     '<button class="btn ghost sm" onclick="alan()">💬 Tocar base con Alan</button>';
   if(tipo=='agenda')h='<div class="copybox"><div class="lbl">Mándale este link</div>'+CAL+'</div>'+
-    '<div class="row" style="margin-top:8px"><button class="btn gold sm" onclick="copy(\''+CAL+'\',this)">📋 Copiar link</button>'+
-    '<button class="btn gold sm" onclick="copy(promptAgenda('+J(l)+'),this)">📋 Mensaje (Liza)</button></div>'+
+    promptBox(promptAgenda(l))+
     '<button class="btn navy" onclick="respDone('+J(l)+',\'reunion\')">🎯 Marcar reunión agendada</button>';
-  if(tipo=='objecion')h='<p class="muted">Pega lo que te dijo y te armo la respuesta:</p>'+
-    '<textarea id="objTxt" placeholder="Ej: ya tengo agencia / está caro / no es momento…"></textarea>'+
-    '<div class="warn">⚠️ JAMÁS se debe ver hecho con IA.</div>'+
-    '<button class="btn gold sm" onclick="copyObjecion('+J(l)+')">📋 Copiar prompt para Liza</button>'+
+  if(tipo=='objecion')h='<div class="warn">⚠️ JAMÁS se debe ver hecho con IA.</div>'+
+    promptBox(promptObjecion(l))+
     '<button class="btn ok sm" onclick="respDone('+J(l)+',\'respondio\')">✅ Lo respondí → siguiente</button>'+
     '<p class="muted">¿Sigues sin saber qué decir?</p>'+
     '<button class="btn ghost sm" onclick="alan()">💬 Tocar base con Alan</button>';
@@ -339,11 +339,7 @@ function postSi(si){
   var l=S.nuevos[S.idx];
   if(si){document.getElementById('postzone').innerHTML=
     '<div class="warn">⚠️ El comentario es SOLO para abrir conversación: una pregunta o algo que invite a responder. Nada de vender ni mencionar Fideliza. JAMÁS se vea IA.</div>'+
-    '<p class="muted" style="margin-top:8px"><b>1)</b> Pega aquí lo que dice su publicación:</p>'+
-    '<textarea id="postTxt" placeholder="Pega aquí el texto de la publicación…" oninput="armarComentario()"></textarea>'+
-    '<p class="muted"><b>2)</b> Copia este prompt completo y pégaselo a Liza (también puedes seleccionarlo a mano):</p>'+
-    '<textarea id="promptOut" style="min-height:170px;background:#0a1628;color:#cfe">'+esc(promptComentario(l,''))+'</textarea>'+
-    '<button class="btn gold sm" onclick="copy(document.getElementById(\'promptOut\').value,this)">📋 Copiar prompt para Liza</button>'+
+    promptBox(promptComentario(l))+
     '<input type="text" id="comTxt" placeholder="(Opcional) pega aquí el comentario que dejaste">'+
     '<label class="check"><input type="checkbox" id="ck_com"> Dejé un comentario con valor</label>';
   } else {document.getElementById('postzone').innerHTML='<p class="muted">Listo. Con tu like ya diste intención. Manda la invitación.</p>';}
