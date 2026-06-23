@@ -86,7 +86,11 @@ function betaLeads(){return [
 /* ====== utils ====== */
 function set(h){document.getElementById('app').innerHTML=h;window.scrollTo(0,0);}
 function toast(t){var x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(function(){x.classList.remove('show');},1800);}
-function copy(txt,btn){navigator.clipboard.writeText(txt).then(function(){toast('Copiado ✓');if(btn){var o=btn.textContent;btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent=o;},1400);}});}
+function copy(txt,btn){
+  function ok(){toast('Copiado ✓');if(btn){var o=btn.textContent;btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent=o;},1400);}}
+  function fb(){try{var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.top='0';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();var d=document.execCommand('copy');document.body.removeChild(ta);if(d)ok();else window.prompt('Copia esto manualmente (Ctrl+C):',txt);}catch(e){window.prompt('Copia esto manualmente (Ctrl+C):',txt);}}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(fb);}else{fb();}
+}
 function alan(){var m=encodeURIComponent('Hola Alan, soy '+S.sdr+'. Tengo una duda en la prospección:');window.open('https://wa.me/5215627045594?text='+m,'_blank');}
 function pn(n){return (n||'').replace('PRÁCTICA · ','').split(' ')[0];}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -98,14 +102,14 @@ function banner(){document.getElementById('topsub').innerHTML='Hola '+S.sdr+' ·
 function paintKpis(k){document.getElementById('kpis').innerHTML=kpi('Total',k.total)+kpi('Invites hoy',k.invitesHoy)+kpi('Conectados',k.conectados)+kpi('Conversaciones',k.conversaciones)+kpi('Reuniones',k.reuniones);}
 
 /* ====== PROMPTS PARA LIZA ====== */
-function promptComentario(l,snippet){return [
-'Liza, ayúdame a comentar una publicación de LinkedIn para entrar caliente (no en frío).',
-'Perfil: '+l.nombre.replace('PRÁCTICA · ','')+' — '+l.cargo+(l.empresa&&l.empresa!='no aplica'?' en '+l.empresa:'')+'.',
-'Su publicación dice / trata de:',
-'"'+(snippet||'[PEGA AQUÍ UN PEDAZO DE SU PUBLICACIÓN]')+'"',
+function promptComentario(l,snippet){var nom=l.nombre.replace('PRÁCTICA · ','');return [
+'Liza, ayúdame a comentar una publicación de LinkedIn de '+nom+(l.empresa&&l.empresa!='no aplica'?' ('+l.empresa+')':'')+'.',
+'Su publicación dice:',
+'"'+(snippet||'[PEGA AQUÍ LA PUBLICACIÓN]')+'"',
 '',
-'Dame UN comentario corto (máx 20 palabras), en español de México, que aporte una idea real o una pregunta con sentido sobre lo que publicó.',
-'JAMÁS se debe ver hecho con IA. Nada de "gran punto", "totalmente de acuerdo" ni halagos vacíos. Que suene a persona que sabe del tema.'].join('\n');}
+'Objetivo del comentario: SOLO abrir conversación y caer bien (calentar al prospecto). NADA de vender, NO menciones Fideliza, Google Ads ni ofrezcas nada.',
+'Dame UN comentario muy breve (máx 15-20 palabras): de preferencia una pregunta genuina o una observación que invite a que me respondan, mostrando que sí leí su publicación.',
+'Español de México, natural. JAMÁS se debe ver hecho con IA: nada de "felicidades", "gran logro", "excelente trabajo", "totalmente de acuerdo" ni halagos vacíos.'].join('\n');}
 
 function promptGancho(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 'Liza, dame un mensaje CORTO de LinkedIn para un prospecto que YA me aceptó. Soy de Fideliza: gestionamos Google Ads (16 años en México).',
