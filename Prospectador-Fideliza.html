@@ -302,7 +302,9 @@ function renderGancho(){var l=S.ganchos[S.gi];if(!l){toast('Ganchos listos ✓')
   promptBox(promptGancho(l))+
   '<textarea id="gtx" placeholder="Pega aquí el mensaje que te dio Liza (el que ya mandaste)…"></textarea>'+
   '<button class="btn ok" onclick="saveGancho('+l.fila+')">Guardar y marcar enviado</button>'+
-  '<button class="btn ghost sm" onclick="S.gi++;renderGancho()">Saltar por ahora</button></div>');}
+  '<button class="btn ghost sm" onclick="S.gi++;renderGancho()">Saltar por ahora</button>'+
+  '<button class="btn ghost sm" onclick="backGancho()">← Regresar al paso anterior</button></div>');}
+function backGancho(){if(S.gi>0){S.gi--;renderGancho();}else{screenResumen();}}
 function saveGancho(fila){var t=document.getElementById('gtx').value.trim();if(!t){toast('Pega el mensaje primero');return;}
   run('guardarGancho',[fila,t]).then(function(){toast('Enviado ✓');S.gi++;renderGancho();});}
 
