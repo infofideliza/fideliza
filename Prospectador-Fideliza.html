@@ -287,6 +287,7 @@ function renderGanchoHoy(l){
   promptBox(promptGancho(l))+
   '<textarea id="gtx" placeholder="Pega aquí el mensaje que te dio Liza (el que ya mandaste)…"></textarea>'+
   '<button class="btn ok" onclick="saveGanchoHoy('+l.fila+')">Guardar y marcar enviado</button>'+
+  '<button class="btn ghost sm" onclick="regresarProspectoHoy('+l.fila+')">↩︎ Aún no me acepta — regresar a verificación</button>'+
   '<button class="btn ghost sm" onclick="scAgregoHoy()">Volver a la lista</button></div>');}
 function saveGanchoHoy(fila){var t=document.getElementById('gtx').value.trim();if(!t){toast('Pega el mensaje primero');return;}
   run('guardarGancho',[fila,t]).then(function(){toast('Gancho enviado ✓');refreshThen(scAgregoHoy);});}
@@ -303,8 +304,11 @@ function renderGancho(){var l=S.ganchos[S.gi];if(!l){toast('Ganchos listos ✓')
   '<textarea id="gtx" placeholder="Pega aquí el mensaje que te dio Liza (el que ya mandaste)…"></textarea>'+
   '<button class="btn ok" onclick="saveGancho('+l.fila+')">Guardar y marcar enviado</button>'+
   '<button class="btn ghost sm" onclick="S.gi++;renderGancho()">Saltar por ahora</button>'+
-  '<button class="btn ghost sm" onclick="backGancho()">← Regresar al paso anterior</button></div>');}
-function backGancho(){if(S.gi>0){S.gi--;renderGancho();}else{screenResumen();}}
+  '<button class="btn ghost sm" onclick="regresarProspecto('+l.fila+')">↩︎ Aún no me acepta — regresar a verificación</button></div>');}
+function regresarProspecto(fila){if(!confirm('¿Regresar este prospecto a "Revisar aceptaciones"? Úsalo solo si NO te aceptó.'))return;
+  run('regresarAInvitado',[fila]).then(function(){toast('Regresado a aceptaciones ✓');if(S.ganchos){S.ganchos.splice(S.gi,1);}refreshThen(renderGancho);}).catch(err);}
+function regresarProspectoHoy(fila){if(!confirm('¿Regresar este prospecto a "Revisar aceptaciones"? Úsalo solo si NO te aceptó.'))return;
+  run('regresarAInvitado',[fila]).then(function(){toast('Regresado a aceptaciones ✓');if(S.hoyHechos){var k=S.hoyHechos.indexOf(fila);if(k>=0)S.hoyHechos.splice(k,1);}refreshThen(scAgregoHoy);}).catch(err);}
 function saveGancho(fila){var t=document.getElementById('gtx').value.trim();if(!t){toast('Pega el mensaje primero');return;}
   run('guardarGancho',[fila,t]).then(function(){toast('Enviado ✓');S.gi++;renderGancho();});}
 
