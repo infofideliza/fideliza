@@ -95,7 +95,7 @@ function alan(){var m=encodeURIComponent('Hola Alan, soy '+S.sdr+'. Tengo una du
 function pn(n){return (n||'').replace('PRÁCTICA · ','').split(' ')[0];}
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function dd(x){return x?x:'—';}
-function J(o){window.__t=window.__t||{};var id='o'+(Math.random().toString(36).slice(2));window.__t[id]=o;return '__t["'+id+'"]';}
+function J(o){window.__t=window.__t||{};var id='o'+(Math.random().toString(36).slice(2));window.__t[id]=o;return "__t['"+id+"']";}
 function liUrl(l){if(l.url && /linkedin\.com/.test(l.url) && l.url.indexOf('PENDIENTE')<0) return l.url;
   var q=encodeURIComponent((l.nombre||'').replace('PRÁCTICA · ','')+' '+(l.empresa||''));
   return 'https://www.linkedin.com/search/results/people/?keywords='+q;}
