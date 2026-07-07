@@ -129,6 +129,8 @@ function promptGancho(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 'QUÉ VENDEMOS (contexto; NO lo sueltes todo en el primer mensaje): un taller práctico y presencial donde el equipo aprende a usar IA (ChatGPT, Gemini y Claude) en SU trabajo real. 100% manos al teclado. Cada persona sale con prompts probados, cuenta configurada, entregables reales y un plan de arranque. Tareas que hoy toman horas quedan en minutos; la inversión se recupera con un solo resultado.',
 'IMPORTANTE — SIRVE PARA CUALQUIER SECTOR Y CUALQUIER EQUIPO. No lo encasilles. El taller se adapta al giro que sea: comercio, servicios, salud, manufactura, logística, educación, despachos legales/contables, restaurantes, inmobiliaria, gobierno, tecnología, agro, construcción, RH, finanzas, atención a clientes, etc. Tú detectas el giro real del prospecto y ADAPTAS los ejemplos a ESE giro. Los giros son ilimitados; nunca reduzcas a una lista.',
 '',
+'CÓMO ENGANCHAR — bucle abierto (efecto Zeigarnik): el cerebro no aguanta una historia a medias; cuando alguien abre una pregunta y no la cierra, uno se queda enganchado hasta que se resuelve (es lo mismo que hace que no puedas dejar una serie o un video a medias). Úsalo en el MENSAJE y en la IMAGEN: abre con algo inesperado, no con la conclusión; habla alrededor del tema y genera expectativa; NO des la respuesta, porque el "cómo" (el taller) se resuelve en la reunión. El misterio va en la causa/solución, nunca en un regaño a su operación. Estructura > contenido: el mismo mensaje, mejor armado, es lo que hace que respondan.',
+'',
 'PASO 1 — Si arriba todavía NO te pegué lo que vi:',
 'Analiza su sitio/LinkedIn a fondo (si no puedes entrar, pídeme en una línea a qué se dedican y cuántos son en el equipo). Luego dame SOLO esto y espera mi respuesta:',
 '  a) ¿A qué giro pertenecen y qué tipo de equipo tienen (ventas, operación, administración, dirección, atención, etc.)? Dilo en una línea.',
@@ -141,23 +143,30 @@ function promptGancho(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 '- UNA línea con una observación real de su giro: una tarea concreta que su equipo repite y que hoy les cuesta horas (la que confirmamos arriba).',
 '- EL BUCLE ABIERTO (lo más importante): justo después, abre una duda y NO la cierres. Ej: "los equipos de su sector que se adelantaron este año no metieron más gente ni más presupuesto… cambiaron otra cosa, y cuesta menos de lo que parece." NO reveles qué es: esa respuesta vive en la llamada y en la imagen. Que se quede con la intriga y por eso quiera responder. El misterio va en la CAUSA/solución, nunca en un regaño a su operación.',
 '- Preséntate como persona, no como folleto: "Soy '+S.sdr.split(' ')[0]+', ayudo a equipos a usar IA en su trabajo real y este mes estoy revisando sin costo cómo un par de equipos de su sector podrían recuperar horas." NO digas "Fideliza", NO "16 años", NO "somos especialistas/empresa/agencia".',
-'- NO metas links. El objetivo del primer toque es que respondan, no que hagan clic.',
+'- Liga: NO va en el primer mensaje (una liga baja respuestas y a veces LinkedIn la filtra). La liga para agendar ('+CAL+') va en la IMAGEN y en TODOS los seguimientos; el primer toque busca respuesta, no clic.',
 '- Media línea: avísale que le armaste una imagen con lo que viste (la imagen remata).',
 '- Cierra invitando a agendar respondiendo este mismo mensaje: "¿Te late que platiquemos?"',
 '- Que se entienda perfecto y suene a persona real. Breve, claro, y que empuje a agendar.',
 '',
 '2) LAS 3 TAREAS PARA LA IMAGEN — 3 tareas reales y repetitivas del equipo de ESE giro que hoy toman horas y con IA quedan en minutos (basadas en su giro + lo que confirmamos). Marco de oportunidad, no de regaño. Una línea cada una, con un "antes → después" honesto (ej: "Redactar seguimiento a cliente: 30 min → 3 min"). Solo lo comprobable; si una no la sostienes con algo real de su operación, no la pongas.',
-'ESTILO DE LA IMAGEN (look & feel Fideliza — NO cambies el contenido, solo el estilo): formato cuadrado para LinkedIn. Fondo azul marino #0a1628 con acentos en dorado #ffd400. Arriba un rótulo chico en dorado y un título en blanco bold con la palabra o número clave en dorado; subtítulo corto en gris claro. Las 3 tareas con su "antes → después" van en tarjetas sobre el fondo navy, legibles, con los acentos en dorado. Antes del pie, incluye una tira/renglón destacado con el llamado a la acción en dorado o blanco bold: "Agenda una reunión conmigo respondiendo este mensaje." Pie: línea tenue; abajo a la izquierda un punto dorado + \"Fideliza\" en blanco y debajo en gris \"'+S.sdr+' · Talleres de IA para equipos\"; abajo a la derecha una frase corta en gris. Tipografía sans serif bold, limpia y con aire.',
+'LA IMAGEN TAMBIÉN DEBE DAR CURIOSIDAD (mismo bucle abierto): el título de arriba abre la intriga (el "qué cambió"), sin explicar el "cómo"; las 3 tarjetas con su "antes → después" son la prueba de que sí se puede; el CTA no revela el método, solo invita a agendar.',
+'ESTILO DE LA IMAGEN (look & feel Fideliza — NO cambies el contenido, solo el estilo): formato cuadrado para LinkedIn. Fondo azul marino #0a1628 con acentos en dorado #ffd400. Arriba un rótulo chico en dorado y un título en blanco bold con la palabra o número clave en dorado; subtítulo corto en gris claro que abra intriga (sin revelar el cómo). Las 3 tareas con su "antes → después" van en tarjetas sobre el fondo navy, legibles, con los acentos en dorado. Antes del pie, incluye una tira/renglón destacado con el llamado a la acción en dorado o blanco bold: "Agenda una reunión conmigo respondiendo este mensaje" (o, si se usa liga directa, "Agenda directo en el link"). Pie: línea tenue; abajo a la izquierda un punto dorado + \"Fideliza\" en blanco y debajo en gris \"'+S.sdr+' · Talleres de IA para equipos\"; abajo a la derecha una frase corta en gris. Tipografía sans serif bold, limpia y con aire.',
 '',
 'Español de México, frases cortas. Corto, concreto y 100% real.'].join('\n');}
 
 function promptSeg(l){var nom=l.nombre.replace('PRÁCTICA · ','');var d=(l.dias>=7?'7':'3');return [
 'Liza, dame un mensaje de seguimiento de LinkedIn (día '+d+') para '+nom+', '+l.cargo+' en '+l.empresa+'.',
-'Ya le mandé el primer gancho sobre capacitar a su equipo en IA y no me ha contestado.',
-'Breve, sin presionar. Que aporte UN dato o ángulo nuevo (una tarea concreta de SU giro que hoy les come horas y con IA queda en minutos) y recuerde que este mes estoy revisando sin costo un par de equipos de su sector.',
-'Español de México, máx 45 palabras, frases cortas. JAMÁS se debe ver hecho con IA.'].join('\n');}
+'Ya le mandé el primer gancho y no me ha contestado. Este toque es puntual, SIN CHORO: nada de párrafos largos ni rodeos, solo cosas que llamen la atención.',
+'Arma el mensaje con estas piezas, en frases muy cortas:',
+'  1) Retoma: "¿Pudiste ver el mensaje que te dejé, '+pn(l.nombre)+'?"',
+'  2) Deja CLARO qué hacemos (una sola línea, para que sepa qué le ofrezco): damos talleres de IA para que su equipo y su dirección hagan en minutos lo que hoy les toma horas.',
+'  3) El anzuelo: este mes estoy haciendo un diagnóstico corto SIN COSTO con un par de equipos de su sector.',
+'  4) La liga para agendar: '+CAL,
+'  5) Cierra con una pregunta fácil de contestar (ej: "¿Lo vemos esta semana?").',
+(d=='7'?'Como ya es día 7, hazlo aún más corto (25-35 palabras) y agrega un cierre suave: si no es el momento, sin problema.':'Máximo 45-55 palabras.'),
+'Español de México, frases cortas. JAMÁS se debe ver hecho con IA. Nada de "estimado", halagos vacíos ni emojis.'].join('\n');}
 
-var CAL='https://calendly.com/fideliza-info/30min';
+var CAL='https://shorturl.at/OgQlJ';
 function promptMasInfo(l){var nom=l.nombre.replace('PRÁCTICA · ','');return [
 'Liza, '+nom+' ('+l.cargo+' en '+l.empresa+') me respondió y quiere saber más.',
 'Dame 2 o 3 puntos concretos de valor del taller práctico de IA para su equipo (no un pitch, no lista genérica): tareas de su día a día que quedan en minutos, que cada persona sale usándolo el mismo día, y que la inversión se recupera con un solo resultado. Tono cercano, español de México, máx 60 palabras, que terminen invitando a un meet corto.',
